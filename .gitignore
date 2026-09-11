@@ -1,0 +1,25 @@
+# Node
+node_modules/
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.venv/
+venv/
+
+# Env files
+.env
+*.env
+
+# Test scripts
+SomnathMitra/backend/test_*.py
+
+# Large data files
+SomnathMitra/data/train_flight_bus_route_data/indianrailways_gtfs.zip
+SomnathMitra/data/chunks_dump.txt
+
+# IDE
+.idea/
+.vscode/
+*.swp
