@@ -1,10 +1,12 @@
 import asyncio
+import time
 
 from fastapi import APIRouter
 from fastapi.responses import StreamingResponse
 from pydantic import BaseModel
 
 from services import retriever, llm
+from services.applog import log_step
 from services.intent import detect_intent
 from services.location import resolve_origin
 from services.tools import execute_tools
@@ -34,34 +36,51 @@ class ChatResponse(BaseModel):
 
 @router.post("", response_model=ChatResponse)
 async def chat_endpoint(req: ChatRequest):
+    t0 = time.monotonic()
     history = [m.model_dump() for m in req.history]
+    log_step("query", message=req.message[:120], stream=req.stream)
 
-    # Step 1 — resolve origin and detect intent in parallel (independent tasks)
+    t1 = time.monotonic()
     origin, intent = await asyncio.gather(
         resolve_origin(req.message, history),
         detect_intent(req.message, history),
     )
     origin = origin or {}
+    log_step("origin", extracted=origin.get("raw_input"), name=origin.get("name"),
+             confidence=origin.get("confidence"), ms=round((time.monotonic() - t1) * 1000))
 
-    # Step 2 — inject resolved origin into plan_route_to_somnath tool params
+    tools_names = [t["name"] for t in intent.get("tools", [])]
+    log_step("intent", tools=",".join(tools_names) or "none",
+             use_rag=intent.get("use_rag"), ms=round((time.monotonic() - t1) * 1000))
+
     for tool_call in intent.get("tools", []):
         if tool_call.get("name") == "plan_route_to_somnath":
             tool_call["params"]["origin"] = origin
 
-    # Step 4 — fetch structured data for the decided tools
+    t2 = time.monotonic()
     structured = execute_tools(intent["tools"], req.user_lat, req.user_lon)
+    log_step("tools", tools=",".join(tools_names) or "none",
+             result_chars=len(structured), ms=round((time.monotonic() - t2) * 1000))
 
-    # Step 5 — RAG retrieval only if intent says so
+    t3 = time.monotonic()
     chunks = retriever.search(req.message) if intent["use_rag"] else []
+    log_step("rag", chunks=len(chunks),
+             top_score=round(chunks[0]["score"], 3) if chunks else None,
+             ms=round((time.monotonic() - t3) * 1000))
 
-    # Step 6 — LLM call
+    t4 = time.monotonic()
     if req.stream:
         async def token_stream():
             async for token in llm.chat_stream(req.message, history, chunks, structured):
                 yield token
+            log_step("llm", model="main", mode="stream",
+                     ms=round((time.monotonic() - t4) * 1000))
         return StreamingResponse(token_stream(), media_type="text/plain")
 
     reply = await llm.chat(req.message, history, chunks, structured)
+    log_step("llm", model="main", mode="sync", reply_chars=len(reply),
+             ms=round((time.monotonic() - t4) * 1000))
+    log_step("done", total_ms=round((time.monotonic() - t0) * 1000))
     sources = [
         {
             "chunk_id": c["chunk_id"],

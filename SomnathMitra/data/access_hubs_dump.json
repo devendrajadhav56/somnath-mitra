@@ -1,0 +1,1542 @@
+[
+  {
+    "station_code": "JND",
+    "lat": 21.530376,
+    "lon": 70.457382,
+    "station_name": "JUNAGADH JN",
+    "train_count": 21
+  },
+  {
+    "station_code": "JLR",
+    "lat": 21.729404,
+    "lon": 70.57394,
+    "station_name": "JETALSAR JN",
+    "train_count": 13
+  },
+  {
+    "station_code": "RJT",
+    "lat": 22.312126,
+    "lon": 70.803366,
+    "station_name": "RAJKOT",
+    "train_count": 13
+  },
+  {
+    "station_code": "KSD",
+    "lat": 21.297292,
+    "lon": 70.251904,
+    "station_name": "KESHOD",
+    "train_count": 12
+  },
+  {
+    "station_code": "NUD",
+    "lat": 21.7639,
+    "lon": 70.6163,
+    "station_name": "NAVAGADH",
+    "train_count": 12
+  },
+  {
+    "station_code": "GDL",
+    "lat": 21.972181,
+    "lon": 70.795298,
+    "station_name": "GONDAL",
+    "train_count": 11
+  },
+  {
+    "station_code": "SUNR",
+    "lat": 22.7447,
+    "lon": 71.6305,
+    "station_name": "SURENDRANAGAR",
+    "train_count": 10
+  },
+  {
+    "station_code": "MLHA",
+    "lat": 21.15928,
+    "lon": 70.299411,
+    "station_name": "MALIYA HATINA",
+    "train_count": 9
+  },
+  {
+    "station_code": "BKNG",
+    "lat": 22.282743,
+    "lon": 70.792058,
+    "station_name": "BHAKTI NAGAR",
+    "train_count": 9
+  },
+  {
+    "station_code": "ADI",
+    "lat": 23.025475,
+    "lon": 72.601476,
+    "station_name": "AHMEDABAD JN",
+    "train_count": 9
+  },
+  {
+    "station_code": "WKR",
+    "lat": 22.622,
+    "lon": 70.9651,
+    "station_name": "WANKANER JN",
+    "train_count": 9
+  },
+  {
+    "station_code": "VRR",
+    "lat": 21.848753,
+    "lon": 70.707622,
+    "station_name": "VIRPUR",
+    "train_count": 8
+  },
+  {
+    "station_code": "ANND",
+    "lat": 22.5617,
+    "lon": 72.9662,
+    "station_name": "ANAND JN",
+    "train_count": 8
+  },
+  {
+    "station_code": "VG",
+    "lat": 23.1287,
+    "lon": 72.0525,
+    "station_name": "VIRAMGAM JN",
+    "train_count": 8
+  },
+  {
+    "station_code": "ND",
+    "lat": 22.6945,
+    "lon": 72.8561,
+    "station_name": "NADIAD JN",
+    "train_count": 6
+  },
+  {
+    "station_code": "THAN",
+    "lat": 22.5785,
+    "lon": 71.206,
+    "station_name": "THAN JN",
+    "train_count": 6
+  },
+  {
+    "station_code": "CVR",
+    "lat": 21.054946,
+    "lon": 70.290484,
+    "station_name": "CHORVAD ROAD",
+    "train_count": 5
+  },
+  {
+    "station_code": "DLJ",
+    "lat": 21.822939,
+    "lon": 71.738663,
+    "station_name": "DHOLA JN",
+    "train_count": 5
+  },
+  {
+    "station_code": "BRC",
+    "lat": 22.310696,
+    "lon": 73.181005,
+    "station_name": "VADODARA JN",
+    "train_count": 5
+  },
+  {
+    "station_code": "ST",
+    "lat": 21.206418,
+    "lon": 72.840643,
+    "station_name": "SURAT",
+    "train_count": 5
+  },
+  {
+    "station_code": "VAPI",
+    "lat": 20.3739,
+    "lon": 72.9087,
+    "station_name": "VAPI",
+    "train_count": 5
+  },
+  {
+    "station_code": "SVB",
+    "lat": 20.9941,
+    "lon": 70.4711,
+    "station_name": "SAVNI",
+    "train_count": 4
+  },
+  {
+    "station_code": "TAV",
+    "lat": 21.0422,
+    "lon": 70.5226,
+    "station_name": "TALALA JN",
+    "train_count": 4
+  },
+  {
+    "station_code": "CTL",
+    "lat": 21.7453,
+    "lon": 71.2178,
+    "station_name": "CHITAL",
+    "train_count": 4
+  },
+  {
+    "station_code": "MAN",
+    "lat": 22.998338,
+    "lon": 72.61169,
+    "station_name": "MANINAGAR",
+    "train_count": 4
+  },
+  {
+    "station_code": "GDA",
+    "lat": 22.7768,
+    "lon": 73.6035,
+    "station_name": "GODHRA JN",
+    "train_count": 4
+  },
+  {
+    "station_code": "RTM",
+    "lat": 23.34068,
+    "lon": 75.051126,
+    "station_name": "RATLAM JN",
+    "train_count": 4
+  },
+  {
+    "station_code": "DAS",
+    "lat": 21.782615,
+    "lon": 71.518078,
+    "station_name": "DHASA JN",
+    "train_count": 4
+  },
+  {
+    "station_code": "BTD",
+    "lat": 22.182941,
+    "lon": 71.665667,
+    "station_name": "BOTAD JN",
+    "train_count": 4
+  },
+  {
+    "station_code": "DCK",
+    "lat": 22.3845,
+    "lon": 71.9761,
+    "station_name": "DHANDHUKA",
+    "train_count": 4
+  },
+  {
+    "station_code": "BDDR",
+    "lat": 21.3613,
+    "lon": 70.2961,
+    "station_name": "BADODAR",
+    "train_count": 3
+  },
+  {
+    "station_code": "LAL",
+    "lat": 21.395221,
+    "lon": 70.329494,
+    "station_name": "LUSHALA",
+    "train_count": 3
+  },
+  {
+    "station_code": "SHH",
+    "lat": 21.477831,
+    "lon": 70.370607,
+    "station_name": "SHAPUR",
+    "train_count": 3
+  },
+  {
+    "station_code": "VAL",
+    "lat": 21.611153,
+    "lon": 70.492573,
+    "station_name": "VADAL",
+    "train_count": 3
+  },
+  {
+    "station_code": "CTRD",
+    "lat": 21.1007,
+    "lon": 70.5566,
+    "station_name": "CHITRAWAD",
+    "train_count": 3
+  },
+  {
+    "station_code": "SASG",
+    "lat": 21.1686,
+    "lon": 70.602,
+    "station_name": "SASAN GIR",
+    "train_count": 3
+  },
+  {
+    "station_code": "KANS",
+    "lat": 21.2442,
+    "lon": 70.6402,
+    "station_name": "KANSIYA NES",
+    "train_count": 3
+  },
+  {
+    "station_code": "STDR",
+    "lat": 21.283616,
+    "lon": 70.720882,
+    "station_name": "SATADHAR",
+    "train_count": 3
+  },
+  {
+    "station_code": "VSW",
+    "lat": 21.3415,
+    "lon": 70.7554,
+    "station_name": "VISAVADAR",
+    "train_count": 3
+  },
+  {
+    "station_code": "JCN",
+    "lat": 21.3856,
+    "lon": 70.6841,
+    "station_name": "JUNICHAVAND",
+    "train_count": 3
+  },
+  {
+    "station_code": "BILK",
+    "lat": 21.4432,
+    "lon": 70.6005,
+    "station_name": "BILKHA",
+    "train_count": 3
+  },
+  {
+    "station_code": "TORA",
+    "lat": 21.4508,
+    "lon": 70.497,
+    "station_name": "TORNIYA",
+    "train_count": 3
+  },
+  {
+    "station_code": "AKV",
+    "lat": 21.6243,
+    "lon": 73.0011,
+    "station_name": "ANKLESHWAR JN",
+    "train_count": 3
+  },
+  {
+    "station_code": "JTP",
+    "lat": 21.735583,
+    "lon": 70.615454,
+    "station_name": "JETPUR",
+    "train_count": 3
+  },
+  {
+    "station_code": "VDV",
+    "lat": 21.689971,
+    "lon": 70.853376,
+    "station_name": "VADIYA DEVLI",
+    "train_count": 3
+  },
+  {
+    "station_code": "KKV",
+    "lat": 21.653838,
+    "lon": 70.975442,
+    "station_name": "KUNKAVAV JN",
+    "train_count": 3
+  },
+  {
+    "station_code": "KJV",
+    "lat": 21.7409,
+    "lon": 71.2756,
+    "station_name": "KHIJADIYA JN",
+    "train_count": 3
+  },
+  {
+    "station_code": "LAT",
+    "lat": 21.7394,
+    "lon": 71.3866,
+    "station_name": "LATHI",
+    "train_count": 3
+  },
+  {
+    "station_code": "CLDY",
+    "lat": 23.117864,
+    "lon": 72.56032,
+    "station_name": "CHANDLODIYA",
+    "train_count": 3
+  },
+  {
+    "station_code": "MHD",
+    "lat": 22.819226,
+    "lon": 72.752151,
+    "station_name": "MAHEMADAVAD KHEDA ROAD",
+    "train_count": 3
+  },
+  {
+    "station_code": "CYI",
+    "lat": 22.388174,
+    "lon": 73.179588,
+    "station_name": "CHHAYAPURI",
+    "train_count": 3
+  },
+  {
+    "station_code": "NAD",
+    "lat": 23.4561,
+    "lon": 75.4127,
+    "station_name": "NAGDA JN",
+    "train_count": 3
+  },
+  {
+    "station_code": "UJN",
+    "lat": 23.178554,
+    "lon": 75.781803,
+    "station_name": "UJJAIN JN",
+    "train_count": 3
+  },
+  {
+    "station_code": "NVS",
+    "lat": 20.9463,
+    "lon": 72.9138,
+    "station_name": "NAVSARI",
+    "train_count": 3
+  },
+  {
+    "station_code": "BL",
+    "lat": 20.6086,
+    "lon": 72.9335,
+    "station_name": "VALSAD",
+    "train_count": 3
+  },
+  {
+    "station_code": "BVI",
+    "lat": 19.229149,
+    "lon": 72.856822,
+    "station_name": "BORIVALI",
+    "train_count": 3
+  },
+  {
+    "station_code": "BDTS",
+    "lat": 19.062341,
+    "lon": 72.840965,
+    "station_name": "BANDRA TERMINUS",
+    "train_count": 3
+  },
+  {
+    "station_code": "ADE",
+    "lat": 20.986845,
+    "lon": 70.330868,
+    "station_name": "ADARI ROAD",
+    "train_count": 2
+  },
+  {
+    "station_code": "BNTH",
+    "lat": 21.434055,
+    "lon": 70.356789,
+    "station_name": "BANDHNATH",
+    "train_count": 2
+  },
+  {
+    "station_code": "CKE",
+    "lat": 21.6594,
+    "lon": 70.5261,
+    "station_name": "CHOKI SORATH",
+    "train_count": 2
+  },
+  {
+    "station_code": "GTT",
+    "lat": 21.8739,
+    "lon": 70.7298,
+    "station_name": "GOMTA",
+    "train_count": 2
+  },
+  {
+    "station_code": "RBR",
+    "lat": 22.125401,
+    "lon": 70.801392,
+    "station_name": "RIBADA",
+    "train_count": 2
+  },
+  {
+    "station_code": "RKY",
+    "lat": 22.1764,
+    "lon": 70.814,
+    "station_name": "KOTHARIYA",
+    "train_count": 2
+  },
+  {
+    "station_code": "KKK",
+    "lat": 21.652642,
+    "lon": 70.931654,
+    "station_name": "KHAKHARIA",
+    "train_count": 2
+  },
+  {
+    "station_code": "LDU",
+    "lat": 21.7151,
+    "lon": 71.0852,
+    "station_name": "LUNIDHAR",
+    "train_count": 2
+  },
+  {
+    "station_code": "CBCC",
+    "lat": 23.0806839,
+    "lon": 72.5405713,
+    "station_name": "CHANDLODIYA B CABIN",
+    "train_count": 2
+  },
+  {
+    "station_code": "GNC",
+    "lat": 23.233459,
+    "lon": 72.629242,
+    "station_name": "GANDHINAGAR CAPITAL",
+    "train_count": 2
+  },
+  {
+    "station_code": "SEJ",
+    "lat": 22.981864,
+    "lon": 72.497406,
+    "station_name": "SARKHEJ",
+    "train_count": 2
+  },
+  {
+    "station_code": "DRL",
+    "lat": 22.6299,
+    "lon": 73.4619,
+    "station_name": "DEROL",
+    "train_count": 2
+  },
+  {
+    "station_code": "DHD",
+    "lat": 22.843907,
+    "lon": 74.253674,
+    "station_name": "DAHOD",
+    "train_count": 2
+  },
+  {
+    "station_code": "MGN",
+    "lat": 22.9073,
+    "lon": 74.5397,
+    "station_name": "MEGHNAGAR",
+    "train_count": 2
+  },
+  {
+    "station_code": "KUH",
+    "lat": 23.4428,
+    "lon": 75.2865,
+    "station_name": "KHACHROD",
+    "train_count": 2
+  },
+  {
+    "station_code": "MKC",
+    "lat": 23.251795,
+    "lon": 76.159286,
+    "station_name": "MAKSI JUNCTION",
+    "train_count": 2
+  },
+  {
+    "station_code": "BCH",
+    "lat": 23.2828,
+    "lon": 76.3346,
+    "station_name": "BERCHHA",
+    "train_count": 2
+  },
+  {
+    "station_code": "KSH",
+    "lat": 23.3448,
+    "lon": 76.4307,
+    "station_name": "KALI SINDH",
+    "train_count": 2
+  },
+  {
+    "station_code": "AKD",
+    "lat": 23.3782,
+    "lon": 76.5992,
+    "station_name": "AKODIA",
+    "train_count": 2
+  },
+  {
+    "station_code": "SJP",
+    "lat": 23.3808,
+    "lon": 76.723,
+    "station_name": "SHUJALPUR",
+    "train_count": 2
+  },
+  {
+    "station_code": "KPP",
+    "lat": 23.333,
+    "lon": 76.8343,
+    "station_name": "KALAPIPAL",
+    "train_count": 2
+  },
+  {
+    "station_code": "PRB",
+    "lat": 23.251,
+    "lon": 77.0128,
+    "station_name": "PARBATI",
+    "train_count": 2
+  },
+  {
+    "station_code": "SEH",
+    "lat": 23.2148,
+    "lon": 77.0776,
+    "station_name": "SEHORE",
+    "train_count": 2
+  },
+  {
+    "station_code": "SHRN",
+    "lat": 23.274,
+    "lon": 77.3366,
+    "station_name": "SANT HIRDARAM NAGAR JUNCTION",
+    "train_count": 2
+  },
+  {
+    "station_code": "BPL",
+    "lat": 23.259933,
+    "lon": 77.412615,
+    "station_name": "BHOPAL JN.",
+    "train_count": 2
+  },
+  {
+    "station_code": "JBP",
+    "lat": 23.164746,
+    "lon": 79.951029,
+    "station_name": "JABALPUR",
+    "train_count": 2
+  },
+  {
+    "station_code": "BH",
+    "lat": 21.7073,
+    "lon": 72.998,
+    "station_name": "BHARUCH JN",
+    "train_count": 2
+  },
+  {
+    "station_code": "DRD",
+    "lat": 19.991417,
+    "lon": 72.743568,
+    "station_name": "DAHANU ROAD",
+    "train_count": 2
+  },
+  {
+    "station_code": "BSR",
+    "lat": 19.382389,
+    "lon": 72.832162,
+    "station_name": "VASAI ROAD",
+    "train_count": 2
+  },
+  {
+    "station_code": "BIRD",
+    "lat": 19.268754,
+    "lon": 73.045864,
+    "station_name": "BHIVANDI ROAD",
+    "train_count": 2
+  },
+  {
+    "station_code": "DOK",
+    "lat": 22.732332,
+    "lon": 72.434192,
+    "station_name": "DHOLKA",
+    "train_count": 2
+  },
+  {
+    "station_code": "GG",
+    "lat": 23.02666,
+    "lon": 72.568731,
+    "station_name": "GANDHIGRAM",
+    "train_count": 2
+  },
+  {
+    "station_code": "MSH",
+    "lat": 23.603003,
+    "lon": 72.389088,
+    "station_name": "MAHESANA JN",
+    "train_count": 2
+  },
+  {
+    "station_code": "PNU",
+    "lat": 24.174633,
+    "lon": 72.430372,
+    "station_name": "PALANPUR JN",
+    "train_count": 2
+  },
+  {
+    "station_code": "ABR",
+    "lat": 24.471135,
+    "lon": 72.776055,
+    "station_name": "ABU ROAD",
+    "train_count": 2
+  },
+  {
+    "station_code": "FA",
+    "lat": 25.235418,
+    "lon": 73.234563,
+    "station_name": "FALNA",
+    "train_count": 2
+  },
+  {
+    "station_code": "MJ",
+    "lat": 25.720349,
+    "lon": 73.609171,
+    "station_name": "MARWAR JN",
+    "train_count": 2
+  },
+  {
+    "station_code": "BER",
+    "lat": 26.108508,
+    "lon": 74.314571,
+    "station_name": "BEAWAR",
+    "train_count": 2
+  },
+  {
+    "station_code": "AII",
+    "lat": 26.456742,
+    "lon": 74.637594,
+    "station_name": "AJMER JN",
+    "train_count": 2
+  },
+  {
+    "station_code": "KSG",
+    "lat": 26.5894,
+    "lon": 74.856,
+    "station_name": "KISHANGARH",
+    "train_count": 2
+  },
+  {
+    "station_code": "IDH",
+    "lat": 27.17288,
+    "lon": 77.998037,
+    "station_name": "IDGAH AGRA JN",
+    "train_count": 2
+  },
+  {
+    "station_code": "TDL",
+    "lat": 27.207847,
+    "lon": 78.233385,
+    "station_name": "TUNDLA JN",
+    "train_count": 2
+  },
+  {
+    "station_code": "ETW",
+    "lat": 26.78638,
+    "lon": 79.021912,
+    "station_name": "ETAWAH JN",
+    "train_count": 2
+  },
+  {
+    "station_code": "GOY",
+    "lat": 26.454283,
+    "lon": 80.313063,
+    "station_name": "GOVINDPURI",
+    "train_count": 2
+  },
+  {
+    "station_code": "PRYJ",
+    "lat": 25.445871,
+    "lon": 81.828446,
+    "station_name": "PRAYAGRAJ JN",
+    "train_count": 2
+  },
+  {
+    "station_code": "VVD",
+    "lat": 21.714374,
+    "lon": 70.793638,
+    "station_name": "VAVDI",
+    "train_count": 1
+  },
+  {
+    "station_code": "JA",
+    "lat": 21.814652,
+    "lon": 71.62571,
+    "station_name": "JALIYA",
+    "train_count": 1
+  },
+  {
+    "station_code": "SOJN",
+    "lat": 21.725218,
+    "lon": 71.957617,
+    "station_name": "SIHOR GUJARAT",
+    "train_count": 1
+  },
+  {
+    "station_code": "BVP",
+    "lat": 21.7705,
+    "lon": 72.118292,
+    "station_name": "BHAVANAGAR PARA",
+    "train_count": 1
+  },
+  {
+    "station_code": "BVC",
+    "lat": 21.781818,
+    "lon": 72.141209,
+    "station_name": "BHAVNAGAR TERMINUS",
+    "train_count": 1
+  },
+  {
+    "station_code": "JBB",
+    "lat": 21.0329,
+    "lon": 70.5931,
+    "station_name": "JAMBUR",
+    "train_count": 1
+  },
+  {
+    "station_code": "GRHM",
+    "lat": 20.9886,
+    "lon": 70.6874,
+    "station_name": "GIR HADMATIYA",
+    "train_count": 1
+  },
+  {
+    "station_code": "PCC",
+    "lat": 20.9886,
+    "lon": 70.6874,
+    "station_name": "PRACHI ROAD JN",
+    "train_count": 1
+  },
+  {
+    "station_code": "VLDR",
+    "lat": 20.9675,
+    "lon": 70.7243,
+    "station_name": "VALADAR",
+    "train_count": 1
+  },
+  {
+    "station_code": "JVL",
+    "lat": 20.9707,
+    "lon": 70.772,
+    "station_name": "JAMWALA",
+    "train_count": 1
+  },
+  {
+    "station_code": "HRM",
+    "lat": 20.9346,
+    "lon": 70.8408,
+    "station_name": "HADMADIYA",
+    "train_count": 1
+  },
+  {
+    "station_code": "GEG",
+    "lat": 20.9067,
+    "lon": 70.9196,
+    "station_name": "GIR GADHARA",
+    "train_count": 1
+  },
+  {
+    "station_code": "UNA",
+    "lat": 20.819,
+    "lon": 71.036,
+    "station_name": "UNA",
+    "train_count": 1
+  },
+  {
+    "station_code": "DVA",
+    "lat": 20.773489,
+    "lon": 71.041589,
+    "station_name": "DELVADA",
+    "train_count": 1
+  },
+  {
+    "station_code": "SBIB",
+    "lat": 23.07732,
+    "lon": 72.588972,
+    "station_name": "SABARMATI BG",
+    "train_count": 1
+  },
+  {
+    "station_code": "DWX",
+    "lat": 22.977676,
+    "lon": 76.051311,
+    "station_name": "DEWAS",
+    "train_count": 1
+  },
+  {
+    "station_code": "INDB",
+    "lat": 22.71729,
+    "lon": 75.868149,
+    "station_name": "INDORE JN",
+    "train_count": 1
+  },
+  {
+    "station_code": "HAPA",
+    "lat": 22.4685,
+    "lon": 70.1177,
+    "station_name": "HAPA",
+    "train_count": 1
+  },
+  {
+    "station_code": "JAM",
+    "lat": 22.4939,
+    "lon": 70.0538,
+    "station_name": "JAMNAGAR",
+    "train_count": 1
+  },
+  {
+    "station_code": "KMBL",
+    "lat": 22.217523,
+    "lon": 69.657354,
+    "station_name": "KHAMBHALIYA",
+    "train_count": 1
+  },
+  {
+    "station_code": "BHTA",
+    "lat": 22.088654,
+    "lon": 69.280862,
+    "station_name": "BHATIYA",
+    "train_count": 1
+  },
+  {
+    "station_code": "DWK",
+    "lat": 22.250653,
+    "lon": 68.980064,
+    "station_name": "DWARKA",
+    "train_count": 1
+  },
+  {
+    "station_code": "MTHP",
+    "lat": 22.411981,
+    "lon": 69.009075,
+    "station_name": "MITHAPUR",
+    "train_count": 1
+  },
+  {
+    "station_code": "OKHA",
+    "lat": 22.47132,
+    "lon": 69.074135,
+    "station_name": "OKHA",
+    "train_count": 1
+  },
+  {
+    "station_code": "MOL",
+    "lat": 22.6763,
+    "lon": 71.4346,
+    "station_name": "MULI ROAD",
+    "train_count": 1
+  },
+  {
+    "station_code": "LTR",
+    "lat": 22.872933,
+    "lon": 71.776257,
+    "station_name": "LAKHTAR",
+    "train_count": 1
+  },
+  {
+    "station_code": "KSB",
+    "lat": 21.4642,
+    "lon": 72.9547,
+    "station_name": "KOSAMBA JN",
+    "train_count": 1
+  },
+  {
+    "station_code": "BIM",
+    "lat": 20.763779,
+    "lon": 72.970934,
+    "station_name": "BILIMORA JN",
+    "train_count": 1
+  },
+  {
+    "station_code": "PLG",
+    "lat": 19.6977,
+    "lon": 72.7721,
+    "station_name": "PALGHAR",
+    "train_count": 1
+  },
+  {
+    "station_code": "ABD",
+    "lat": 23.05387,
+    "lon": 72.493544,
+    "station_name": "AMBLI ROAD",
+    "train_count": 1
+  },
+  {
+    "station_code": "BOR",
+    "lat": 19.7982,
+    "lon": 72.7616,
+    "station_name": "BOISAR",
+    "train_count": 1
+  },
+  {
+    "station_code": "PNVL",
+    "lat": 18.990429,
+    "lon": 73.121266,
+    "station_name": "PANVEL",
+    "train_count": 1
+  },
+  {
+    "station_code": "MNI",
+    "lat": 18.247326,
+    "lon": 73.275719,
+    "station_name": "MANGAON",
+    "train_count": 1
+  },
+  {
+    "station_code": "KHED",
+    "lat": 17.712429,
+    "lon": 73.409185,
+    "station_name": "KHED",
+    "train_count": 1
+  },
+  {
+    "station_code": "RN",
+    "lat": 17.003113,
+    "lon": 73.357258,
+    "station_name": "RATNAGIRI",
+    "train_count": 1
+  },
+  {
+    "station_code": "KUDL",
+    "lat": 16.017271,
+    "lon": 73.67775,
+    "station_name": "KUDAL",
+    "train_count": 1
+  },
+  {
+    "station_code": "KRMI",
+    "lat": 15.490233,
+    "lon": 73.924684,
+    "station_name": "KARMALI",
+    "train_count": 1
+  },
+  {
+    "station_code": "MAO",
+    "lat": 15.267791,
+    "lon": 73.970604,
+    "station_name": "MADGAON JUNCTION",
+    "train_count": 1
+  },
+  {
+    "station_code": "KAWR",
+    "lat": 14.820897,
+    "lon": 74.182649,
+    "station_name": "KARWAR",
+    "train_count": 1
+  },
+  {
+    "station_code": "ANKL",
+    "lat": 14.6448,
+    "lon": 74.3324,
+    "station_name": "ANKOLA",
+    "train_count": 1
+  },
+  {
+    "station_code": "BYNR",
+    "lat": 13.87233,
+    "lon": 74.63253,
+    "station_name": "MOOKAMBIKA ROAD BYNDOOR (H)",
+    "train_count": 1
+  },
+  {
+    "station_code": "KUDA",
+    "lat": 13.613289,
+    "lon": 74.728746,
+    "station_name": "KUNDAPURA",
+    "train_count": 1
+  },
+  {
+    "station_code": "UD",
+    "lat": 13.335841,
+    "lon": 74.771233,
+    "station_name": "UDUPI",
+    "train_count": 1
+  },
+  {
+    "station_code": "MAJN",
+    "lat": 12.866113,
+    "lon": 74.87998,
+    "station_name": "MANGALORE JUNCTION",
+    "train_count": 1
+  },
+  {
+    "station_code": "KGQ",
+    "lat": 12.4911,
+    "lon": 74.9876,
+    "station_name": "KASARAGOD",
+    "train_count": 1
+  },
+  {
+    "station_code": "KZE",
+    "lat": 12.3198,
+    "lon": 75.0848,
+    "station_name": "KANHANGAD",
+    "train_count": 1
+  },
+  {
+    "station_code": "PAY",
+    "lat": 12.0919,
+    "lon": 75.1948,
+    "station_name": "PAYYANUR",
+    "train_count": 1
+  },
+  {
+    "station_code": "CAN",
+    "lat": 11.871,
+    "lon": 75.3687,
+    "station_name": "KANNUR",
+    "train_count": 1
+  },
+  {
+    "station_code": "TLY",
+    "lat": 11.75305,
+    "lon": 75.492897,
+    "station_name": "THALASSERY",
+    "train_count": 1
+  },
+  {
+    "station_code": "BDJ",
+    "lat": 11.5934,
+    "lon": 75.587,
+    "station_name": "VADAKARA",
+    "train_count": 1
+  },
+  {
+    "station_code": "QLD",
+    "lat": 11.4459,
+    "lon": 75.6937,
+    "station_name": "QUILANDI",
+    "train_count": 1
+  },
+  {
+    "station_code": "CLT",
+    "lat": 11.246514,
+    "lon": 75.780687,
+    "station_name": "KOZHIKKODE",
+    "train_count": 1
+  },
+  {
+    "station_code": "PGI",
+    "lat": 11.0455,
+    "lon": 75.8605,
+    "station_name": "PARPANANGADI",
+    "train_count": 1
+  },
+  {
+    "station_code": "TIR",
+    "lat": 10.9174,
+    "lon": 75.9215,
+    "station_name": "TIRUR",
+    "train_count": 1
+  },
+  {
+    "station_code": "KTU",
+    "lat": 10.8456,
+    "lon": 76.0332,
+    "station_name": "KUTTIPPURAM",
+    "train_count": 1
+  },
+  {
+    "station_code": "PTB",
+    "lat": 10.8016,
+    "lon": 76.1812,
+    "station_name": "PATTAMBI",
+    "train_count": 1
+  },
+  {
+    "station_code": "SRR",
+    "lat": 10.7589,
+    "lon": 76.2723,
+    "station_name": "SHORANUR JN",
+    "train_count": 1
+  },
+  {
+    "station_code": "TCR",
+    "lat": 10.51448,
+    "lon": 76.207609,
+    "station_name": "THRISUR",
+    "train_count": 1
+  },
+  {
+    "station_code": "AWY",
+    "lat": 10.1079,
+    "lon": 76.3562,
+    "station_name": "ALUVA",
+    "train_count": 1
+  },
+  {
+    "station_code": "ERN",
+    "lat": 9.992012,
+    "lon": 76.28653,
+    "station_name": "ERNAKULAM TOWN",
+    "train_count": 1
+  },
+  {
+    "station_code": "KTYM",
+    "lat": 9.594487,
+    "lon": 76.532478,
+    "station_name": "KOTTAYAM",
+    "train_count": 1
+  },
+  {
+    "station_code": "TRVL",
+    "lat": 9.3917,
+    "lon": 76.5798,
+    "station_name": "TIRUVALLA",
+    "train_count": 1
+  },
+  {
+    "station_code": "CNGR",
+    "lat": 9.3194,
+    "lon": 76.6081,
+    "station_name": "CHENGANNUR",
+    "train_count": 1
+  },
+  {
+    "station_code": "MVLK",
+    "lat": 9.2395,
+    "lon": 76.5457,
+    "station_name": "MAVELIKARA",
+    "train_count": 1
+  },
+  {
+    "station_code": "QLN",
+    "lat": 8.8865,
+    "lon": 76.5967,
+    "station_name": "KOLLAM JN",
+    "train_count": 1
+  },
+  {
+    "station_code": "TVC",
+    "lat": 8.487059,
+    "lon": 76.95159,
+    "station_name": "THIRUVANANTHAPURAM CENTRAL",
+    "train_count": 1
+  },
+  {
+    "station_code": "VLA",
+    "lat": 22.833149,
+    "lon": 72.364883,
+    "station_name": "BAVLA",
+    "train_count": 1
+  },
+  {
+    "station_code": "SGZ",
+    "lat": 24.1912,
+    "lon": 75.6429,
+    "station_name": "SHAMGARH",
+    "train_count": 1
+  },
+  {
+    "station_code": "KOTA",
+    "lat": 25.223733,
+    "lon": 75.88068,
+    "station_name": "KOTA JN",
+    "train_count": 1
+  },
+  {
+    "station_code": "GGC",
+    "lat": 26.468499,
+    "lon": 76.727228,
+    "station_name": "GANGAPUR CITY JUNCTION",
+    "train_count": 1
+  },
+  {
+    "station_code": "BNRS",
+    "lat": 25.29975,
+    "lon": 82.971856,
+    "station_name": "BANARAS",
+    "train_count": 1
+  },
+  {
+    "station_code": "NSZ",
+    "lat": 23.278565,
+    "lon": 77.419109,
+    "station_name": "NISHATPURA",
+    "train_count": 1
+  },
+  {
+    "station_code": "BHS",
+    "lat": 23.5226,
+    "lon": 77.8151,
+    "station_name": "VIDISHA",
+    "train_count": 1
+  },
+  {
+    "station_code": "BAQ",
+    "lat": 23.845257,
+    "lon": 77.944736,
+    "station_name": "GANJ BASODA",
+    "train_count": 1
+  },
+  {
+    "station_code": "MABA",
+    "lat": 24.053832,
+    "lon": 78.082237,
+    "station_name": "MANDI BAMORA",
+    "train_count": 1
+  },
+  {
+    "station_code": "BINA",
+    "lat": 24.171114,
+    "lon": 78.18334,
+    "station_name": "BINA JN",
+    "train_count": 1
+  },
+  {
+    "station_code": "KYE",
+    "lat": 24.0517,
+    "lon": 78.3313,
+    "station_name": "KHURAI",
+    "train_count": 1
+  },
+  {
+    "station_code": "SGO",
+    "lat": 23.84722,
+    "lon": 78.74279,
+    "station_name": "SAUGOR",
+    "train_count": 1
+  },
+  {
+    "station_code": "PHA",
+    "lat": 23.9054,
+    "lon": 79.1926,
+    "station_name": "PATHARIA",
+    "train_count": 1
+  },
+  {
+    "station_code": "DMO",
+    "lat": 23.836543,
+    "lon": 79.432096,
+    "station_name": "DAMOH",
+    "train_count": 1
+  },
+  {
+    "station_code": "KMZ",
+    "lat": 23.833876,
+    "lon": 80.401004,
+    "station_name": "KATNI MURWARA JUNCTION",
+    "train_count": 1
+  },
+  {
+    "station_code": "RKMP",
+    "lat": 23.222259,
+    "lon": 77.439709,
+    "station_name": "RANI KAMALAPATI",
+    "train_count": 1
+  },
+  {
+    "station_code": "NDPM",
+    "lat": 22.75323,
+    "lon": 77.716084,
+    "station_name": "NARMADAPURAM",
+    "train_count": 1
+  },
+  {
+    "station_code": "ET",
+    "lat": 22.608,
+    "lon": 77.7669,
+    "station_name": "ITARSI JN",
+    "train_count": 1
+  },
+  {
+    "station_code": "SGP",
+    "lat": 22.6938,
+    "lon": 78.1944,
+    "station_name": "SOHAGPUR",
+    "train_count": 1
+  },
+  {
+    "station_code": "PPI",
+    "lat": 22.7539,
+    "lon": 78.3545,
+    "station_name": "PIPARIYA",
+    "train_count": 1
+  },
+  {
+    "station_code": "BKH",
+    "lat": 22.775232,
+    "lon": 78.538347,
+    "station_name": "BANKHEDI",
+    "train_count": 1
+  },
+  {
+    "station_code": "SCKR",
+    "lat": 22.834,
+    "lon": 78.6767,
+    "station_name": "SALICHAUKA ROAD",
+    "train_count": 1
+  },
+  {
+    "station_code": "GAR",
+    "lat": 22.899739,
+    "lon": 78.792014,
+    "station_name": "GADARWARA",
+    "train_count": 1
+  },
+  {
+    "station_code": "KY",
+    "lat": 22.9319,
+    "lon": 79.0664,
+    "station_name": "KARELI",
+    "train_count": 1
+  },
+  {
+    "station_code": "NU",
+    "lat": 22.9429,
+    "lon": 79.2142,
+    "station_name": "NARSINGHPUR",
+    "train_count": 1
+  },
+  {
+    "station_code": "KKB",
+    "lat": 22.9922,
+    "lon": 79.3411,
+    "station_name": "KARAK BEL",
+    "train_count": 1
+  },
+  {
+    "station_code": "SRID",
+    "lat": 23.0342,
+    "lon": 79.4847,
+    "station_name": "SRIDHAM",
+    "train_count": 1
+  },
+  {
+    "station_code": "KYN",
+    "lat": 19.235126,
+    "lon": 73.13015,
+    "station_name": "KALYAN JN",
+    "train_count": 1
+  },
+  {
+    "station_code": "KJT",
+    "lat": 18.9111,
+    "lon": 73.3206,
+    "station_name": "KARJAT",
+    "train_count": 1
+  },
+  {
+    "station_code": "LNL",
+    "lat": 18.7492,
+    "lon": 73.408,
+    "station_name": "LONAVALA",
+    "train_count": 1
+  },
+  {
+    "station_code": "PUNE",
+    "lat": 18.529178,
+    "lon": 73.872886,
+    "station_name": "PUNE JN",
+    "train_count": 1
+  },
+  {
+    "station_code": "FL",
+    "lat": 26.873234,
+    "lon": 75.245876,
+    "station_name": "PHULERA",
+    "train_count": 1
+  },
+  {
+    "station_code": "RGS",
+    "lat": 27.373139,
+    "lon": 75.563364,
+    "station_name": "RINGAS JN",
+    "train_count": 1
+  },
+  {
+    "station_code": "SMPR",
+    "lat": 27.4577,
+    "lon": 75.5984,
+    "station_name": "SHRI MADHOPUR",
+    "train_count": 1
+  },
+  {
+    "station_code": "NMK",
+    "lat": 27.7413,
+    "lon": 75.7794,
+    "station_name": "NIM KA THANA",
+    "train_count": 1
+  },
+  {
+    "station_code": "NNL",
+    "lat": 28.0444,
+    "lon": 76.1232,
+    "station_name": "NARNAUL",
+    "train_count": 1
+  },
+  {
+    "station_code": "AEL",
+    "lat": 28.0999,
+    "lon": 76.2529,
+    "station_name": "ATELI",
+    "train_count": 1
+  },
+  {
+    "station_code": "RE",
+    "lat": 28.202919,
+    "lon": 76.609554,
+    "station_name": "REWARI JN.",
+    "train_count": 1
+  },
+  {
+    "station_code": "GGN",
+    "lat": 28.489325,
+    "lon": 77.010899,
+    "station_name": "GURGAON",
+    "train_count": 1
+  },
+  {
+    "station_code": "DLI",
+    "lat": 28.661596,
+    "lon": 77.228136,
+    "station_name": "DELHI JN.",
+    "train_count": 1
+  },
+  {
+    "station_code": "GZB",
+    "lat": 28.650072,
+    "lon": 77.431469,
+    "station_name": "GHAZIABAD",
+    "train_count": 1
+  },
+  {
+    "station_code": "MTC",
+    "lat": 28.9773,
+    "lon": 77.6748,
+    "station_name": "MEERUT CITY",
+    "train_count": 1
+  },
+  {
+    "station_code": "MOZ",
+    "lat": 29.4689,
+    "lon": 77.708,
+    "station_name": "MUZAFFARNAGAR",
+    "train_count": 1
+  },
+  {
+    "station_code": "RK",
+    "lat": 29.852,
+    "lon": 77.8745,
+    "station_name": "ROORKEE",
+    "train_count": 1
+  },
+  {
+    "station_code": "HW",
+    "lat": 29.9481,
+    "lon": 78.1552,
+    "station_name": "HARIDWAR JN",
+    "train_count": 1
+  },
+  {
+    "station_code": "SJWB",
+    "lat": 25.114163,
+    "lon": 73.147445,
+    "station_name": "SUMERPUR JAWAI BANDH",
+    "train_count": 1
+  },
+  {
+    "station_code": "JP",
+    "lat": 26.920233,
+    "lon": 75.786953,
+    "station_name": "JAIPUR JN.",
+    "train_count": 1
+  },
+  {
+    "station_code": "BKI",
+    "lat": 27.0392,
+    "lon": 76.5667,
+    "station_name": "BANDIKUI JN",
+    "train_count": 1
+  },
+  {
+    "station_code": "BTE",
+    "lat": 27.2366,
+    "lon": 77.4882,
+    "station_name": "BHARATPUR JN",
+    "train_count": 1
+  },
+  {
+    "station_code": "PHD",
+    "lat": 26.667249,
+    "lon": 79.479218,
+    "station_name": "PHAPHUND",
+    "train_count": 1
+  },
+  {
+    "station_code": "JJK",
+    "lat": 26.5549,
+    "lon": 79.7341,
+    "station_name": "JHINJHAK",
+    "train_count": 1
+  },
+  {
+    "station_code": "FTP",
+    "lat": 25.917,
+    "lon": 80.8014,
+    "station_name": "FATEHPUR",
+    "train_count": 1
+  }
+]

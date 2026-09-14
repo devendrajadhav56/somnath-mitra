@@ -1,22 +1,23 @@
 from contextlib import asynccontextmanager
 
-from fastapi import FastAPI
+from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 
 from services import embedder, retriever
+from services.applog import setup_logging, new_req_id, set_req_id, log_step
 from routers import chat, pois, restaurants, qa
 
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    # Verify embedding endpoint is reachable
+    setup_logging()
+
     embedder.warmup()
 
-    # Load knowledge_chunks embeddings into memory
     n = retriever.reload()
-    print(f"[startup] retriever loaded {n} knowledge chunks")
+    log_step("startup", chunks_indexed=n)
     if n == 0:
-        print("[startup] WARNING: no embedded chunks found — run data/etl/embed_knowledge_chunks.py first")
+        log_step("startup", warning="no embedded chunks — run data/etl/embed_knowledge_chunks.py")
 
     yield
 
@@ -34,6 +35,16 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+
+@app.middleware("http")
+async def request_logging_middleware(request: Request, call_next):
+    req_id = new_req_id()
+    set_req_id(req_id)
+    log_step("request_in", method=request.method, path=request.url.path)
+    response = await call_next(request)
+    log_step("request_out", status=response.status_code)
+    return response
 
 app.include_router(chat.router)
 app.include_router(pois.router)

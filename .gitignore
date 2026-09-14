@@ -19,6 +19,9 @@ SomnathMitra/backend/test_*.py
 SomnathMitra/data/train_flight_bus_route_data/indianrailways_gtfs.zip
 SomnathMitra/data/chunks_dump.txt
 
+# Logs
+SomnathMitra/backend/logs/*.log
+
 # IDE
 .idea/
 .vscode/
