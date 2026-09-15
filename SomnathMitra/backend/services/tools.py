@@ -224,6 +224,7 @@ def _run_search_buses(params: dict) -> str:
 def _run_get_temple_info(params: dict) -> str:
     key = params.get("key")
     doc = db.get_clean_db()["temple_info"].find_one({"key": key}, {"_id": 0})
+    print("TEMPLE INFO", doc)
     if not doc:
         return f"No temple info found for key: {key}"
     return _fmt_temple_info(doc)

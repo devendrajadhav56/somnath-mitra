@@ -1,4 +1,5 @@
 import asyncio
+import json
 import time
 
 from fastapi import APIRouter
@@ -45,6 +46,7 @@ async def chat_endpoint(req: ChatRequest):
         resolve_origin(req.message, history),
         detect_intent(req.message, history),
     )
+    print("INTENT", intent)
     origin = origin or {}
     log_step("origin", extracted=origin.get("raw_input"), name=origin.get("name"),
              confidence=origin.get("confidence"), ms=round((time.monotonic() - t1) * 1000))
@@ -70,11 +72,29 @@ async def chat_endpoint(req: ChatRequest):
 
     t4 = time.monotonic()
     if req.stream:
+        sources = [
+            {
+                "chunk_id": c["chunk_id"],
+                "heading": c.get("heading"),
+                "page_url": c.get("page_url"),
+                "score": c["score"],
+            }
+            for c in chunks
+        ]
+
         async def token_stream():
             async for token in llm.chat_stream(req.message, history, chunks, structured):
                 yield token
             log_step("llm", model="main", mode="stream",
                      ms=round((time.monotonic() - t4) * 1000))
+            meta = {
+                "elapsed_ms": round((time.monotonic() - t0) * 1000),
+                "intent": intent,
+                "sources": sources,
+                "origin": origin,
+            }
+            yield "\x00" + json.dumps(meta)
+
         return StreamingResponse(token_stream(), media_type="text/plain")
 
     reply = await llm.chat(req.message, history, chunks, structured)

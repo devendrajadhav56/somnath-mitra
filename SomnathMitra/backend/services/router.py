@@ -24,7 +24,7 @@ SOMNATH_LON = config.TEMPLE_LON
 VERAVAL_TO_SOMNATH_KM = 6.0
 VERAVAL_TO_SOMNATH_MIN = 20  # taxi/auto
 
-MAX_HUB_DISTANCE_KM = 150  # don't suggest a hub that's further than this
+MAX_HUB_DISTANCE_KM = 500  # don't suggest a hub that's further than this
 MAX_HUBS = 4               # top N hubs to consider
 MAX_JOURNEYS = 5           # top N journeys to return
 
