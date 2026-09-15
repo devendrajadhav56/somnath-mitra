@@ -81,17 +81,28 @@ async def chat_endpoint(req: ChatRequest):
             }
             for c in chunks
         ]
+        timings = {
+            "intent_origin_ms": round((t2 - t1) * 1000),
+            "tools_ms":         round((t3 - t2) * 1000),
+            "rag_ms":           round((t4 - t3) * 1000),
+        }
 
         async def token_stream():
+            first = True
             async for token in llm.chat_stream(req.message, history, chunks, structured):
+                if first:
+                    timings["ttft_ms"] = round((time.monotonic() - t0) * 1000)
+                    first = False
                 yield token
+            timings["llm_total_ms"] = round((time.monotonic() - t4) * 1000)
             log_step("llm", model="main", mode="stream",
-                     ms=round((time.monotonic() - t4) * 1000))
+                     ms=timings["llm_total_ms"])
             meta = {
                 "elapsed_ms": round((time.monotonic() - t0) * 1000),
                 "intent": intent,
                 "sources": sources,
                 "origin": origin,
+                "timings": timings,
             }
             yield "\x00" + json.dumps(meta)
 
