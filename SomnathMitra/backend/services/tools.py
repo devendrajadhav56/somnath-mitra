@@ -230,24 +230,67 @@ def _run_get_temple_info(params: dict) -> str:
     return _fmt_temple_info(doc)
 
 
+def _run_search_shop(params: dict) -> tuple[str, list[dict]]:
+    category = params.get("category")
+    min_price = params.get("min_price")
+    max_price = params.get("max_price")
+    limit = params.get("limit", 8)
+
+    query: dict = {}
+    if category:
+        query["category"] = {"$regex": category, "$options": "i"}
+    price_filter: dict = {}
+    if min_price is not None:
+        price_filter["$gte"] = float(min_price)
+    if max_price is not None:
+        price_filter["$lte"] = float(max_price)
+    if price_filter:
+        query["price"] = price_filter
+
+    docs = list(db.get_clean_db()["shop_products"].find(query, {"_id": 0}).limit(limit))
+    if not docs:
+        desc = f" in category '{category}'" if category else ""
+        return f"No shop products found{desc}.", []
+
+    lines = [f"[Somnath Temple Shop — {len(docs)} items]"]
+    for d in docs:
+        parts = [d["name"], d["category"], f"₹{int(d['price'])}"]
+        if d.get("product_url"):
+            parts.append(d["product_url"])
+        lines.append("- " + " | ".join(parts))
+
+    products = [
+        {
+            "name":        d["name"],
+            "category":    d.get("category"),
+            "price":       d.get("price"),
+            "image_url":   d.get("image_url"),
+            "product_url": d.get("product_url"),
+        }
+        for d in docs
+    ]
+    return "\n".join(lines), products
+
+
 # ── Public API ────────────────────────────────────────────────────────────────
 
 def execute_tools(
     tool_calls: list[dict],
     user_lat: float | None = None,
     user_lon: float | None = None,
-) -> str:
+) -> tuple[str, list[dict]]:
     """
     Execute a list of tool calls as decided by the intent detector.
-    Returns a single formatted string to inject into the LLM context,
-    or an empty string if tool_calls is empty.
+    Returns (structured_text, products) where structured_text is injected into
+    the LLM context and products is a list of shop product dicts for the frontend.
     """
     if not tool_calls:
-        return ""
+        return "", []
 
     lat = user_lat or TEMPLE_LAT
     lon = user_lon or TEMPLE_LON
     sections: list[str] = []
+    products: list[dict] = []
 
     for call in tool_calls:
         name = call.get("name")
@@ -264,8 +307,12 @@ def execute_tools(
         elif name == "search_buses":
             sections.append(_run_search_buses(params))
         elif name == "plan_route_to_somnath":
-            origin = params.get("origin")  # geocode result dict passed by chat endpoint
+            origin = params.get("origin")
             if origin:
                 sections.append(_router.plan_route(origin))
+        elif name == "search_shop":
+            text, prods = _run_search_shop(params)
+            sections.append(text)
+            products.extend(prods)
 
-    return "\n\n".join(sections)
+    return "\n\n".join(sections), products

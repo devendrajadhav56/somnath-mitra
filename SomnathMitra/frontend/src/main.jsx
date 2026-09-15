@@ -121,7 +121,47 @@ function App() {
 
 function Welcome({ onAsk }) { return <div className="welcome"><div className="welcome-symbol">ॐ</div><div className="eyebrow">WELCOME TO SOMNATH</div><h1>How can I help<br /><em>your journey?</em></h1><p className="welcome-copy">I’m Mitra — your thoughtful guide to the temple,<br className="desktop-only" /> the town, and the road to Somnath.</p><div className="example-grid">{examples.map(example => <button key={example.text} onClick={() => onAsk(example.text)}><span className="example-icon">{example.icon}</span><span>{example.text}</span><ArrowUp size={15} /></button>)}</div></div> }
 
-function Message({ message, onDetails }) { const isUser = message.role === 'user'; return <div className={`message-row ${isUser ? 'user-row' : ''}`}><div className="message-avatar">{isUser ? 'SM' : 'ॐ'}</div><div className="message-body"><div className="message-meta">{isUser ? 'You' : 'Mitra'} <span>·</span> {isUser ? 'Just now' : 'Somnath guide'}</div><div className={`message-bubble ${isUser ? 'user-bubble' : 'assistant-bubble'}`}>{isUser ? message.text : <ReactMarkdown remarkPlugins={[remarkGfm]}>{message.text}</ReactMarkdown>}</div>{!isUser && message.data && <div className="message-tools"><button onClick={() => navigator.clipboard?.writeText(message.text)}><Copy size={13} /> Copy</button><button onClick={() => onDetails(message.data)}><ChevronDown size={14} /> Details</button>{message.data.sources?.length > 0 && <span className="source-count"><BookOpen size={13} /> {message.data.sources.length} source{message.data.sources.length > 1 ? 's' : ''}</span>}</div>}</div></div> }
+function ProductCards({ products }) {
+  return (
+    <div className="product-strip">
+      {products.map((p, i) => (
+        <a key={i} href={p.product_url} target="_blank" rel="noreferrer" className="product-card">
+          <div className="product-img-wrap">
+            <img src={p.image_url} alt={p.name} loading="lazy" />
+          </div>
+          <div className="product-info">
+            <div className="product-name">{p.name}</div>
+            <div className="product-price">₹{p.price}</div>
+          </div>
+        </a>
+      ))}
+    </div>
+  )
+}
+
+function Message({ message, onDetails }) {
+  const isUser = message.role === 'user'
+  const hasProducts = !isUser && message.data?.products?.length > 0
+  return (
+    <div className={`message-row ${isUser ? 'user-row' : ''}`}>
+      <div className="message-avatar">{isUser ? 'SM' : 'ॐ'}</div>
+      <div className="message-body">
+        <div className="message-meta">{isUser ? 'You' : 'Mitra'} <span>·</span> {isUser ? 'Just now' : 'Somnath guide'}</div>
+        <div className={`message-bubble ${isUser ? 'user-bubble' : 'assistant-bubble'}`}>
+          {isUser ? message.text : <ReactMarkdown remarkPlugins={[remarkGfm]}>{message.text}</ReactMarkdown>}
+        </div>
+        {hasProducts && <ProductCards products={message.data.products} />}
+        {!isUser && message.data && (
+          <div className="message-tools">
+            <button onClick={() => navigator.clipboard?.writeText(message.text)}><Copy size={13} /> Copy</button>
+            <button onClick={() => onDetails(message.data)}><ChevronDown size={14} /> Details</button>
+            {message.data.sources?.length > 0 && <span className="source-count"><BookOpen size={13} /> {message.data.sources.length} source{message.data.sources.length > 1 ? 's' : ''}</span>}
+          </div>
+        )}
+      </div>
+    </div>
+  )
+}
 
 function Details({ data, onClose }) { return <div className="details-overlay" onClick={onClose}><section className="details-panel" onClick={e => e.stopPropagation()}><div className="details-heading"><div><div className="eyebrow">RESPONSE DETAILS</div><h2>How Mitra found this</h2></div><button onClick={onClose}><X size={18} /></button></div><div className="metric-row"><div><Clock3 size={16} /><span>Response time</span><strong>{data.elapsed_ms} ms</strong></div><div><Compass size={16} /><span>Intent</span><strong>{data.intent?.intent || 'General guide'}</strong></div></div><div className="details-section"><h3>Sources</h3>{data.sources?.length ? data.sources.map(source => <a className="source" key={source.chunk_id} href={source.page_url || '#'} target="_blank" rel="noreferrer"><BookOpen size={15} /><span>{source.heading || 'Somnath knowledge base'}<small>Relevance score {source.score}</small></span><ExternalLink size={14} /></a>) : <p className="muted">This answer was generated from Mitra’s general knowledge.</p>}</div></section></div> }
 

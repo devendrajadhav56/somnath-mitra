@@ -60,7 +60,7 @@ async def chat_endpoint(req: ChatRequest):
             tool_call["params"]["origin"] = origin
 
     t2 = time.monotonic()
-    structured = execute_tools(intent["tools"], req.user_lat, req.user_lon)
+    structured, products = execute_tools(intent["tools"], req.user_lat, req.user_lon)
     log_step("tools", tools=",".join(tools_names) or "none",
              result_chars=len(structured), ms=round((time.monotonic() - t2) * 1000))
 
@@ -103,6 +103,7 @@ async def chat_endpoint(req: ChatRequest):
                 "sources": sources,
                 "origin": origin,
                 "timings": timings,
+                "products": products,
             }
             yield "\x00" + json.dumps(meta)
 

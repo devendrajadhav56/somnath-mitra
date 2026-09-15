@@ -60,7 +60,7 @@ async def qa_endpoint(
             tool_call["params"]["origin"] = origin
 
     t2 = time.monotonic()
-    structured = execute_tools(intent["tools"], user_lat, user_lon)
+    structured, _ = execute_tools(intent["tools"], user_lat, user_lon)
     log_step("tools", tools=",".join(tools_names) or "none",
              result_chars=len(structured), ms=round((time.monotonic() - t2) * 1000))
 

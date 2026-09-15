@@ -86,6 +86,19 @@ plan_route_to_somnath
     origin : object — the geocoded origin location (injected automatically by the system,
                       leave as {} — the chat endpoint fills this in)
 
+search_shop
+  Find products available at the official Somnath temple shop (somnathprasad.com).
+  Products are prasad items offered by the temple: Sarees, Kotis (upper garments),
+  Pitambers (lower garments), Kurtas, Prasad boxes/combos, Silver Coins, and Dhwaja (temple flag).
+  Use this when users ask about buying prasad online, ordering temple items, sarees from Somnath,
+  temple merchandise, or prices of shop items.
+  params:
+    category  : str — filter by category: "Saree", "Koti", "Pitamber", "Kurta",
+                      "Prasad", "Silver Coin", "Dhwaja", null for all
+    min_price : int — minimum price in INR, null for no limit
+    max_price : int — maximum price in INR, null for no limit
+    limit     : int — max results (default 8)
+
 ━━ Routing rules ━━
 
 use_rag = true  → when the query involves general/historical information or could
@@ -102,6 +115,10 @@ multiple topics (e.g. "timings and rules" → both darshan_timings and visitor_r
   use plan_route_to_somnath({}) + get_temple_info(key="how_to_reach_by_air")
   use_rag=false
   Do NOT call search_trains or search_buses for these queries — plan_route_to_somnath covers them.
+
+Shop/prasad queries ("buy prasad online", "order saree from somnath", "temple shop", item prices) →
+  use search_shop with appropriate category/price filters
+  use_rag=false
 
 Generic transport queries without a specific origin (train, bus, flight, how to reach) →
   call ALL relevant transport tools together:
