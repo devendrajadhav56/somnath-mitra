@@ -84,6 +84,7 @@ async def chat_stream(
         model=config.LLM_MODEL,
         messages=messages,
         stream=True,
+        temperature=0.2,
     )
     async for chunk in stream:
         delta = chunk.choices[0].delta.content
