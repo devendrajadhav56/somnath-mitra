@@ -1,0 +1,3563 @@
+{
+  "dataset_name": "direct_private_buses_to_somnath_from_all_india_except_gujarat",
+  "version": "1.0",
+  "scope": {
+    "origins": "All verified locations in India except Gujarat",
+    "destination": "Somnath, Gujarat",
+    "operator_type": "private_only",
+    "direct_only": true
+  },
+  "excluded_origin_state": "Gujarat",
+  "sources": [
+    "redBus",
+    "AbhiBus"
+  ],
+  "checked_on": "2026-09-10",
+  "routes": [
+    {
+      "route_id": "mumbai-somnath-shreeji-1400",
+      "origin": {
+        "city": "Mumbai",
+        "district": "Mumbai Suburban",
+        "state": "Maharashtra",
+        "country": "India"
+      },
+      "destination": {
+        "city": "Somnath",
+        "district": "Gir Somnath",
+        "state": "Gujarat",
+        "country": "India"
+      },
+      "direct": true,
+      "operator": "Shreeji Travels",
+      "operator_type": "private",
+      "source": {
+        "platforms": [
+          "redBus",
+          "AbhiBus"
+        ],
+        "urls": [
+          "https://www.redbus.in/bus-tickets/mumbai-to-somnath",
+          "https://www.abhibus.com/buses/Mumbai-Somnath"
+        ],
+        "checked_date": "2026-09-10"
+      },
+      "bus": {
+        "bus_id": "mumbai-somnath-shreeji-1400",
+        "service_id": "SHREEJI-BOM-SOM-1400",
+        "bus_type": "AC Sleeper (2 + 1)",
+        "bus_category": "AC Sleeper",
+        "departure_time": "14:00",
+        "arrival_time": "07:00",
+        "duration": "17h 00m",
+        "fare_inr": {
+          "listed": 1200.0,
+          "offer": null,
+          "minimum": 1200.0,
+          "maximum": 1800.0
+        },
+        "seat_availability": 14
+      },
+      "boarding_points": [
+        {
+          "name": "Borivali East",
+          "address": "Opp. National Park Gate, Western Express Highway, Borivali East, Mumbai, Maharashtra 400066",
+          "time": "14:00",
+          "source": "redBus"
+        },
+        {
+          "name": "Kandivali East",
+          "address": "Samata Nagar Police Station, WE Highway, Kandivali East, Mumbai, Maharashtra 400101",
+          "time": "14:15",
+          "source": "redBus"
+        },
+        {
+          "name": "Malad East",
+          "address": "Pushpa Park, Western Express Highway, Malad East, Mumbai, Maharashtra 400097",
+          "time": "14:20",
+          "source": "redBus"
+        },
+        {
+          "name": "Goregaon East",
+          "address": "Aarey Flyover End, Western Express Highway, Goregaon East, Mumbai, Maharashtra 400063",
+          "time": "14:25",
+          "source": "redBus"
+        },
+        {
+          "name": "Andheri East",
+          "address": "Near Bisleri Compound, Western Express Highway, Andheri East, Mumbai, Maharashtra 400069",
+          "time": "14:30",
+          "source": "redBus"
+        },
+        {
+          "name": "Sion",
+          "address": "Sion Circle, Opp. Sion Railway Station, Sion, Mumbai, Maharashtra 400022",
+          "time": "15:00",
+          "source": "redBus"
+        },
+        {
+          "name": "Thane Teen Hath Naka",
+          "address": "Teen Hath Naka Flyover, Eastern Express Highway, Thane West, Thane, Maharashtra 400602",
+          "time": "15:45",
+          "source": "redBus"
+        }
+      ],
+      "intermediate_stops": [
+        {
+          "name": "Vapi",
+          "arrival_time": "18:30",
+          "departure_time": "18:45"
+        },
+        {
+          "name": "Surat",
+          "arrival_time": "21:30",
+          "departure_time": "21:45"
+        },
+        {
+          "name": "Vadodara",
+          "arrival_time": "23:45",
+          "departure_time": "00:00"
+        },
+        {
+          "name": "Rajkot",
+          "arrival_time": "04:00",
+          "departure_time": "04:15"
+        },
+        {
+          "name": "Junagadh",
+          "arrival_time": "05:30",
+          "departure_time": "05:40"
+        },
+        {
+          "name": "Veraval",
+          "arrival_time": "06:30",
+          "departure_time": "06:40"
+        }
+      ],
+      "dropping_points": [
+        {
+          "name": "Veraval",
+          "address": "Near ST Bus Stand / Railway Station, Veraval, Gujarat 362265",
+          "time": "06:30",
+          "source": "redBus"
+        },
+        {
+          "name": "Somnath",
+          "address": "Near Somnath Temple / Somnath Bus Stand, Prabhas Patan, Gujarat 362268",
+          "time": "07:00",
+          "source": "redBus"
+        }
+      ],
+      "amenities": [
+        "Air Conditioning",
+        "Charging Point",
+        "Blanket",
+        "Pillow",
+        "Reading Light",
+        "Emergency Exit"
+      ],
+      "cancellation_policy": "Cancellation allowed up to 4 hours prior to departure as per operator policy on redBus/AbhiBus.",
+      "availability": "running"
+    },
+    {
+      "route_id": "mumbai-somnath-eagle-1530",
+      "origin": {
+        "city": "Mumbai",
+        "district": "Mumbai City",
+        "state": "Maharashtra",
+        "country": "India"
+      },
+      "destination": {
+        "city": "Somnath",
+        "district": "Gir Somnath",
+        "state": "Gujarat",
+        "country": "India"
+      },
+      "direct": true,
+      "operator": "Eagle Travels",
+      "operator_type": "private",
+      "source": {
+        "platforms": [
+          "redBus",
+          "AbhiBus"
+        ],
+        "urls": [
+          "https://www.redbus.in/bus-tickets/mumbai-to-somnath",
+          "https://www.abhibus.com/buses/Mumbai-Somnath"
+        ],
+        "checked_date": "2026-09-10"
+      },
+      "bus": {
+        "bus_id": "mumbai-somnath-eagle-1530",
+        "service_id": "EAGLE-BOM-SOM-1530",
+        "bus_type": "Bharat Benz AC Sleeper (2 + 1)",
+        "bus_category": "AC Sleeper",
+        "departure_time": "15:30",
+        "arrival_time": "07:45",
+        "duration": "16h 15m",
+        "fare_inr": {
+          "listed": 1350.0,
+          "offer": 1250.0,
+          "minimum": 1250.0,
+          "maximum": 1900.0
+        },
+        "seat_availability": 8
+      },
+      "boarding_points": [
+        {
+          "name": "Dadar TT",
+          "address": "Dadar TT Circle, Near Swami Narayan Temple, Dadar East, Mumbai, Maharashtra 400014",
+          "time": "15:30",
+          "source": "redBus"
+        },
+        {
+          "name": "Chembur",
+          "address": "Chembur Naka, Near Amar Cinema, Chembur, Mumbai, Maharashtra 400071",
+          "time": "16:00",
+          "source": "redBus"
+        },
+        {
+          "name": "Vashi",
+          "address": "Vashi Plaza, Sector 17, Vashi, Navi Mumbai, Maharashtra 400703",
+          "time": "16:30",
+          "source": "redBus"
+        },
+        {
+          "name": "Thane Teen Hath Naka",
+          "address": "Teen Hath Naka Flyover, Eastern Express Highway, Thane, Maharashtra 400602",
+          "time": "17:15",
+          "source": "redBus"
+        }
+      ],
+      "intermediate_stops": [
+        {
+          "name": "Surat",
+          "arrival_time": "22:15",
+          "departure_time": "22:30"
+        },
+        {
+          "name": "Vadodara",
+          "arrival_time": "00:30",
+          "departure_time": "00:45"
+        },
+        {
+          "name": "Rajkot",
+          "arrival_time": "04:30",
+          "departure_time": "04:45"
+        },
+        {
+          "name": "Junagadh",
+          "arrival_time": "06:15",
+          "departure_time": "06:25"
+        }
+      ],
+      "dropping_points": [
+        {
+          "name": "Hotel Good Luck",
+          "address": "Hotel Good Luck, Somnath Bypass Circle, Prabhas Patan, Gujarat 362268",
+          "time": "07:30",
+          "source": "redBus"
+        },
+        {
+          "name": "Somnath Bus Stand",
+          "address": "Somnath GSRTC Bus Station, Near Somnath Temple, Prabhas Patan, Gujarat 362268",
+          "time": "07:45",
+          "source": "redBus"
+        }
+      ],
+      "amenities": [
+        "Air Conditioning",
+        "Charging Point",
+        "Blanket",
+        "Pillow",
+        "Reading Light",
+        "Water Bottle"
+      ],
+      "cancellation_policy": "Cancellation allowed up to 4 hours prior to departure as per operator policy.",
+      "availability": "running"
+    },
+    {
+      "route_id": "mumbai-somnath-mahasagar-1600",
+      "origin": {
+        "city": "Mumbai",
+        "district": "Mumbai Suburban",
+        "state": "Maharashtra",
+        "country": "India"
+      },
+      "destination": {
+        "city": "Somnath",
+        "district": "Gir Somnath",
+        "state": "Gujarat",
+        "country": "India"
+      },
+      "direct": true,
+      "operator": "Mahasagar Travels",
+      "operator_type": "private",
+      "source": {
+        "platforms": [
+          "redBus",
+          "AbhiBus"
+        ],
+        "urls": [
+          "https://www.redbus.in/bus-tickets/mumbai-to-somnath",
+          "https://www.abhibus.com/buses/Mumbai-Somnath"
+        ],
+        "checked_date": "2026-09-10"
+      },
+      "bus": {
+        "bus_id": "mumbai-somnath-mahasagar-1600",
+        "service_id": "MAHA-BOM-SOM-1600",
+        "bus_type": "VOLVO AC Sleeper (2 + 1)",
+        "bus_category": "Volvo / Premium AC",
+        "departure_time": "16:00",
+        "arrival_time": "08:30",
+        "duration": "16h 30m",
+        "fare_inr": {
+          "listed": 1500.0,
+          "offer": null,
+          "minimum": 1500.0,
+          "maximum": 2200.0
+        },
+        "seat_availability": 12
+      },
+      "boarding_points": [
+        {
+          "name": "Borivali East",
+          "address": "Opp. National Park Gate, WE Highway, Borivali East, Mumbai, Maharashtra 400066",
+          "time": "16:00",
+          "source": "redBus"
+        },
+        {
+          "name": "Dahisar Check Naka",
+          "address": "Dahisar Toll Plaza, WE Highway, Dahisar East, Mumbai, Maharashtra 400068",
+          "time": "16:20",
+          "source": "redBus"
+        },
+        {
+          "name": "Mira Road",
+          "address": "Kashimira Police Chowki, WE Highway, Mira Road, Mumbai, Maharashtra 401107",
+          "time": "16:40",
+          "source": "redBus"
+        },
+        {
+          "name": "Thane Teen Hath Naka",
+          "address": "Teen Hath Naka, Eastern Express Highway, Thane, Maharashtra 400602",
+          "time": "17:15",
+          "source": "redBus"
+        }
+      ],
+      "intermediate_stops": [
+        {
+          "name": "Surat",
+          "arrival_time": "22:45",
+          "departure_time": "23:00"
+        },
+        {
+          "name": "Vadodara",
+          "arrival_time": "01:00",
+          "departure_time": "01:15"
+        },
+        {
+          "name": "Rajkot",
+          "arrival_time": "05:00",
+          "departure_time": "05:15"
+        },
+        {
+          "name": "Junagadh",
+          "arrival_time": "06:45",
+          "departure_time": "06:55"
+        }
+      ],
+      "dropping_points": [
+        {
+          "name": "Veraval",
+          "address": "Near ST Bus Stand, Veraval, Gujarat 362265",
+          "time": "08:00",
+          "source": "redBus"
+        },
+        {
+          "name": "Somnath",
+          "address": "Near Somnath Mandir / Bus Stop, Prabhas Patan, Gujarat 362268",
+          "time": "08:30",
+          "source": "redBus"
+        }
+      ],
+      "amenities": [
+        "Air Conditioning",
+        "Charging Point",
+        "Blanket",
+        "Pillow",
+        "Reading Light",
+        "Water Bottle",
+        "Emergency Exit"
+      ],
+      "cancellation_policy": "Cancellation allowed up to 4 hours prior to departure as per operator policy.",
+      "availability": "running"
+    },
+    {
+      "route_id": "mumbai-somnath-patel-1500",
+      "origin": {
+        "city": "Mumbai",
+        "district": "Mumbai Suburban",
+        "state": "Maharashtra",
+        "country": "India"
+      },
+      "destination": {
+        "city": "Somnath",
+        "district": "Gir Somnath",
+        "state": "Gujarat",
+        "country": "India"
+      },
+      "direct": true,
+      "operator": "Patel Tours and Travels",
+      "operator_type": "private",
+      "source": {
+        "platforms": [
+          "redBus",
+          "AbhiBus"
+        ],
+        "urls": [
+          "https://www.redbus.in/bus-tickets/mumbai-to-somnath",
+          "https://www.abhibus.com/buses/Mumbai-Somnath"
+        ],
+        "checked_date": "2026-09-10"
+      },
+      "bus": {
+        "bus_id": "mumbai-somnath-patel-1500",
+        "service_id": "PATEL-BOM-SOM-1500",
+        "bus_type": "AC Sleeper (2 + 1)",
+        "bus_category": "AC Sleeper",
+        "departure_time": "15:00",
+        "arrival_time": "07:30",
+        "duration": "16h 30m",
+        "fare_inr": {
+          "listed": 1300.0,
+          "offer": null,
+          "minimum": 1300.0,
+          "maximum": 1850.0
+        },
+        "seat_availability": 16
+      },
+      "boarding_points": [
+        {
+          "name": "Borivali East",
+          "address": "Near National Park Bridge, WE Highway, Borivali East, Mumbai, Maharashtra 400066",
+          "time": "15:00",
+          "source": "redBus"
+        },
+        {
+          "name": "Andheri East",
+          "address": "Gundavali Metro / WE Highway, Andheri East, Mumbai, Maharashtra 400069",
+          "time": "15:30",
+          "source": "redBus"
+        },
+        {
+          "name": "Dadar",
+          "address": "Asiad Bus Stand, Dadar TT Circle, Dadar East, Mumbai, Maharashtra 400014",
+          "time": "16:15",
+          "source": "redBus"
+        }
+      ],
+      "intermediate_stops": [
+        {
+          "name": "Surat",
+          "arrival_time": "22:00",
+          "departure_time": "22:15"
+        },
+        {
+          "name": "Vadodara",
+          "arrival_time": "00:15",
+          "departure_time": "00:30"
+        },
+        {
+          "name": "Rajkot",
+          "arrival_time": "04:15",
+          "departure_time": "04:30"
+        }
+      ],
+      "dropping_points": [
+        {
+          "name": "Veraval Bypass",
+          "address": "Veraval Bypass Circle, NH 51, Veraval, Gujarat 362265",
+          "time": "07:00",
+          "source": "redBus"
+        },
+        {
+          "name": "Somnath Bus Stand",
+          "address": "Opp. Somnath Railway Station, Prabhas Patan, Gujarat 362268",
+          "time": "07:30",
+          "source": "redBus"
+        }
+      ],
+      "amenities": [
+        "Air Conditioning",
+        "Charging Point",
+        "Blanket",
+        "Pillow",
+        "Reading Light",
+        "Emergency Exit"
+      ],
+      "cancellation_policy": "Cancellation allowed up to 4 hours prior to departure.",
+      "availability": "running"
+    },
+    {
+      "route_id": "mumbai-somnath-neeta-1630",
+      "origin": {
+        "city": "Mumbai",
+        "district": "Mumbai Suburban",
+        "state": "Maharashtra",
+        "country": "India"
+      },
+      "destination": {
+        "city": "Somnath",
+        "district": "Gir Somnath",
+        "state": "Gujarat",
+        "country": "India"
+      },
+      "direct": true,
+      "operator": "Neeta Tours and Travels",
+      "operator_type": "private",
+      "source": {
+        "platforms": [
+          "redBus",
+          "AbhiBus"
+        ],
+        "urls": [
+          "https://www.redbus.in/bus-tickets/mumbai-to-somnath",
+          "https://www.abhibus.com/buses/Mumbai-Somnath"
+        ],
+        "checked_date": "2026-09-10"
+      },
+      "bus": {
+        "bus_id": "mumbai-somnath-neeta-1630",
+        "service_id": "NEETA-BOM-SOM-1630",
+        "bus_type": "VOLVO Multi-Axle AC Sleeper",
+        "bus_category": "Volvo / Premium AC",
+        "departure_time": "16:30",
+        "arrival_time": "09:00",
+        "duration": "16h 30m",
+        "fare_inr": {
+          "listed": 1650.0,
+          "offer": 1500.0,
+          "minimum": 1500.0,
+          "maximum": 2300.0
+        },
+        "seat_availability": 10
+      },
+      "boarding_points": [
+        {
+          "name": "Borivali East",
+          "address": "Neeta Travels, Devidas Rd Junction, WE Highway, Borivali East, Mumbai, Maharashtra 400066",
+          "time": "16:30",
+          "source": "redBus"
+        },
+        {
+          "name": "Andheri East",
+          "address": "Neeta Travels Office, WE Highway, Andheri East, Mumbai, Maharashtra 400069",
+          "time": "17:00",
+          "source": "redBus"
+        },
+        {
+          "name": "Sion",
+          "address": "Sion Circle Neeta Office, Sion, Mumbai, Maharashtra 400022",
+          "time": "17:30",
+          "source": "redBus"
+        }
+      ],
+      "intermediate_stops": [
+        {
+          "name": "Surat",
+          "arrival_time": "23:15",
+          "departure_time": "23:30"
+        },
+        {
+          "name": "Vadodara",
+          "arrival_time": "01:30",
+          "departure_time": "01:45"
+        },
+        {
+          "name": "Rajkot",
+          "arrival_time": "05:30",
+          "departure_time": "05:45"
+        }
+      ],
+      "dropping_points": [
+        {
+          "name": "Somnath New Parking",
+          "address": "New Parking Ground Near Somnath Temple, Prabhas Patan, Gujarat 362268",
+          "time": "08:45",
+          "source": "redBus"
+        },
+        {
+          "name": "Somnath Bus Stand",
+          "address": "Near Somnath Mandir, Prabhas Patan, Gujarat 362268",
+          "time": "09:00",
+          "source": "redBus"
+        }
+      ],
+      "amenities": [
+        "Air Conditioning",
+        "Charging Point",
+        "Blanket",
+        "Pillow",
+        "Reading Light",
+        "Water Bottle",
+        "Emergency Exit"
+      ],
+      "cancellation_policy": "Cancellation allowed up to 4 hours before journey as per operator policy.",
+      "availability": "running"
+    },
+    {
+      "route_id": "thane-somnath-shreeji-1545",
+      "origin": {
+        "city": "Thane",
+        "district": "Thane",
+        "state": "Maharashtra",
+        "country": "India"
+      },
+      "destination": {
+        "city": "Somnath",
+        "district": "Gir Somnath",
+        "state": "Gujarat",
+        "country": "India"
+      },
+      "direct": true,
+      "operator": "Shreeji Travels",
+      "operator_type": "private",
+      "source": {
+        "platforms": [
+          "redBus",
+          "AbhiBus"
+        ],
+        "urls": [
+          "https://www.redbus.in/bus-tickets/thane-to-somnath",
+          "https://www.abhibus.com/buses/Thane-Somnath"
+        ],
+        "checked_date": "2026-09-10"
+      },
+      "bus": {
+        "bus_id": "thane-somnath-shreeji-1545",
+        "service_id": "SHREEJI-THN-SOM-1545",
+        "bus_type": "AC Sleeper (2 + 1)",
+        "bus_category": "AC Sleeper",
+        "departure_time": "15:45",
+        "arrival_time": "07:45",
+        "duration": "16h 00m",
+        "fare_inr": {
+          "listed": 1200.0,
+          "offer": null,
+          "minimum": 1200.0,
+          "maximum": 1800.0
+        },
+        "seat_availability": 14
+      },
+      "boarding_points": [
+        {
+          "name": "Thane Teen Hath Naka",
+          "address": "Teen Hath Naka Flyover, Eastern Express Highway, Thane West, Thane, Maharashtra 400602",
+          "time": "15:45",
+          "source": "redBus"
+        },
+        {
+          "name": "Majiwada",
+          "address": "Majiwada Flyover, Ghodbunder Rd, Thane West, Thane, Maharashtra 400601",
+          "time": "16:05",
+          "source": "redBus"
+        },
+        {
+          "name": "Kapurbawdi",
+          "address": "Kapurbawdi Naka, Ghodbunder Rd, Thane, Maharashtra 400607",
+          "time": "16:20",
+          "source": "redBus"
+        }
+      ],
+      "intermediate_stops": [
+        {
+          "name": "Vapi",
+          "arrival_time": "18:30",
+          "departure_time": "18:45"
+        },
+        {
+          "name": "Surat",
+          "arrival_time": "21:30",
+          "departure_time": "21:45"
+        },
+        {
+          "name": "Vadodara",
+          "arrival_time": "23:45",
+          "departure_time": "00:00"
+        },
+        {
+          "name": "Rajkot",
+          "arrival_time": "04:00",
+          "departure_time": "04:15"
+        }
+      ],
+      "dropping_points": [
+        {
+          "name": "Veraval",
+          "address": "Near ST Bus Stand / Railway Station, Veraval, Gujarat 362265",
+          "time": "07:15",
+          "source": "redBus"
+        },
+        {
+          "name": "Somnath",
+          "address": "Somnath Bus Stand / Mandir Area, Prabhas Patan, Gujarat 362268",
+          "time": "07:45",
+          "source": "redBus"
+        }
+      ],
+      "amenities": [
+        "Air Conditioning",
+        "Charging Point",
+        "Blanket",
+        "Pillow",
+        "Reading Light",
+        "Emergency Exit"
+      ],
+      "cancellation_policy": "Cancellation allowed up to 4 hours prior to departure.",
+      "availability": "running"
+    },
+    {
+      "route_id": "thane-somnath-eagle-1630",
+      "origin": {
+        "city": "Thane",
+        "district": "Thane",
+        "state": "Maharashtra",
+        "country": "India"
+      },
+      "destination": {
+        "city": "Somnath",
+        "district": "Gir Somnath",
+        "state": "Gujarat",
+        "country": "India"
+      },
+      "direct": true,
+      "operator": "Eagle Travels",
+      "operator_type": "private",
+      "source": {
+        "platforms": [
+          "redBus",
+          "AbhiBus"
+        ],
+        "urls": [
+          "https://www.redbus.in/bus-tickets/thane-to-somnath",
+          "https://www.abhibus.com/buses/Thane-Somnath"
+        ],
+        "checked_date": "2026-09-10"
+      },
+      "bus": {
+        "bus_id": "thane-somnath-eagle-1630",
+        "service_id": "EAGLE-THN-SOM-1630",
+        "bus_type": "Bharat Benz AC Sleeper (2 + 1)",
+        "bus_category": "AC Sleeper",
+        "departure_time": "16:30",
+        "arrival_time": "08:15",
+        "duration": "15h 45m",
+        "fare_inr": {
+          "listed": 1350.0,
+          "offer": null,
+          "minimum": 1350.0,
+          "maximum": 1900.0
+        },
+        "seat_availability": 8
+      },
+      "boarding_points": [
+        {
+          "name": "Thane Teen Hath Naka",
+          "address": "Teen Hath Naka Flyover, Eastern Express Highway, Thane, Maharashtra 400602",
+          "time": "16:30",
+          "source": "redBus"
+        }
+      ],
+      "intermediate_stops": [
+        {
+          "name": "Surat",
+          "arrival_time": "22:15",
+          "departure_time": "22:30"
+        },
+        {
+          "name": "Vadodara",
+          "arrival_time": "00:30",
+          "departure_time": "00:45"
+        },
+        {
+          "name": "Rajkot",
+          "arrival_time": "04:30",
+          "departure_time": "04:45"
+        }
+      ],
+      "dropping_points": [
+        {
+          "name": "Hotel Good Luck",
+          "address": "Hotel Good Luck, Somnath Bypass Circle, Prabhas Patan, Gujarat 362268",
+          "time": "07:50",
+          "source": "redBus"
+        },
+        {
+          "name": "Somnath Bus Stand",
+          "address": "Somnath GSRTC Bus Station, Near Somnath Temple, Prabhas Patan, Gujarat 362268",
+          "time": "08:15",
+          "source": "redBus"
+        }
+      ],
+      "amenities": [
+        "Air Conditioning",
+        "Charging Point",
+        "Blanket",
+        "Pillow",
+        "Reading Light",
+        "Water Bottle"
+      ],
+      "cancellation_policy": "Cancellation allowed up to 4 hours prior to departure.",
+      "availability": "running"
+    },
+    {
+      "route_id": "thane-somnath-mahasagar-1715",
+      "origin": {
+        "city": "Thane",
+        "district": "Thane",
+        "state": "Maharashtra",
+        "country": "India"
+      },
+      "destination": {
+        "city": "Somnath",
+        "district": "Gir Somnath",
+        "state": "Gujarat",
+        "country": "India"
+      },
+      "direct": true,
+      "operator": "Mahasagar Travels",
+      "operator_type": "private",
+      "source": {
+        "platforms": [
+          "redBus",
+          "AbhiBus"
+        ],
+        "urls": [
+          "https://www.redbus.in/bus-tickets/thane-to-somnath",
+          "https://www.abhibus.com/buses/Thane-Somnath"
+        ],
+        "checked_date": "2026-09-10"
+      },
+      "bus": {
+        "bus_id": "thane-somnath-mahasagar-1715",
+        "service_id": "MAHA-THN-SOM-1715",
+        "bus_type": "VOLVO AC Sleeper (2 + 1)",
+        "bus_category": "Volvo / Premium AC",
+        "departure_time": "17:15",
+        "arrival_time": "09:00",
+        "duration": "15h 45m",
+        "fare_inr": {
+          "listed": 1500.0,
+          "offer": null,
+          "minimum": 1500.0,
+          "maximum": 2200.0
+        },
+        "seat_availability": 12
+      },
+      "boarding_points": [
+        {
+          "name": "Thane Teen Hath Naka",
+          "address": "Teen Hath Naka, Eastern Express Highway, Thane, Maharashtra 400602",
+          "time": "17:15",
+          "source": "redBus"
+        }
+      ],
+      "intermediate_stops": [
+        {
+          "name": "Surat",
+          "arrival_time": "22:45",
+          "departure_time": "23:00"
+        },
+        {
+          "name": "Vadodara",
+          "arrival_time": "01:00",
+          "departure_time": "01:15"
+        },
+        {
+          "name": "Rajkot",
+          "arrival_time": "05:00",
+          "departure_time": "05:15"
+        }
+      ],
+      "dropping_points": [
+        {
+          "name": "Veraval",
+          "address": "Near ST Bus Stand, Veraval, Gujarat 362265",
+          "time": "08:30",
+          "source": "redBus"
+        },
+        {
+          "name": "Somnath",
+          "address": "Near Somnath Mandir / Bus Stop, Prabhas Patan, Gujarat 362268",
+          "time": "09:00",
+          "source": "redBus"
+        }
+      ],
+      "amenities": [
+        "Air Conditioning",
+        "Charging Point",
+        "Blanket",
+        "Pillow",
+        "Reading Light",
+        "Water Bottle"
+      ],
+      "cancellation_policy": "Cancellation allowed up to 4 hours prior to departure.",
+      "availability": "running"
+    },
+    {
+      "route_id": "navimumbai-somnath-mahasagar-1515",
+      "origin": {
+        "city": "Navi Mumbai",
+        "district": "Thane",
+        "state": "Maharashtra",
+        "country": "India"
+      },
+      "destination": {
+        "city": "Somnath",
+        "district": "Gir Somnath",
+        "state": "Gujarat",
+        "country": "India"
+      },
+      "direct": true,
+      "operator": "Mahasagar Travels",
+      "operator_type": "private",
+      "source": {
+        "platforms": [
+          "redBus",
+          "AbhiBus"
+        ],
+        "urls": [
+          "https://www.redbus.in/bus-tickets/navi-mumbai-to-somnath",
+          "https://www.abhibus.com/buses/Navi-Mumbai-Somnath"
+        ],
+        "checked_date": "2026-09-10"
+      },
+      "bus": {
+        "bus_id": "navimumbai-somnath-mahasagar-1515",
+        "service_id": "MAHA-NAV-SOM-1515",
+        "bus_type": "VOLVO AC Sleeper (2 + 1)",
+        "bus_category": "Volvo / Premium AC",
+        "departure_time": "15:15",
+        "arrival_time": "08:00",
+        "duration": "16h 45m",
+        "fare_inr": {
+          "listed": 1500.0,
+          "offer": null,
+          "minimum": 1500.0,
+          "maximum": 2200.0
+        },
+        "seat_availability": 11
+      },
+      "boarding_points": [
+        {
+          "name": "Vashi Plaza",
+          "address": "Vashi Plaza, Sector 17, Vashi, Navi Mumbai, Maharashtra 400703",
+          "time": "15:15",
+          "source": "redBus"
+        },
+        {
+          "name": "Nerul LP Factory",
+          "address": "LP Factory Flyover, Sion-Panvel Highway, Nerul, Navi Mumbai, Maharashtra 400706",
+          "time": "15:35",
+          "source": "redBus"
+        }
+      ],
+      "intermediate_stops": [
+        {
+          "name": "Thane",
+          "arrival_time": "16:45",
+          "departure_time": "17:00"
+        },
+        {
+          "name": "Surat",
+          "arrival_time": "22:45",
+          "departure_time": "23:00"
+        },
+        {
+          "name": "Vadodara",
+          "arrival_time": "01:00",
+          "departure_time": "01:15"
+        },
+        {
+          "name": "Rajkot",
+          "arrival_time": "05:00",
+          "departure_time": "05:15"
+        }
+      ],
+      "dropping_points": [
+        {
+          "name": "Veraval",
+          "address": "Near ST Bus Stand, Veraval, Gujarat 362265",
+          "time": "07:30",
+          "source": "redBus"
+        },
+        {
+          "name": "Somnath",
+          "address": "Near Somnath Mandir, Prabhas Patan, Gujarat 362268",
+          "time": "08:00",
+          "source": "redBus"
+        }
+      ],
+      "amenities": [
+        "Air Conditioning",
+        "Charging Point",
+        "Blanket",
+        "Pillow",
+        "Reading Light",
+        "Water Bottle"
+      ],
+      "cancellation_policy": "Cancellation allowed up to 4 hours prior to departure.",
+      "availability": "running"
+    },
+    {
+      "route_id": "navimumbai-somnath-eagle-1645",
+      "origin": {
+        "city": "Navi Mumbai",
+        "district": "Thane",
+        "state": "Maharashtra",
+        "country": "India"
+      },
+      "destination": {
+        "city": "Somnath",
+        "district": "Gir Somnath",
+        "state": "Gujarat",
+        "country": "India"
+      },
+      "direct": true,
+      "operator": "Eagle Travels",
+      "operator_type": "private",
+      "source": {
+        "platforms": [
+          "redBus",
+          "AbhiBus"
+        ],
+        "urls": [
+          "https://www.redbus.in/bus-tickets/navi-mumbai-to-somnath",
+          "https://www.abhibus.com/buses/Navi-Mumbai-Somnath"
+        ],
+        "checked_date": "2026-09-10"
+      },
+      "bus": {
+        "bus_id": "navimumbai-somnath-eagle-1645",
+        "service_id": "EAGLE-NAV-SOM-1645",
+        "bus_type": "Bharat Benz AC Sleeper (2 + 1)",
+        "bus_category": "AC Sleeper",
+        "departure_time": "16:45",
+        "arrival_time": "09:30",
+        "duration": "16h 45m",
+        "fare_inr": {
+          "listed": 1350.0,
+          "offer": null,
+          "minimum": 1350.0,
+          "maximum": 1900.0
+        },
+        "seat_availability": 7
+      },
+      "boarding_points": [
+        {
+          "name": "Vashi",
+          "address": "Vashi Toll Naka / Plaza, Vashi, Navi Mumbai, Maharashtra 400703",
+          "time": "16:45",
+          "source": "redBus"
+        },
+        {
+          "name": "CBD Belapur",
+          "address": "CBD Belapur Flyover, Sion-Panvel Highway, Navi Mumbai, Maharashtra 400614",
+          "time": "17:05",
+          "source": "redBus"
+        }
+      ],
+      "intermediate_stops": [
+        {
+          "name": "Surat",
+          "arrival_time": "23:00",
+          "departure_time": "23:15"
+        },
+        {
+          "name": "Vadodara",
+          "arrival_time": "01:15",
+          "departure_time": "01:30"
+        },
+        {
+          "name": "Rajkot",
+          "arrival_time": "05:30",
+          "departure_time": "05:45"
+        }
+      ],
+      "dropping_points": [
+        {
+          "name": "Hotel Good Luck",
+          "address": "Hotel Good Luck, Somnath Bypass Circle, Prabhas Patan, Gujarat 362268",
+          "time": "09:00",
+          "source": "redBus"
+        },
+        {
+          "name": "Somnath Bus Stand",
+          "address": "Near Somnath Mandir, Prabhas Patan, Gujarat 362268",
+          "time": "09:30",
+          "source": "redBus"
+        }
+      ],
+      "amenities": [
+        "Air Conditioning",
+        "Charging Point",
+        "Blanket",
+        "Pillow",
+        "Reading Light",
+        "Water Bottle"
+      ],
+      "cancellation_policy": "Cancellation allowed up to 4 hours prior to departure.",
+      "availability": "running"
+    },
+    {
+      "route_id": "pune-somnath-mahasagar-1300",
+      "origin": {
+        "city": "Pune",
+        "district": "Pune",
+        "state": "Maharashtra",
+        "country": "India"
+      },
+      "destination": {
+        "city": "Somnath",
+        "district": "Gir Somnath",
+        "state": "Gujarat",
+        "country": "India"
+      },
+      "direct": true,
+      "operator": "Mahasagar Travels",
+      "operator_type": "private",
+      "source": {
+        "platforms": [
+          "redBus",
+          "AbhiBus"
+        ],
+        "urls": [
+          "https://www.redbus.in/bus-tickets/pune-to-somnath",
+          "https://www.abhibus.com/buses/Pune-Somnath"
+        ],
+        "checked_date": "2026-09-10"
+      },
+      "bus": {
+        "bus_id": "pune-somnath-mahasagar-1300",
+        "service_id": "MAHA-PUN-SOM-1300",
+        "bus_type": "VOLVO AC Sleeper (2 + 1)",
+        "bus_category": "Volvo / Premium AC",
+        "departure_time": "13:00",
+        "arrival_time": "09:00",
+        "duration": "20h 00m",
+        "fare_inr": {
+          "listed": 1700.0,
+          "offer": null,
+          "minimum": 1700.0,
+          "maximum": 2400.0
+        },
+        "seat_availability": 15
+      },
+      "boarding_points": [
+        {
+          "name": "Swargate",
+          "address": "Opp. Laxmi Narayan Theater, Swargate, Pune, Maharashtra 411042",
+          "time": "13:00",
+          "source": "redBus"
+        },
+        {
+          "name": "Shivaji Nagar",
+          "address": "Near Bank of Maharashtra, Shivaji Nagar, Pune, Maharashtra 411005",
+          "time": "13:20",
+          "source": "redBus"
+        },
+        {
+          "name": "Wakad",
+          "address": "Wakad Bridge, Mumbai-Bangalore Highway, Wakad, Pune, Maharashtra 411057",
+          "time": "13:50",
+          "source": "redBus"
+        },
+        {
+          "name": "Nigdi",
+          "address": "Nigdi Flyover, Old Mumbai-Pune Highway, Nigdi, Pune, Maharashtra 411044",
+          "time": "14:10",
+          "source": "redBus"
+        }
+      ],
+      "intermediate_stops": [
+        {
+          "name": "Navi Mumbai (Vashi)",
+          "arrival_time": "16:00",
+          "departure_time": "16:15"
+        },
+        {
+          "name": "Thane",
+          "arrival_time": "17:15",
+          "departure_time": "17:30"
+        },
+        {
+          "name": "Surat",
+          "arrival_time": "23:00",
+          "departure_time": "23:15"
+        },
+        {
+          "name": "Vadodara",
+          "arrival_time": "01:15",
+          "departure_time": "01:30"
+        },
+        {
+          "name": "Rajkot",
+          "arrival_time": "05:15",
+          "departure_time": "05:30"
+        },
+        {
+          "name": "Junagadh",
+          "arrival_time": "07:00",
+          "departure_time": "07:10"
+        }
+      ],
+      "dropping_points": [
+        {
+          "name": "Veraval",
+          "address": "Near ST Bus Stand, Veraval, Gujarat 362265",
+          "time": "08:30",
+          "source": "redBus"
+        },
+        {
+          "name": "Somnath",
+          "address": "Near Somnath Mandir / Bus Stop, Prabhas Patan, Gujarat 362268",
+          "time": "09:00",
+          "source": "redBus"
+        }
+      ],
+      "amenities": [
+        "Air Conditioning",
+        "Charging Point",
+        "Blanket",
+        "Pillow",
+        "Reading Light",
+        "Water Bottle",
+        "Emergency Exit"
+      ],
+      "cancellation_policy": "Cancellation allowed up to 4 hours prior to departure.",
+      "availability": "running"
+    },
+    {
+      "route_id": "kalyan-somnath-shreeji-1500",
+      "origin": {
+        "city": "Kalyan",
+        "district": "Thane",
+        "state": "Maharashtra",
+        "country": "India"
+      },
+      "destination": {
+        "city": "Somnath",
+        "district": "Gir Somnath",
+        "state": "Gujarat",
+        "country": "India"
+      },
+      "direct": true,
+      "operator": "Shreeji Travels",
+      "operator_type": "private",
+      "source": {
+        "platforms": [
+          "redBus",
+          "AbhiBus"
+        ],
+        "urls": [
+          "https://www.redbus.in/bus-tickets/kalyan-to-somnath",
+          "https://www.abhibus.com/buses/Kalyan-Somnath"
+        ],
+        "checked_date": "2026-09-10"
+      },
+      "bus": {
+        "bus_id": "kalyan-somnath-shreeji-1500",
+        "service_id": "SHREEJI-KYN-SOM-1500",
+        "bus_type": "AC Sleeper (2 + 1)",
+        "bus_category": "AC Sleeper",
+        "departure_time": "15:00",
+        "arrival_time": "07:45",
+        "duration": "16h 45m",
+        "fare_inr": {
+          "listed": 1250.0,
+          "offer": null,
+          "minimum": 1250.0,
+          "maximum": 1850.0
+        },
+        "seat_availability": 10
+      },
+      "boarding_points": [
+        {
+          "name": "Kalyan Station Road",
+          "address": "Near ST Bus Depot, Kalyan West, Maharashtra 421301",
+          "time": "15:00",
+          "source": "redBus"
+        },
+        {
+          "name": "Bhiwandi Bypass",
+          "address": "Bhiwandi Bypass, NH 160, Bhiwandi, Maharashtra 421302",
+          "time": "15:30",
+          "source": "redBus"
+        }
+      ],
+      "intermediate_stops": [
+        {
+          "name": "Thane",
+          "arrival_time": "16:00",
+          "departure_time": "16:15"
+        },
+        {
+          "name": "Surat",
+          "arrival_time": "21:45",
+          "departure_time": "22:00"
+        },
+        {
+          "name": "Rajkot",
+          "arrival_time": "04:15",
+          "departure_time": "04:30"
+        }
+      ],
+      "dropping_points": [
+        {
+          "name": "Somnath Bus Stand",
+          "address": "Somnath GSRTC Bus Station, Near Somnath Temple, Prabhas Patan, Gujarat 362268",
+          "time": "07:45",
+          "source": "redBus"
+        }
+      ],
+      "amenities": [
+        "Air Conditioning",
+        "Charging Point",
+        "Blanket",
+        "Pillow",
+        "Reading Light"
+      ],
+      "cancellation_policy": "Cancellation allowed up to 4 hours prior to departure.",
+      "availability": "running"
+    },
+    {
+      "route_id": "panvel-somnath-eagle-1600",
+      "origin": {
+        "city": "Panvel",
+        "district": "Raigad",
+        "state": "Maharashtra",
+        "country": "India"
+      },
+      "destination": {
+        "city": "Somnath",
+        "district": "Gir Somnath",
+        "state": "Gujarat",
+        "country": "India"
+      },
+      "direct": true,
+      "operator": "Eagle Travels",
+      "operator_type": "private",
+      "source": {
+        "platforms": [
+          "redBus",
+          "AbhiBus"
+        ],
+        "urls": [
+          "https://www.redbus.in/bus-tickets/panvel-to-somnath",
+          "https://www.abhibus.com/buses/Panvel-Somnath"
+        ],
+        "checked_date": "2026-09-10"
+      },
+      "bus": {
+        "bus_id": "panvel-somnath-eagle-1600",
+        "service_id": "EAGLE-PNV-SOM-1600",
+        "bus_type": "Bharat Benz AC Sleeper (2 + 1)",
+        "bus_category": "AC Sleeper",
+        "departure_time": "16:00",
+        "arrival_time": "08:15",
+        "duration": "16h 15m",
+        "fare_inr": {
+          "listed": 1350.0,
+          "offer": null,
+          "minimum": 1350.0,
+          "maximum": 1900.0
+        },
+        "seat_availability": 6
+      },
+      "boarding_points": [
+        {
+          "name": "Panvel ST Stand",
+          "address": "Panvel ST Depot Area, Mumbai-Pune Highway, Panvel, Navi Mumbai, Maharashtra 410206",
+          "time": "16:00",
+          "source": "redBus"
+        }
+      ],
+      "intermediate_stops": [
+        {
+          "name": "Vashi",
+          "arrival_time": "16:30",
+          "departure_time": "16:40"
+        },
+        {
+          "name": "Surat",
+          "arrival_time": "22:15",
+          "departure_time": "22:30"
+        },
+        {
+          "name": "Rajkot",
+          "arrival_time": "04:30",
+          "departure_time": "04:45"
+        }
+      ],
+      "dropping_points": [
+        {
+          "name": "Hotel Good Luck",
+          "address": "Hotel Good Luck, Somnath Bypass Circle, Prabhas Patan, Gujarat 362268",
+          "time": "07:50",
+          "source": "redBus"
+        },
+        {
+          "name": "Somnath Bus Stand",
+          "address": "Somnath GSRTC Bus Station, Near Somnath Temple, Prabhas Patan, Gujarat 362268",
+          "time": "08:15",
+          "source": "redBus"
+        }
+      ],
+      "amenities": [
+        "Air Conditioning",
+        "Charging Point",
+        "Blanket",
+        "Pillow",
+        "Reading Light"
+      ],
+      "cancellation_policy": "Cancellation allowed up to 4 hours prior to departure.",
+      "availability": "running"
+    },
+    {
+      "route_id": "vasai-somnath-shreeji-1645",
+      "origin": {
+        "city": "Vasai",
+        "district": "Palghar",
+        "state": "Maharashtra",
+        "country": "India"
+      },
+      "destination": {
+        "city": "Somnath",
+        "district": "Gir Somnath",
+        "state": "Gujarat",
+        "country": "India"
+      },
+      "direct": true,
+      "operator": "Shreeji Travels",
+      "operator_type": "private",
+      "source": {
+        "platforms": [
+          "redBus",
+          "AbhiBus"
+        ],
+        "urls": [
+          "https://www.redbus.in/bus-tickets/vasai-to-somnath",
+          "https://www.abhibus.com/buses/Vasai-Somnath"
+        ],
+        "checked_date": "2026-09-10"
+      },
+      "bus": {
+        "bus_id": "vasai-somnath-shreeji-1645",
+        "service_id": "SHREEJI-VAS-SOM-1645",
+        "bus_type": "AC Sleeper (2 + 1)",
+        "bus_category": "AC Sleeper",
+        "departure_time": "16:45",
+        "arrival_time": "07:00",
+        "duration": "14h 15m",
+        "fare_inr": {
+          "listed": 1150.0,
+          "offer": null,
+          "minimum": 1150.0,
+          "maximum": 1700.0
+        },
+        "seat_availability": 12
+      },
+      "boarding_points": [
+        {
+          "name": "Vasai Phata",
+          "address": "Vasai Phata Flyover, Western Express Highway, Vasai, Maharashtra 401208",
+          "time": "16:45",
+          "source": "redBus"
+        },
+        {
+          "name": "Virar Phata",
+          "address": "Virar Phata, Western Express Highway, Virar, Maharashtra 401303",
+          "time": "17:05",
+          "source": "redBus"
+        }
+      ],
+      "intermediate_stops": [
+        {
+          "name": "Vapi",
+          "arrival_time": "18:30",
+          "departure_time": "18:45"
+        },
+        {
+          "name": "Surat",
+          "arrival_time": "21:30",
+          "departure_time": "21:45"
+        },
+        {
+          "name": "Rajkot",
+          "arrival_time": "04:00",
+          "departure_time": "04:15"
+        }
+      ],
+      "dropping_points": [
+        {
+          "name": "Somnath",
+          "address": "Near Somnath Temple / Somnath Bus Stand, Prabhas Patan, Gujarat 362268",
+          "time": "07:00",
+          "source": "redBus"
+        }
+      ],
+      "amenities": [
+        "Air Conditioning",
+        "Charging Point",
+        "Blanket",
+        "Pillow",
+        "Reading Light"
+      ],
+      "cancellation_policy": "Cancellation allowed up to 4 hours prior to departure.",
+      "availability": "running"
+    },
+    {
+      "route_id": "udaipur-somnath-jalaramviral-1600",
+      "origin": {
+        "city": "Udaipur",
+        "district": "Udaipur",
+        "state": "Rajasthan",
+        "country": "India"
+      },
+      "destination": {
+        "city": "Somnath",
+        "district": "Gir Somnath",
+        "state": "Gujarat",
+        "country": "India"
+      },
+      "direct": true,
+      "operator": "Shree Jalaram Viral Travels",
+      "operator_type": "private",
+      "source": {
+        "platforms": [
+          "redBus",
+          "AbhiBus"
+        ],
+        "urls": [
+          "https://www.redbus.in/bus-tickets/udaipur-to-somnath",
+          "https://www.abhibus.com/buses/Udaipur-Somnath"
+        ],
+        "checked_date": "2026-09-10"
+      },
+      "bus": {
+        "bus_id": "udaipur-somnath-jalaramviral-1600",
+        "service_id": "JALARAM-UDR-SOM-1600",
+        "bus_type": "AC Sleeper (2 + 1)",
+        "bus_category": "AC Sleeper",
+        "departure_time": "16:00",
+        "arrival_time": "07:30",
+        "duration": "15h 30m",
+        "fare_inr": {
+          "listed": 1100.0,
+          "offer": 1000.0,
+          "minimum": 1000.0,
+          "maximum": 1600.0
+        },
+        "seat_availability": 16
+      },
+      "boarding_points": [
+        {
+          "name": "Udiapol",
+          "address": "Shree Jalaram Viral Travels, Opp. City Railway Station, Udiapol, Udaipur, Rajasthan 313001",
+          "time": "16:00",
+          "source": "redBus"
+        },
+        {
+          "name": "Reti Stand",
+          "address": "Reti Stand, City Station Rd, Udaipur, Rajasthan 313001",
+          "time": "16:15",
+          "source": "redBus"
+        },
+        {
+          "name": "Paras Circle",
+          "address": "Paras Circle, Hiran Magri, Udaipur, Rajasthan 313002",
+          "time": "16:30",
+          "source": "redBus"
+        }
+      ],
+      "intermediate_stops": [
+        {
+          "name": "Kherwara",
+          "arrival_time": "17:45",
+          "departure_time": "17:55"
+        },
+        {
+          "name": "Himmatnagar",
+          "arrival_time": "20:00",
+          "departure_time": "20:15"
+        },
+        {
+          "name": "Ahmedabad (Naroda)",
+          "arrival_time": "22:00",
+          "departure_time": "22:30"
+        },
+        {
+          "name": "Rajkot",
+          "arrival_time": "03:30",
+          "departure_time": "03:45"
+        },
+        {
+          "name": "Junagadh",
+          "arrival_time": "05:45",
+          "departure_time": "05:55"
+        }
+      ],
+      "dropping_points": [
+        {
+          "name": "Veraval",
+          "address": "ST Bus Station Area, Veraval, Gujarat 362265",
+          "time": "07:00",
+          "source": "redBus"
+        },
+        {
+          "name": "Somnath Bus Stand",
+          "address": "Somnath Mandir Parking Ground, Prabhas Patan, Gujarat 362268",
+          "time": "07:30",
+          "source": "redBus"
+        }
+      ],
+      "amenities": [
+        "Air Conditioning",
+        "Charging Point",
+        "Blanket",
+        "Pillow",
+        "Reading Light",
+        "Emergency Exit"
+      ],
+      "cancellation_policy": "Cancellation allowed up to 4 hours prior to departure.",
+      "availability": "running"
+    },
+    {
+      "route_id": "udaipur-somnath-dharti-1930",
+      "origin": {
+        "city": "Udaipur",
+        "district": "Udaipur",
+        "state": "Rajasthan",
+        "country": "India"
+      },
+      "destination": {
+        "city": "Somnath",
+        "district": "Gir Somnath",
+        "state": "Gujarat",
+        "country": "India"
+      },
+      "direct": true,
+      "operator": "New Dharti Travels",
+      "operator_type": "private",
+      "source": {
+        "platforms": [
+          "redBus",
+          "AbhiBus"
+        ],
+        "urls": [
+          "https://www.redbus.in/bus-tickets/udaipur-to-somnath",
+          "https://www.abhibus.com/buses/Udaipur-Somnath"
+        ],
+        "checked_date": "2026-09-10"
+      },
+      "bus": {
+        "bus_id": "udaipur-somnath-dharti-1930",
+        "service_id": "DHARTI-UDR-SOM-1930",
+        "bus_type": "Bharat Benz AC Sleeper",
+        "bus_category": "AC Sleeper",
+        "departure_time": "19:30",
+        "arrival_time": "11:00",
+        "duration": "15h 30m",
+        "fare_inr": {
+          "listed": 1200.0,
+          "offer": null,
+          "minimum": 1200.0,
+          "maximum": 1750.0
+        },
+        "seat_availability": 11
+      },
+      "boarding_points": [
+        {
+          "name": "Udiapol Bus Stand",
+          "address": "New Dharti Travels Office, Udiapol, Udaipur, Rajasthan 313001",
+          "time": "19:30",
+          "source": "redBus"
+        },
+        {
+          "name": "Bhuwana Circle",
+          "address": "Bhuwana Bypass Circle, NH 8, Udaipur, Rajasthan 313001",
+          "time": "19:45",
+          "source": "redBus"
+        }
+      ],
+      "intermediate_stops": [
+        {
+          "name": "Himmatnagar",
+          "arrival_time": "23:30",
+          "departure_time": "23:45"
+        },
+        {
+          "name": "Rajkot",
+          "arrival_time": "06:30",
+          "departure_time": "06:45"
+        },
+        {
+          "name": "Junagadh",
+          "arrival_time": "08:45",
+          "departure_time": "08:55"
+        }
+      ],
+      "dropping_points": [
+        {
+          "name": "Hotel Good Luck",
+          "address": "Hotel Good Luck, Somnath Bypass Circle, Prabhas Patan, Gujarat 362268",
+          "time": "10:30",
+          "source": "redBus"
+        },
+        {
+          "name": "Somnath",
+          "address": "Somnath Bus Stand, Prabhas Patan, Gujarat 362268",
+          "time": "11:00",
+          "source": "redBus"
+        }
+      ],
+      "amenities": [
+        "Air Conditioning",
+        "Charging Point",
+        "Blanket",
+        "Pillow",
+        "Reading Light",
+        "Water Bottle"
+      ],
+      "cancellation_policy": "Cancellation allowed up to 4 hours prior to departure.",
+      "availability": "running"
+    },
+    {
+      "route_id": "nathdwara-somnath-jalaramviral-1445",
+      "origin": {
+        "city": "Nathdwara",
+        "district": "Rajsamand",
+        "state": "Rajasthan",
+        "country": "India"
+      },
+      "destination": {
+        "city": "Somnath",
+        "district": "Gir Somnath",
+        "state": "Gujarat",
+        "country": "India"
+      },
+      "direct": true,
+      "operator": "Shree Jalaram Viral Travels",
+      "operator_type": "private",
+      "source": {
+        "platforms": [
+          "redBus",
+          "AbhiBus"
+        ],
+        "urls": [
+          "https://www.redbus.in/bus-tickets/nathdwara-to-somnath",
+          "https://www.abhibus.com/buses/Nathdwara-Somnath"
+        ],
+        "checked_date": "2026-09-10"
+      },
+      "bus": {
+        "bus_id": "nathdwara-somnath-jalaramviral-1445",
+        "service_id": "JALARAM-NTD-SOM-1445",
+        "bus_type": "AC Sleeper (2 + 1)",
+        "bus_category": "AC Sleeper",
+        "departure_time": "14:45",
+        "arrival_time": "07:30",
+        "duration": "16h 45m",
+        "fare_inr": {
+          "listed": 1200.0,
+          "offer": null,
+          "minimum": 1200.0,
+          "maximum": 1750.0
+        },
+        "seat_availability": 14
+      },
+      "boarding_points": [
+        {
+          "name": "Shreenathji Temple Bus Stand",
+          "address": "Private Bus Stand, Near Shreenathji Temple, Nathdwara, Rajasthan 313301",
+          "time": "14:45",
+          "source": "redBus"
+        },
+        {
+          "name": "Chaudhary Petrol Pump",
+          "address": "NH 58, Near Chaudhary Petrol Pump, Nathdwara, Rajasthan 313301",
+          "time": "15:00",
+          "source": "redBus"
+        }
+      ],
+      "intermediate_stops": [
+        {
+          "name": "Udaipur (Udiapol)",
+          "arrival_time": "16:00",
+          "departure_time": "16:15"
+        },
+        {
+          "name": "Ahmedabad",
+          "arrival_time": "22:00",
+          "departure_time": "22:30"
+        },
+        {
+          "name": "Rajkot",
+          "arrival_time": "03:30",
+          "departure_time": "03:45"
+        }
+      ],
+      "dropping_points": [
+        {
+          "name": "Veraval",
+          "address": "ST Bus Station Area, Veraval, Gujarat 362265",
+          "time": "07:00",
+          "source": "redBus"
+        },
+        {
+          "name": "Somnath",
+          "address": "Somnath Mandir Parking, Prabhas Patan, Gujarat 362268",
+          "time": "07:30",
+          "source": "redBus"
+        }
+      ],
+      "amenities": [
+        "Air Conditioning",
+        "Charging Point",
+        "Blanket",
+        "Pillow",
+        "Reading Light"
+      ],
+      "cancellation_policy": "Cancellation allowed up to 4 hours prior to departure.",
+      "availability": "running"
+    },
+    {
+      "route_id": "bhilwara-somnath-jalaramviral-1330",
+      "origin": {
+        "city": "Bhilwara",
+        "district": "Bhilwara",
+        "state": "Rajasthan",
+        "country": "India"
+      },
+      "destination": {
+        "city": "Somnath",
+        "district": "Gir Somnath",
+        "state": "Gujarat",
+        "country": "India"
+      },
+      "direct": true,
+      "operator": "Shree Jalaram Viral Travels",
+      "operator_type": "private",
+      "source": {
+        "platforms": [
+          "redBus",
+          "AbhiBus"
+        ],
+        "urls": [
+          "https://www.redbus.in/bus-tickets/bhilwara-to-somnath",
+          "https://www.abhibus.com/buses/Bhilwara-Somnath"
+        ],
+        "checked_date": "2026-09-10"
+      },
+      "bus": {
+        "bus_id": "bhilwara-somnath-jalaramviral-1330",
+        "service_id": "JALARAM-BHL-SOM-1330",
+        "bus_type": "AC Sleeper (2 + 1)",
+        "bus_category": "AC Sleeper",
+        "departure_time": "13:30",
+        "arrival_time": "08:30",
+        "duration": "19h 00m",
+        "fare_inr": {
+          "listed": 1350.0,
+          "offer": null,
+          "minimum": 1350.0,
+          "maximum": 1950.0
+        },
+        "seat_availability": 18
+      },
+      "boarding_points": [
+        {
+          "name": "Circuit House Private Bus Stand",
+          "address": "Circuit House Road, Near Hotel Landmark, Bhilwara, Rajasthan 311001",
+          "time": "13:30",
+          "source": "redBus"
+        }
+      ],
+      "intermediate_stops": [
+        {
+          "name": "Nathdwara",
+          "arrival_time": "14:45",
+          "departure_time": "15:00"
+        },
+        {
+          "name": "Udaipur",
+          "arrival_time": "16:00",
+          "departure_time": "16:30"
+        },
+        {
+          "name": "Ahmedabad",
+          "arrival_time": "22:30",
+          "departure_time": "23:00"
+        },
+        {
+          "name": "Rajkot",
+          "arrival_time": "04:30",
+          "departure_time": "04:45"
+        }
+      ],
+      "dropping_points": [
+        {
+          "name": "Veraval",
+          "address": "ST Bus Station Area, Veraval, Gujarat 362265",
+          "time": "08:00",
+          "source": "redBus"
+        },
+        {
+          "name": "Somnath",
+          "address": "Somnath Temple Parking, Prabhas Patan, Gujarat 362268",
+          "time": "08:30",
+          "source": "redBus"
+        }
+      ],
+      "amenities": [
+        "Air Conditioning",
+        "Charging Point",
+        "Blanket",
+        "Pillow",
+        "Reading Light",
+        "Emergency Exit"
+      ],
+      "cancellation_policy": "Cancellation allowed up to 4 hours prior to departure.",
+      "availability": "running"
+    },
+    {
+      "route_id": "sirohi-somnath-jalaramviral-1730",
+      "origin": {
+        "city": "Sirohi",
+        "district": "Sirohi",
+        "state": "Rajasthan",
+        "country": "India"
+      },
+      "destination": {
+        "city": "Somnath",
+        "district": "Gir Somnath",
+        "state": "Gujarat",
+        "country": "India"
+      },
+      "direct": true,
+      "operator": "Shree Jalaram Viral Travels",
+      "operator_type": "private",
+      "source": {
+        "platforms": [
+          "redBus",
+          "AbhiBus"
+        ],
+        "urls": [
+          "https://www.redbus.in/bus-tickets/sirohi-to-somnath",
+          "https://www.abhibus.com/buses/Sirohi-Somnath"
+        ],
+        "checked_date": "2026-09-10"
+      },
+      "bus": {
+        "bus_id": "sirohi-somnath-jalaramviral-1730",
+        "service_id": "JALARAM-SRH-SOM-1730",
+        "bus_type": "AC Sleeper (2 + 1)",
+        "bus_category": "AC Sleeper",
+        "departure_time": "17:30",
+        "arrival_time": "06:30",
+        "duration": "13h 00m",
+        "fare_inr": {
+          "listed": 1050.0,
+          "offer": null,
+          "minimum": 1050.0,
+          "maximum": 1500.0
+        },
+        "seat_availability": 12
+      },
+      "boarding_points": [
+        {
+          "name": "Sirohi Bypass",
+          "address": "Goyali Chauraha, NH 62 Bypass, Sirohi, Rajasthan 307001",
+          "time": "17:30",
+          "source": "redBus"
+        }
+      ],
+      "intermediate_stops": [
+        {
+          "name": "Abu Road",
+          "arrival_time": "18:45",
+          "departure_time": "19:00"
+        },
+        {
+          "name": "Palanpur",
+          "arrival_time": "20:00",
+          "departure_time": "20:15"
+        },
+        {
+          "name": "Rajkot",
+          "arrival_time": "02:45",
+          "departure_time": "03:00"
+        }
+      ],
+      "dropping_points": [
+        {
+          "name": "Somnath",
+          "address": "Somnath Temple Bus Stand, Prabhas Patan, Gujarat 362268",
+          "time": "06:30",
+          "source": "redBus"
+        }
+      ],
+      "amenities": [
+        "Air Conditioning",
+        "Charging Point",
+        "Blanket",
+        "Pillow",
+        "Reading Light"
+      ],
+      "cancellation_policy": "Cancellation allowed up to 4 hours prior to departure.",
+      "availability": "running"
+    },
+    {
+      "route_id": "aburoad-somnath-kanak-1900",
+      "origin": {
+        "city": "Abu Road",
+        "district": "Sirohi",
+        "state": "Rajasthan",
+        "country": "India"
+      },
+      "destination": {
+        "city": "Somnath",
+        "district": "Gir Somnath",
+        "state": "Gujarat",
+        "country": "India"
+      },
+      "direct": true,
+      "operator": "Kanak Travels",
+      "operator_type": "private",
+      "source": {
+        "platforms": [
+          "redBus",
+          "AbhiBus"
+        ],
+        "urls": [
+          "https://www.redbus.in/bus-tickets/abu-road-to-somnath",
+          "https://www.abhibus.com/buses/Abu-Road-Somnath"
+        ],
+        "checked_date": "2026-09-10"
+      },
+      "bus": {
+        "bus_id": "aburoad-somnath-kanak-1900",
+        "service_id": "KANAK-ABU-SOM-1900",
+        "bus_type": "AC Sleeper (2 + 1)",
+        "bus_category": "AC Sleeper",
+        "departure_time": "19:00",
+        "arrival_time": "06:30",
+        "duration": "11h 30m",
+        "fare_inr": {
+          "listed": 950.0,
+          "offer": null,
+          "minimum": 950.0,
+          "maximum": 1400.0
+        },
+        "seat_availability": 14
+      },
+      "boarding_points": [
+        {
+          "name": "Ambaji Cross Road Check Post",
+          "address": "Ambaji Cross Road, Check Post, Abu Road, Rajasthan 307026",
+          "time": "19:00",
+          "source": "redBus"
+        }
+      ],
+      "intermediate_stops": [
+        {
+          "name": "Palanpur",
+          "arrival_time": "20:15",
+          "departure_time": "20:30"
+        },
+        {
+          "name": "Mehsana",
+          "arrival_time": "21:45",
+          "departure_time": "22:00"
+        },
+        {
+          "name": "Rajkot",
+          "arrival_time": "02:30",
+          "departure_time": "02:45"
+        }
+      ],
+      "dropping_points": [
+        {
+          "name": "Veraval",
+          "address": "ST Bus Depot Area, Veraval, Gujarat 362265",
+          "time": "06:00",
+          "source": "redBus"
+        },
+        {
+          "name": "Somnath",
+          "address": "Somnath Temple Bus Stand, Prabhas Patan, Gujarat 362268",
+          "time": "06:30",
+          "source": "redBus"
+        }
+      ],
+      "amenities": [
+        "Air Conditioning",
+        "Charging Point",
+        "Blanket",
+        "Pillow",
+        "Reading Light"
+      ],
+      "cancellation_policy": "Cancellation allowed up to 4 hours prior to departure.",
+      "availability": "running"
+    },
+    {
+      "route_id": "mountabu-somnath-kanak-1800",
+      "origin": {
+        "city": "Mount Abu",
+        "district": "Sirohi",
+        "state": "Rajasthan",
+        "country": "India"
+      },
+      "destination": {
+        "city": "Somnath",
+        "district": "Gir Somnath",
+        "state": "Gujarat",
+        "country": "India"
+      },
+      "direct": true,
+      "operator": "Kanak Travels",
+      "operator_type": "private",
+      "source": {
+        "platforms": [
+          "redBus",
+          "AbhiBus"
+        ],
+        "urls": [
+          "https://www.redbus.in/bus-tickets/mount-abu-to-somnath",
+          "https://www.abhibus.com/buses/Mount-Abu-Somnath"
+        ],
+        "checked_date": "2026-09-10"
+      },
+      "bus": {
+        "bus_id": "mountabu-somnath-kanak-1800",
+        "service_id": "KANAK-MABU-SOM-1800",
+        "bus_type": "AC Sleeper (2 + 1)",
+        "bus_category": "AC Sleeper",
+        "departure_time": "18:00",
+        "arrival_time": "07:00",
+        "duration": "13h 00m",
+        "fare_inr": {
+          "listed": 1050.0,
+          "offer": null,
+          "minimum": 1050.0,
+          "maximum": 1550.0
+        },
+        "seat_availability": 10
+      },
+      "boarding_points": [
+        {
+          "name": "Mount Abu Main Toll Naka",
+          "address": "Main Toll Barrier / Bus Parking, Mount Abu, Rajasthan 307501",
+          "time": "18:00",
+          "source": "redBus"
+        }
+      ],
+      "intermediate_stops": [
+        {
+          "name": "Abu Road",
+          "arrival_time": "19:00",
+          "departure_time": "19:15"
+        },
+        {
+          "name": "Palanpur",
+          "arrival_time": "20:30",
+          "departure_time": "20:45"
+        },
+        {
+          "name": "Rajkot",
+          "arrival_time": "03:00",
+          "departure_time": "03:15"
+        }
+      ],
+      "dropping_points": [
+        {
+          "name": "Veraval",
+          "address": "ST Depot, Veraval, Gujarat 362265",
+          "time": "06:30",
+          "source": "redBus"
+        },
+        {
+          "name": "Somnath",
+          "address": "Somnath Temple Stand, Prabhas Patan, Gujarat 362268",
+          "time": "07:00",
+          "source": "redBus"
+        }
+      ],
+      "amenities": [
+        "Air Conditioning",
+        "Charging Point",
+        "Blanket",
+        "Pillow",
+        "Reading Light"
+      ],
+      "cancellation_policy": "Cancellation allowed up to 4 hours prior to departure.",
+      "availability": "running"
+    },
+    {
+      "route_id": "sumerpur-somnath-jalaramviral-1645",
+      "origin": {
+        "city": "Sumerpur",
+        "district": "Pali",
+        "state": "Rajasthan",
+        "country": "India"
+      },
+      "destination": {
+        "city": "Somnath",
+        "district": "Gir Somnath",
+        "state": "Gujarat",
+        "country": "India"
+      },
+      "direct": true,
+      "operator": "Shree Jalaram Viral Travels",
+      "operator_type": "private",
+      "source": {
+        "platforms": [
+          "redBus",
+          "AbhiBus"
+        ],
+        "urls": [
+          "https://www.redbus.in/bus-tickets/sumerpur-to-somnath",
+          "https://www.abhibus.com/buses/Sumerpur-Somnath"
+        ],
+        "checked_date": "2026-09-10"
+      },
+      "bus": {
+        "bus_id": "sumerpur-somnath-jalaramviral-1645",
+        "service_id": "JALARAM-SMP-SOM-1645",
+        "bus_type": "AC Sleeper (2 + 1)",
+        "bus_category": "AC Sleeper",
+        "departure_time": "16:45",
+        "arrival_time": "06:30",
+        "duration": "13h 45m",
+        "fare_inr": {
+          "listed": 1100.0,
+          "offer": null,
+          "minimum": 1100.0,
+          "maximum": 1550.0
+        },
+        "seat_availability": 8
+      },
+      "boarding_points": [
+        {
+          "name": "Sumerpur Bypass",
+          "address": "Jawai Bandh Cross Road, NH 62 Bypass, Sumerpur, Pali District, Rajasthan 306902",
+          "time": "16:45",
+          "source": "redBus"
+        }
+      ],
+      "intermediate_stops": [
+        {
+          "name": "Sirohi",
+          "arrival_time": "17:30",
+          "departure_time": "17:40"
+        },
+        {
+          "name": "Abu Road",
+          "arrival_time": "18:45",
+          "departure_time": "19:00"
+        }
+      ],
+      "dropping_points": [
+        {
+          "name": "Somnath",
+          "address": "Somnath Temple Area, Prabhas Patan, Gujarat 362268",
+          "time": "06:30",
+          "source": "redBus"
+        }
+      ],
+      "amenities": [
+        "Air Conditioning",
+        "Charging Point",
+        "Blanket",
+        "Pillow",
+        "Reading Light"
+      ],
+      "cancellation_policy": "Cancellation allowed up to 4 hours prior to departure.",
+      "availability": "running"
+    },
+    {
+      "route_id": "indore-somnath-somnathtravels-1350",
+      "origin": {
+        "city": "Indore",
+        "district": "Indore",
+        "state": "Madhya Pradesh",
+        "country": "India"
+      },
+      "destination": {
+        "city": "Somnath",
+        "district": "Gir Somnath",
+        "state": "Gujarat",
+        "country": "India"
+      },
+      "direct": true,
+      "operator": "Somnath Travels Indore",
+      "operator_type": "private",
+      "source": {
+        "platforms": [
+          "redBus",
+          "AbhiBus"
+        ],
+        "urls": [
+          "https://www.redbus.in/bus-tickets/indore-to-somnath",
+          "https://www.abhibus.com/buses/Indore-Somnath"
+        ],
+        "checked_date": "2026-09-10"
+      },
+      "bus": {
+        "bus_id": "indore-somnath-somnathtravels-1350",
+        "service_id": "ST-IND-SOM-1350",
+        "bus_type": "AC Sleeper (2 + 1)",
+        "bus_category": "AC Sleeper",
+        "departure_time": "13:50",
+        "arrival_time": "06:50",
+        "duration": "17h 00m",
+        "fare_inr": {
+          "listed": 1250.0,
+          "offer": 1150.0,
+          "minimum": 1150.0,
+          "maximum": 1750.0
+        },
+        "seat_availability": 15
+      },
+      "boarding_points": [
+        {
+          "name": "Chhotigwaltoli",
+          "address": "Near Sarwate Bus Stand, Chhotigwaltoli, Indore, Madhya Pradesh 452001",
+          "time": "13:50",
+          "source": "redBus"
+        },
+        {
+          "name": "Pipliyahana Square",
+          "address": "Pipliyahana Square, Ring Road, Indore, Madhya Pradesh 452016",
+          "time": "14:15",
+          "source": "redBus"
+        },
+        {
+          "name": "Gangwal Bus Stand",
+          "address": "Gangwal Bus Stand, Dhar Road, Indore, Madhya Pradesh 452002",
+          "time": "14:40",
+          "source": "redBus"
+        }
+      ],
+      "intermediate_stops": [
+        {
+          "name": "Dhar",
+          "arrival_time": "15:45",
+          "departure_time": "16:00"
+        },
+        {
+          "name": "Jhabua",
+          "arrival_time": "18:00",
+          "departure_time": "18:15"
+        },
+        {
+          "name": "Godhra",
+          "arrival_time": "20:30",
+          "departure_time": "20:45"
+        },
+        {
+          "name": "Vadodara",
+          "arrival_time": "22:45",
+          "departure_time": "23:00"
+        },
+        {
+          "name": "Rajkot",
+          "arrival_time": "03:45",
+          "departure_time": "04:00"
+        },
+        {
+          "name": "Junagadh",
+          "arrival_time": "05:30",
+          "departure_time": "05:40"
+        }
+      ],
+      "dropping_points": [
+        {
+          "name": "Veraval",
+          "address": "ST Bus Stand / Bypass, Veraval, Gujarat 362265",
+          "time": "06:20",
+          "source": "redBus"
+        },
+        {
+          "name": "Somnath",
+          "address": "Near Somnath Mandir / Bus Stop, Prabhas Patan, Gujarat 362268",
+          "time": "06:50",
+          "source": "redBus"
+        }
+      ],
+      "amenities": [
+        "Air Conditioning",
+        "Charging Point",
+        "Blanket",
+        "Pillow",
+        "Reading Light",
+        "Water Bottle"
+      ],
+      "cancellation_policy": "Cancellation allowed up to 4 hours prior to departure.",
+      "availability": "running"
+    },
+    {
+      "route_id": "indore-somnath-onefiftyone-1745",
+      "origin": {
+        "city": "Indore",
+        "district": "Indore",
+        "state": "Madhya Pradesh",
+        "country": "India"
+      },
+      "destination": {
+        "city": "Somnath",
+        "district": "Gir Somnath",
+        "state": "Gujarat",
+        "country": "India"
+      },
+      "direct": true,
+      "operator": "One Fifty One Travels",
+      "operator_type": "private",
+      "source": {
+        "platforms": [
+          "redBus",
+          "AbhiBus"
+        ],
+        "urls": [
+          "https://www.redbus.in/bus-tickets/indore-to-somnath",
+          "https://www.abhibus.com/buses/Indore-Somnath"
+        ],
+        "checked_date": "2026-09-10"
+      },
+      "bus": {
+        "bus_id": "indore-somnath-onefiftyone-1745",
+        "service_id": "151-IND-SOM-1745",
+        "bus_type": "Bharat Benz AC Sleeper",
+        "bus_category": "AC Sleeper",
+        "departure_time": "17:45",
+        "arrival_time": "11:15",
+        "duration": "17h 30m",
+        "fare_inr": {
+          "listed": 1300.0,
+          "offer": null,
+          "minimum": 1300.0,
+          "maximum": 1850.0
+        },
+        "seat_availability": 11
+      },
+      "boarding_points": [
+        {
+          "name": "Vijay Nagar",
+          "address": "Vijay Nagar Square, AB Road, Indore, Madhya Pradesh 452010",
+          "time": "17:45",
+          "source": "redBus"
+        },
+        {
+          "name": "Gangwal Bus Stand",
+          "address": "Gangwal Bus Stand, Dhar Road, Indore, Madhya Pradesh 452002",
+          "time": "18:20",
+          "source": "redBus"
+        },
+        {
+          "name": "Rajiv Gandhi Square",
+          "address": "Rajiv Gandhi Circle, AB Road, Indore, Madhya Pradesh 452012",
+          "time": "18:40",
+          "source": "redBus"
+        }
+      ],
+      "intermediate_stops": [
+        {
+          "name": "Dhar",
+          "arrival_time": "19:45",
+          "departure_time": "20:00"
+        },
+        {
+          "name": "Vadodara",
+          "arrival_time": "03:00",
+          "departure_time": "03:15"
+        },
+        {
+          "name": "Rajkot",
+          "arrival_time": "07:30",
+          "departure_time": "07:45"
+        }
+      ],
+      "dropping_points": [
+        {
+          "name": "Hotel Good Luck",
+          "address": "Hotel Good Luck, Somnath Bypass Circle, Prabhas Patan, Gujarat 362268",
+          "time": "10:45",
+          "source": "redBus"
+        },
+        {
+          "name": "Somnath Bus Stand",
+          "address": "Near Somnath Mandir, Prabhas Patan, Gujarat 362268",
+          "time": "11:15",
+          "source": "redBus"
+        }
+      ],
+      "amenities": [
+        "Air Conditioning",
+        "Charging Point",
+        "Blanket",
+        "Pillow",
+        "Reading Light",
+        "Water Bottle"
+      ],
+      "cancellation_policy": "Cancellation allowed up to 4 hours prior to departure.",
+      "availability": "running"
+    },
+    {
+      "route_id": "ujjain-somnath-somnathtravels-1430",
+      "origin": {
+        "city": "Ujjain",
+        "district": "Ujjain",
+        "state": "Madhya Pradesh",
+        "country": "India"
+      },
+      "destination": {
+        "city": "Somnath",
+        "district": "Gir Somnath",
+        "state": "Gujarat",
+        "country": "India"
+      },
+      "direct": true,
+      "operator": "Somnath Travels Indore",
+      "operator_type": "private",
+      "source": {
+        "platforms": [
+          "redBus",
+          "AbhiBus"
+        ],
+        "urls": [
+          "https://www.redbus.in/bus-tickets/ujjain-to-somnath",
+          "https://www.abhibus.com/buses/Ujjain-Somnath"
+        ],
+        "checked_date": "2026-09-10"
+      },
+      "bus": {
+        "bus_id": "ujjain-somnath-somnathtravels-1430",
+        "service_id": "ST-UJN-SOM-1430",
+        "bus_type": "AC Sleeper (2 + 1)",
+        "bus_category": "AC Sleeper",
+        "departure_time": "14:30",
+        "arrival_time": "09:30",
+        "duration": "19h 00m",
+        "fare_inr": {
+          "listed": 1300.0,
+          "offer": null,
+          "minimum": 1300.0,
+          "maximum": 1800.0
+        },
+        "seat_availability": 12
+      },
+      "boarding_points": [
+        {
+          "name": "Nanakheda Bus Stand",
+          "address": "Nanakheda Bus Stand, Sanwer Rd, Ujjain, Madhya Pradesh 456010",
+          "time": "14:30",
+          "source": "redBus"
+        },
+        {
+          "name": "Dewas Gate",
+          "address": "Dewas Gate Bus Stand, Ujjain, Madhya Pradesh 456001",
+          "time": "14:50",
+          "source": "redBus"
+        }
+      ],
+      "intermediate_stops": [
+        {
+          "name": "Badnagar",
+          "arrival_time": "15:45",
+          "departure_time": "15:55"
+        },
+        {
+          "name": "Ratlam",
+          "arrival_time": "17:00",
+          "departure_time": "17:15"
+        },
+        {
+          "name": "Dahod",
+          "arrival_time": "19:30",
+          "departure_time": "19:45"
+        },
+        {
+          "name": "Vadodara",
+          "arrival_time": "23:45",
+          "departure_time": "00:00"
+        },
+        {
+          "name": "Rajkot",
+          "arrival_time": "05:00",
+          "departure_time": "05:15"
+        }
+      ],
+      "dropping_points": [
+        {
+          "name": "Veraval",
+          "address": "ST Bus Depot Area, Veraval, Gujarat 362265",
+          "time": "09:00",
+          "source": "redBus"
+        },
+        {
+          "name": "Somnath",
+          "address": "Somnath Mandir Bus Stand, Prabhas Patan, Gujarat 362268",
+          "time": "09:30",
+          "source": "redBus"
+        }
+      ],
+      "amenities": [
+        "Air Conditioning",
+        "Charging Point",
+        "Blanket",
+        "Pillow",
+        "Reading Light"
+      ],
+      "cancellation_policy": "Cancellation allowed up to 4 hours prior to departure.",
+      "availability": "running"
+    },
+    {
+      "route_id": "ujjain-somnath-momai-1530",
+      "origin": {
+        "city": "Ujjain",
+        "district": "Ujjain",
+        "state": "Madhya Pradesh",
+        "country": "India"
+      },
+      "destination": {
+        "city": "Somnath",
+        "district": "Gir Somnath",
+        "state": "Gujarat",
+        "country": "India"
+      },
+      "direct": true,
+      "operator": "Momai Travels",
+      "operator_type": "private",
+      "source": {
+        "platforms": [
+          "redBus",
+          "AbhiBus"
+        ],
+        "urls": [
+          "https://www.redbus.in/bus-tickets/ujjain-to-somnath",
+          "https://www.abhibus.com/buses/Ujjain-Somnath"
+        ],
+        "checked_date": "2026-09-10"
+      },
+      "bus": {
+        "bus_id": "ujjain-somnath-momai-1530",
+        "service_id": "MOMAI-UJN-SOM-1530",
+        "bus_type": "AC Sleeper (2 + 1)",
+        "bus_category": "AC Sleeper",
+        "departure_time": "15:30",
+        "arrival_time": "10:30",
+        "duration": "19h 00m",
+        "fare_inr": {
+          "listed": 1350.0,
+          "offer": null,
+          "minimum": 1350.0,
+          "maximum": 1900.0
+        },
+        "seat_availability": 9
+      },
+      "boarding_points": [
+        {
+          "name": "Harifatak Overbridge",
+          "address": "Harifatak Overbridge, Mahakal Temple Road, Ujjain, Madhya Pradesh 456006",
+          "time": "15:30",
+          "source": "redBus"
+        },
+        {
+          "name": "Nanakheda Bus Stand",
+          "address": "Nanakheda Stand, Ujjain, Madhya Pradesh 456010",
+          "time": "15:50",
+          "source": "redBus"
+        }
+      ],
+      "intermediate_stops": [
+        {
+          "name": "Ratlam",
+          "arrival_time": "17:45",
+          "departure_time": "18:00"
+        },
+        {
+          "name": "Vadodara",
+          "arrival_time": "01:00",
+          "departure_time": "01:15"
+        },
+        {
+          "name": "Rajkot",
+          "arrival_time": "06:00",
+          "departure_time": "06:15"
+        }
+      ],
+      "dropping_points": [
+        {
+          "name": "Hotel Good Luck",
+          "address": "Hotel Good Luck, Somnath Bypass Circle, Prabhas Patan, Gujarat 362268",
+          "time": "10:00",
+          "source": "redBus"
+        },
+        {
+          "name": "Somnath",
+          "address": "Somnath Temple Stand, Prabhas Patan, Gujarat 362268",
+          "time": "10:30",
+          "source": "redBus"
+        }
+      ],
+      "amenities": [
+        "Air Conditioning",
+        "Charging Point",
+        "Blanket",
+        "Pillow",
+        "Reading Light",
+        "Water Bottle"
+      ],
+      "cancellation_policy": "Cancellation allowed up to 4 hours prior to departure.",
+      "availability": "running"
+    },
+    {
+      "route_id": "dhar-somnath-somnathtravels-1545",
+      "origin": {
+        "city": "Dhar",
+        "district": "Dhar",
+        "state": "Madhya Pradesh",
+        "country": "India"
+      },
+      "destination": {
+        "city": "Somnath",
+        "district": "Gir Somnath",
+        "state": "Gujarat",
+        "country": "India"
+      },
+      "direct": true,
+      "operator": "Somnath Travels Indore",
+      "operator_type": "private",
+      "source": {
+        "platforms": [
+          "redBus",
+          "AbhiBus"
+        ],
+        "urls": [
+          "https://www.redbus.in/bus-tickets/dhar-to-somnath",
+          "https://www.abhibus.com/buses/Dhar-Somnath"
+        ],
+        "checked_date": "2026-09-10"
+      },
+      "bus": {
+        "bus_id": "dhar-somnath-somnathtravels-1545",
+        "service_id": "ST-DHR-SOM-1545",
+        "bus_type": "AC Sleeper (2 + 1)",
+        "bus_category": "AC Sleeper",
+        "departure_time": "15:45",
+        "arrival_time": "06:50",
+        "duration": "15h 05m",
+        "fare_inr": {
+          "listed": 1150.0,
+          "offer": null,
+          "minimum": 1150.0,
+          "maximum": 1650.0
+        },
+        "seat_availability": 15
+      },
+      "boarding_points": [
+        {
+          "name": "Dhar Bypass Circle",
+          "address": "Dhar Bypass Circle, NH 47, Dhar, Madhya Pradesh 454001",
+          "time": "15:45",
+          "source": "redBus"
+        }
+      ],
+      "intermediate_stops": [
+        {
+          "name": "Jhabua",
+          "arrival_time": "18:00",
+          "departure_time": "18:15"
+        },
+        {
+          "name": "Vadodara",
+          "arrival_time": "22:45",
+          "departure_time": "23:00"
+        },
+        {
+          "name": "Rajkot",
+          "arrival_time": "03:45",
+          "departure_time": "04:00"
+        }
+      ],
+      "dropping_points": [
+        {
+          "name": "Veraval",
+          "address": "ST Bus Stand Area, Veraval, Gujarat 362265",
+          "time": "06:20",
+          "source": "redBus"
+        },
+        {
+          "name": "Somnath",
+          "address": "Somnath Mandir Bus Stop, Prabhas Patan, Gujarat 362268",
+          "time": "06:50",
+          "source": "redBus"
+        }
+      ],
+      "amenities": [
+        "Air Conditioning",
+        "Charging Point",
+        "Blanket",
+        "Pillow",
+        "Reading Light"
+      ],
+      "cancellation_policy": "Cancellation allowed up to 4 hours prior to departure.",
+      "availability": "running"
+    },
+    {
+      "route_id": "ratlam-somnath-somnathtravels-1715",
+      "origin": {
+        "city": "Ratlam",
+        "district": "Ratlam",
+        "state": "Madhya Pradesh",
+        "country": "India"
+      },
+      "destination": {
+        "city": "Somnath",
+        "district": "Gir Somnath",
+        "state": "Gujarat",
+        "country": "India"
+      },
+      "direct": true,
+      "operator": "Somnath Travels Indore",
+      "operator_type": "private",
+      "source": {
+        "platforms": [
+          "redBus",
+          "AbhiBus"
+        ],
+        "urls": [
+          "https://www.redbus.in/bus-tickets/ratlam-to-somnath",
+          "https://www.abhibus.com/buses/Ratlam-Somnath"
+        ],
+        "checked_date": "2026-09-10"
+      },
+      "bus": {
+        "bus_id": "ratlam-somnath-somnathtravels-1715",
+        "service_id": "ST-RTL-SOM-1715",
+        "bus_type": "AC Sleeper (2 + 1)",
+        "bus_category": "AC Sleeper",
+        "departure_time": "17:15",
+        "arrival_time": "09:30",
+        "duration": "16h 15m",
+        "fare_inr": {
+          "listed": 1200.0,
+          "offer": null,
+          "minimum": 1200.0,
+          "maximum": 1700.0
+        },
+        "seat_availability": 11
+      },
+      "boarding_points": [
+        {
+          "name": "Salakhedi Chowkdi",
+          "address": "Salakhedi Chowkdi, Ratlam-Banswara Highway, Ratlam, Madhya Pradesh 457001",
+          "time": "17:15",
+          "source": "redBus"
+        }
+      ],
+      "intermediate_stops": [
+        {
+          "name": "Dahod",
+          "arrival_time": "19:30",
+          "departure_time": "19:45"
+        },
+        {
+          "name": "Vadodara",
+          "arrival_time": "23:45",
+          "departure_time": "00:00"
+        },
+        {
+          "name": "Rajkot",
+          "arrival_time": "05:00",
+          "departure_time": "05:15"
+        }
+      ],
+      "dropping_points": [
+        {
+          "name": "Somnath",
+          "address": "Somnath Mandir Stand, Prabhas Patan, Gujarat 362268",
+          "time": "09:30",
+          "source": "redBus"
+        }
+      ],
+      "amenities": [
+        "Air Conditioning",
+        "Charging Point",
+        "Blanket",
+        "Pillow",
+        "Reading Light"
+      ],
+      "cancellation_policy": "Cancellation allowed up to 4 hours prior to departure.",
+      "availability": "running"
+    },
+    {
+      "route_id": "diu-somnath-jaysomnath-1630",
+      "origin": {
+        "city": "Diu",
+        "district": "Diu",
+        "state": "Dadra and Nagar Haveli and Daman and Diu",
+        "country": "India"
+      },
+      "destination": {
+        "city": "Somnath",
+        "district": "Gir Somnath",
+        "state": "Gujarat",
+        "country": "India"
+      },
+      "direct": true,
+      "operator": "Jay Somnath Travels",
+      "operator_type": "private",
+      "source": {
+        "platforms": [
+          "AbhiBus",
+          "redBus"
+        ],
+        "urls": [
+          "https://www.abhibus.com/buses/39135/Diu-Somnath",
+          "https://www.redbus.in/bus-tickets/diu-to-somnath"
+        ],
+        "checked_date": "2026-09-10"
+      },
+      "bus": {
+        "bus_id": "diu-somnath-jaysomnath-1630",
+        "service_id": "JST-DIU-SOM-1630",
+        "bus_type": "Non-AC Seater (2 + 2)",
+        "bus_category": "Standard Non-AC Seater",
+        "departure_time": "16:30",
+        "arrival_time": "19:10",
+        "duration": "2h 40m",
+        "fare_inr": {
+          "listed": 180.0,
+          "offer": null,
+          "minimum": 180.0,
+          "maximum": 220.0
+        },
+        "seat_availability": 19
+      },
+      "boarding_points": [
+        {
+          "name": "Diu Jethibai Bus Stand",
+          "address": "Jethibai Bus Stand, Bunder Chowk, Diu 362520",
+          "time": "16:30",
+          "source": "AbhiBus"
+        },
+        {
+          "name": "Ghoghla Check Post",
+          "address": "Ghoghla Toll Check Post, Diu 362540",
+          "time": "16:45",
+          "source": "AbhiBus"
+        }
+      ],
+      "intermediate_stops": [
+        {
+          "name": "Una",
+          "arrival_time": "17:15",
+          "departure_time": "17:25"
+        },
+        {
+          "name": "Kodinar",
+          "arrival_time": "18:05",
+          "departure_time": "18:15"
+        }
+      ],
+      "dropping_points": [
+        {
+          "name": "Hotel Good Luck",
+          "address": "Hotel Good Luck, Somnath Bypass Circle, Prabhas Patan, Gujarat 362268",
+          "time": "18:55",
+          "source": "AbhiBus"
+        },
+        {
+          "name": "Somnath",
+          "address": "Near Somnath Mandir, Prabhas Patan, Gujarat 362268",
+          "time": "19:10",
+          "source": "AbhiBus"
+        }
+      ],
+      "amenities": [
+        "Luggage Space",
+        "Emergency Exit"
+      ],
+      "cancellation_policy": "Cancellation allowed up to 2 hours prior to departure.",
+      "availability": "running"
+    },
+    {
+      "route_id": "diu-somnath-ashapura-1915",
+      "origin": {
+        "city": "Diu",
+        "district": "Diu",
+        "state": "Dadra and Nagar Haveli and Daman and Diu",
+        "country": "India"
+      },
+      "destination": {
+        "city": "Somnath",
+        "district": "Gir Somnath",
+        "state": "Gujarat",
+        "country": "India"
+      },
+      "direct": true,
+      "operator": "Ashapura Travels",
+      "operator_type": "private",
+      "source": {
+        "platforms": [
+          "AbhiBus",
+          "redBus"
+        ],
+        "urls": [
+          "https://www.abhibus.com/buses/53000/Diu-Somnath",
+          "https://www.redbus.in/bus-tickets/diu-to-somnath"
+        ],
+        "checked_date": "2026-09-10"
+      },
+      "bus": {
+        "bus_id": "diu-somnath-ashapura-1915",
+        "service_id": "ASHAPURA-DIU-SOM-1915",
+        "bus_type": "AC Sleeper (2 + 1)",
+        "bus_category": "AC Sleeper",
+        "departure_time": "19:15",
+        "arrival_time": "22:00",
+        "duration": "2h 45m",
+        "fare_inr": {
+          "listed": 350.0,
+          "offer": null,
+          "minimum": 350.0,
+          "maximum": 450.0
+        },
+        "seat_availability": 14
+      },
+      "boarding_points": [
+        {
+          "name": "Diu Jethibai Bus Stand",
+          "address": "Jethibai Bus Stand, Main Market, Diu 362520",
+          "time": "19:15",
+          "source": "AbhiBus"
+        },
+        {
+          "name": "Ghoghla Check Post",
+          "address": "Ghoghla Check Post, Diu 362540",
+          "time": "19:30",
+          "source": "AbhiBus"
+        }
+      ],
+      "intermediate_stops": [
+        {
+          "name": "Una",
+          "arrival_time": "20:00",
+          "departure_time": "20:10"
+        },
+        {
+          "name": "Kodinar",
+          "arrival_time": "20:50",
+          "departure_time": "21:00"
+        }
+      ],
+      "dropping_points": [
+        {
+          "name": "Somnath Bypass",
+          "address": "Somnath Bypass Circle, Prabhas Patan, Gujarat 362268",
+          "time": "21:45",
+          "source": "AbhiBus"
+        },
+        {
+          "name": "Somnath Mandir Stand",
+          "address": "Near Somnath Temple, Prabhas Patan, Gujarat 362268",
+          "time": "22:00",
+          "source": "AbhiBus"
+        }
+      ],
+      "amenities": [
+        "Air Conditioning",
+        "Charging Point",
+        "Reading Light"
+      ],
+      "cancellation_policy": "Cancellation allowed up to 2 hours prior to departure.",
+      "availability": "running"
+    },
+    {
+      "route_id": "diu-somnath-jaykhodiyar-1900",
+      "origin": {
+        "city": "Diu",
+        "district": "Diu",
+        "state": "Dadra and Nagar Haveli and Daman and Diu",
+        "country": "India"
+      },
+      "destination": {
+        "city": "Somnath",
+        "district": "Gir Somnath",
+        "state": "Gujarat",
+        "country": "India"
+      },
+      "direct": true,
+      "operator": "Jay Khodiyar Bus Service Pvt Ltd",
+      "operator_type": "private",
+      "source": {
+        "platforms": [
+          "AbhiBus",
+          "redBus"
+        ],
+        "urls": [
+          "https://www.abhibus.com/buses/64319/Diu-Somnath",
+          "https://www.redbus.in/bus-tickets/diu-to-somnath"
+        ],
+        "checked_date": "2026-09-10"
+      },
+      "bus": {
+        "bus_id": "diu-somnath-jaykhodiyar-1900",
+        "service_id": "JKBS-DIU-SOM-1900",
+        "bus_type": "AC Sleeper (2 + 1)",
+        "bus_category": "AC Sleeper",
+        "departure_time": "19:00",
+        "arrival_time": "22:00",
+        "duration": "3h 00m",
+        "fare_inr": {
+          "listed": 350.0,
+          "offer": null,
+          "minimum": 350.0,
+          "maximum": 450.0
+        },
+        "seat_availability": 16
+      },
+      "boarding_points": [
+        {
+          "name": "Jethibai Bus Stand",
+          "address": "Jethibai Bus Stand, Diu 362520",
+          "time": "19:00",
+          "source": "AbhiBus"
+        },
+        {
+          "name": "Ghoghla",
+          "address": "Ghoghla Check Post Area, Diu 362540",
+          "time": "19:15",
+          "source": "AbhiBus"
+        }
+      ],
+      "intermediate_stops": [
+        {
+          "name": "Una",
+          "arrival_time": "19:45",
+          "departure_time": "19:55"
+        },
+        {
+          "name": "Kodinar",
+          "arrival_time": "20:45",
+          "departure_time": "20:55"
+        }
+      ],
+      "dropping_points": [
+        {
+          "name": "Hotel Good Luck",
+          "address": "Hotel Good Luck, Somnath Bypass Circle, Prabhas Patan, Gujarat 362268",
+          "time": "21:45",
+          "source": "AbhiBus"
+        },
+        {
+          "name": "Somnath",
+          "address": "Somnath Bus Stand, Prabhas Patan, Gujarat 362268",
+          "time": "22:00",
+          "source": "AbhiBus"
+        }
+      ],
+      "amenities": [
+        "Air Conditioning",
+        "Charging Point",
+        "Reading Light",
+        "Emergency Exit"
+      ],
+      "cancellation_policy": "Cancellation allowed up to 2 hours prior to departure.",
+      "availability": "running"
+    },
+    {
+      "route_id": "ghoghla-somnath-jaykhodiyar-1915",
+      "origin": {
+        "city": "Ghoghla",
+        "district": "Diu",
+        "state": "Dadra and Nagar Haveli and Daman and Diu",
+        "country": "India"
+      },
+      "destination": {
+        "city": "Somnath",
+        "district": "Gir Somnath",
+        "state": "Gujarat",
+        "country": "India"
+      },
+      "direct": true,
+      "operator": "Jay Khodiyar Bus Service Pvt Ltd",
+      "operator_type": "private",
+      "source": {
+        "platforms": [
+          "AbhiBus",
+          "redBus"
+        ],
+        "urls": [
+          "https://www.abhibus.com/buses/64319/Ghoghla-Somnath",
+          "https://www.redbus.in/bus-tickets/ghoghla-to-somnath"
+        ],
+        "checked_date": "2026-09-10"
+      },
+      "bus": {
+        "bus_id": "ghoghla-somnath-jaykhodiyar-1915",
+        "service_id": "JKBS-GHO-SOM-1915",
+        "bus_type": "AC Sleeper (2 + 1)",
+        "bus_category": "AC Sleeper",
+        "departure_time": "19:15",
+        "arrival_time": "22:00",
+        "duration": "2h 45m",
+        "fare_inr": {
+          "listed": 350.0,
+          "offer": null,
+          "minimum": 350.0,
+          "maximum": 450.0
+        },
+        "seat_availability": 16
+      },
+      "boarding_points": [
+        {
+          "name": "Ghoghla Check Post",
+          "address": "Ghoghla Toll Gate, Diu-Gujarat Border, Diu 362540",
+          "time": "19:15",
+          "source": "AbhiBus"
+        }
+      ],
+      "intermediate_stops": [
+        {
+          "name": "Una",
+          "arrival_time": "19:45",
+          "departure_time": "19:55"
+        },
+        {
+          "name": "Kodinar",
+          "arrival_time": "20:45",
+          "departure_time": "20:55"
+        }
+      ],
+      "dropping_points": [
+        {
+          "name": "Somnath Bus Stand",
+          "address": "Somnath Bus Stand, Prabhas Patan, Gujarat 362268",
+          "time": "22:00",
+          "source": "AbhiBus"
+        }
+      ],
+      "amenities": [
+        "Air Conditioning",
+        "Charging Point",
+        "Reading Light"
+      ],
+      "cancellation_policy": "Cancellation allowed up to 2 hours prior to departure.",
+      "availability": "running"
+    },
+    {
+      "route_id": "silvassa-somnath-tirth-1620",
+      "origin": {
+        "city": "Silvassa",
+        "district": "Dadra and Nagar Haveli",
+        "state": "Dadra and Nagar Haveli and Daman and Diu",
+        "country": "India"
+      },
+      "destination": {
+        "city": "Somnath",
+        "district": "Gir Somnath",
+        "state": "Gujarat",
+        "country": "India"
+      },
+      "direct": true,
+      "operator": "Tirth Travels",
+      "operator_type": "private",
+      "source": {
+        "platforms": [
+          "AbhiBus",
+          "redBus"
+        ],
+        "urls": [
+          "https://www.abhibus.com/buses/Silvassa-Somnath",
+          "https://www.redbus.in/bus-tickets/silvassa-to-somnath"
+        ],
+        "checked_date": "2026-09-10"
+      },
+      "bus": {
+        "bus_id": "silvassa-somnath-tirth-1620",
+        "service_id": "TIRTH-SLV-SOM-1620",
+        "bus_type": "AC Sleeper (2 + 1)",
+        "bus_category": "AC Sleeper",
+        "departure_time": "16:20",
+        "arrival_time": "09:45",
+        "duration": "17h 25m",
+        "fare_inr": {
+          "listed": 1300.0,
+          "offer": null,
+          "minimum": 1300.0,
+          "maximum": 1800.0
+        },
+        "seat_availability": 14
+      },
+      "boarding_points": [
+        {
+          "name": "Silvassa Bus Stand",
+          "address": "Central Bus Station, Main Road, Silvassa, Dadra and Nagar Haveli 396230",
+          "time": "16:20",
+          "source": "AbhiBus"
+        },
+        {
+          "name": "Naroli Char Rasta",
+          "address": "Naroli Cross Road, Silvassa-Bhilad Highway, Silvassa 396235",
+          "time": "16:40",
+          "source": "AbhiBus"
+        }
+      ],
+      "intermediate_stops": [
+        {
+          "name": "Vapi",
+          "arrival_time": "17:30",
+          "departure_time": "17:45"
+        },
+        {
+          "name": "Surat",
+          "arrival_time": "20:30",
+          "departure_time": "20:45"
+        },
+        {
+          "name": "Vadodara",
+          "arrival_time": "23:00",
+          "departure_time": "23:15"
+        },
+        {
+          "name": "Rajkot",
+          "arrival_time": "04:30",
+          "departure_time": "04:45"
+        }
+      ],
+      "dropping_points": [
+        {
+          "name": "Hotel Good Luck",
+          "address": "Hotel Good Luck, Somnath Bypass Circle, Prabhas Patan, Gujarat 362268",
+          "time": "09:15",
+          "source": "AbhiBus"
+        },
+        {
+          "name": "Somnath",
+          "address": "Somnath Mandir Stand, Prabhas Patan, Gujarat 362268",
+          "time": "09:45",
+          "source": "AbhiBus"
+        }
+      ],
+      "amenities": [
+        "Air Conditioning",
+        "Charging Point",
+        "Blanket",
+        "Pillow",
+        "Reading Light"
+      ],
+      "cancellation_policy": "Cancellation allowed up to 4 hours prior to departure.",
+      "availability": "running"
+    },
+    {
+      "route_id": "silvassa-somnath-suryadeep-1530",
+      "origin": {
+        "city": "Silvassa",
+        "district": "Dadra and Nagar Haveli",
+        "state": "Dadra and Nagar Haveli and Daman and Diu",
+        "country": "India"
+      },
+      "destination": {
+        "city": "Somnath",
+        "district": "Gir Somnath",
+        "state": "Gujarat",
+        "country": "India"
+      },
+      "direct": true,
+      "operator": "New Suryadeep Travels",
+      "operator_type": "private",
+      "source": {
+        "platforms": [
+          "AbhiBus",
+          "redBus"
+        ],
+        "urls": [
+          "https://www.abhibus.com/buses/Silvassa-Somnath",
+          "https://www.redbus.in/bus-tickets/silvassa-to-somnath"
+        ],
+        "checked_date": "2026-09-10"
+      },
+      "bus": {
+        "bus_id": "silvassa-somnath-suryadeep-1530",
+        "service_id": "SURYADEEP-SLV-SOM-1530",
+        "bus_type": "AC Sleeper (2 + 1)",
+        "bus_category": "AC Sleeper",
+        "departure_time": "15:30",
+        "arrival_time": "10:30",
+        "duration": "19h 00m",
+        "fare_inr": {
+          "listed": 1350.0,
+          "offer": null,
+          "minimum": 1350.0,
+          "maximum": 1850.0
+        },
+        "seat_availability": 10
+      },
+      "boarding_points": [
+        {
+          "name": "New Suryadeep Travels Office",
+          "address": "Opp. Bus Station, Silvassa, Dadra and Nagar Haveli 396230",
+          "time": "15:30",
+          "source": "AbhiBus"
+        },
+        {
+          "name": "Dadra Check Post",
+          "address": "Dadra Toll Plaza, Silvassa Road, Dadra 396193",
+          "time": "15:55",
+          "source": "AbhiBus"
+        }
+      ],
+      "intermediate_stops": [
+        {
+          "name": "Vapi",
+          "arrival_time": "16:45",
+          "departure_time": "17:00"
+        },
+        {
+          "name": "Surat",
+          "arrival_time": "20:00",
+          "departure_time": "20:15"
+        },
+        {
+          "name": "Vadodara",
+          "arrival_time": "22:30",
+          "departure_time": "22:45"
+        },
+        {
+          "name": "Rajkot",
+          "arrival_time": "04:30",
+          "departure_time": "04:45"
+        }
+      ],
+      "dropping_points": [
+        {
+          "name": "Somnath",
+          "address": "Somnath Temple Stand, Prabhas Patan, Gujarat 362268",
+          "time": "10:30",
+          "source": "AbhiBus"
+        }
+      ],
+      "amenities": [
+        "Air Conditioning",
+        "Charging Point",
+        "Blanket",
+        "Pillow",
+        "Reading Light"
+      ],
+      "cancellation_policy": "Cancellation allowed up to 4 hours prior to departure.",
+      "availability": "running"
+    },
+    {
+      "route_id": "daman-somnath-suryadeep-1630",
+      "origin": {
+        "city": "Daman",
+        "district": "Daman",
+        "state": "Dadra and Nagar Haveli and Daman and Diu",
+        "country": "India"
+      },
+      "destination": {
+        "city": "Somnath",
+        "district": "Gir Somnath",
+        "state": "Gujarat",
+        "country": "India"
+      },
+      "direct": true,
+      "operator": "New Suryadeep Travels",
+      "operator_type": "private",
+      "source": {
+        "platforms": [
+          "redBus",
+          "AbhiBus"
+        ],
+        "urls": [
+          "https://www.redbus.in/bus-tickets/daman-to-somnath",
+          "https://www.abhibus.com/buses/Daman-Somnath"
+        ],
+        "checked_date": "2026-09-10"
+      },
+      "bus": {
+        "bus_id": "daman-somnath-suryadeep-1630",
+        "service_id": "SURYADEEP-DAM-SOM-1630",
+        "bus_type": "AC Sleeper (2 + 1)",
+        "bus_category": "AC Sleeper",
+        "departure_time": "16:30",
+        "arrival_time": "10:30",
+        "duration": "18h 00m",
+        "fare_inr": {
+          "listed": 1300.0,
+          "offer": null,
+          "minimum": 1300.0,
+          "maximum": 1800.0
+        },
+        "seat_availability": 12
+      },
+      "boarding_points": [
+        {
+          "name": "Nani Daman Bus Stand",
+          "address": "Taxi Stand / Bus Depot, Dilip Nagar, Nani Daman, Daman 396210",
+          "time": "16:30",
+          "source": "redBus"
+        }
+      ],
+      "intermediate_stops": [
+        {
+          "name": "Vapi",
+          "arrival_time": "17:15",
+          "departure_time": "17:30"
+        },
+        {
+          "name": "Surat",
+          "arrival_time": "20:30",
+          "departure_time": "20:45"
+        },
+        {
+          "name": "Vadodara",
+          "arrival_time": "23:00",
+          "departure_time": "23:15"
+        },
+        {
+          "name": "Rajkot",
+          "arrival_time": "04:30",
+          "departure_time": "04:45"
+        }
+      ],
+      "dropping_points": [
+        {
+          "name": "Veraval",
+          "address": "ST Bus Stand Area, Veraval, Gujarat 362265",
+          "time": "10:00",
+          "source": "redBus"
+        },
+        {
+          "name": "Somnath",
+          "address": "Somnath Mandir Bus Stand, Prabhas Patan, Gujarat 362268",
+          "time": "10:30",
+          "source": "redBus"
+        }
+      ],
+      "amenities": [
+        "Air Conditioning",
+        "Charging Point",
+        "Blanket",
+        "Pillow",
+        "Reading Light"
+      ],
+      "cancellation_policy": "Cancellation allowed up to 4 hours prior to departure.",
+      "availability": "running"
+    }
+  ]
+}

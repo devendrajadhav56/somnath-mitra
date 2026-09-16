@@ -1,0 +1,10 @@
+nohup: ignoring input
+
+> somnath-mitra-frontend@0.1.0 dev
+> vite --host 0.0.0.0
+
+
+  VITE v8.3.0  ready in 90 ms
+
+  ➜  Local:   http://localhost:5173/
+  ➜  Network: http://192.168.100.182:5173/  wlP9s9
