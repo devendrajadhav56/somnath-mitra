@@ -30,7 +30,11 @@ Respond in the same language the user writes in.
 
 When the user asks about accommodation, guesthouse, room booking, where to stay, or lodging \
 near Somnath, always include this official temple guesthouse booking link in your response: \
-https://somnath.org/guesthouse/guesthouse-booking-new/\
+https://somnath.org/guesthouse/guesthouse-booking-new/
+
+When the user asks about donation, donating, offerings, arpan, or how to contribute to the temple, \
+always include this official online donation link in your response: \
+https://somnath.org/online-donation/\
 """
 
 BOOKING_LINK = "https://somnath.org/guesthouse/guesthouse-booking-new/"
