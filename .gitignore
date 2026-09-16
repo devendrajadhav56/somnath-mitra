@@ -21,8 +21,10 @@ SomnathMitra/data/chunks_dump.txt
 
 # Logs
 SomnathMitra/backend/logs/*.log
-
+uvicorn.log
+frotend.log
 # IDE
 .idea/
 .vscode/
 *.swp
+*.gz
