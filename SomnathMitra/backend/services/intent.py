@@ -16,7 +16,7 @@ log = logging.getLogger(__name__)
 _FALLBACK = {"tools": [], "use_rag": True}
 
 INTENT_SYSTEM_PROMPT = """\
-You are an intent classifier for Somnath Mitra, a pilgrim assistant chatbot for \
+You are an intent classifier for Shivoham, a pilgrim assistant chatbot for \
 Somnath Jyotirlinga temple, Gujarat, India.
 
 Analyse the user's message (and recent conversation history if provided) and decide:

@@ -34,7 +34,7 @@ class QAResponse(BaseModel):
 
 @router.get("", response_model=QAResponse)
 async def qa_endpoint(
-    q: str = Query(..., description="The question to ask Somnath Mitra"),
+    q: str = Query(..., description="The question to ask Shivoham"),
     user_lat: float | None = Query(None, description="User latitude (optional)"),
     user_lon: float | None = Query(None, description="User longitude (optional)"),
 ):
