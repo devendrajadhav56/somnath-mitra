@@ -26,8 +26,29 @@ nearby attractions, accommodation, restaurants, and points of interest.
 
 Use the provided context to give accurate, grounded answers. If the context does not cover \
 the question, say so honestly rather than guessing. Keep answers concise and practical. \
-Respond in the same language the user writes in.\
+Respond in the same language the user writes in.
+
+When the user asks about accommodation, guesthouse, room booking, where to stay, or lodging \
+near Somnath, always include this official temple guesthouse booking link in your response: \
+https://somnath.org/guesthouse/guesthouse-booking-new/\
 """
+
+BOOKING_LINK = "https://somnath.org/guesthouse/guesthouse-booking-new/"
+
+_ACCOMMODATION_KEYWORDS = frozenset({
+    "accommodation", "accommodations", "room", "rooms", "book a room", "book room",
+    "stay", "staying", "where to stay", "guesthouse", "guest house",
+    "hotel", "hotels", "lodge", "lodging", "dharamshala", "dharmshala",
+    "रूम", "ठहरना", "रहना", "होटल", "धर्मशाला",
+})
+
+
+def booking_link_suffix(user_message: str, reply: str) -> str:
+    """Append the booking link if the user asked about accommodation and it's missing from the reply."""
+    msg_lower = user_message.lower()
+    if any(kw in msg_lower for kw in _ACCOMMODATION_KEYWORDS) and BOOKING_LINK not in reply:
+        return f"\n\n**Book official temple guesthouse:** {BOOKING_LINK}"
+    return ""
 
 
 def _build_context(chunks: list[dict], structured: str) -> str:

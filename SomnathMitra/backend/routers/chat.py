@@ -89,11 +89,16 @@ async def chat_endpoint(req: ChatRequest):
 
         async def token_stream():
             first = True
+            full_text: list[str] = []
             async for token in llm.chat_stream(req.message, history, chunks, structured):
                 if first:
                     timings["ttft_ms"] = round((time.monotonic() - t0) * 1000)
                     first = False
+                full_text.append(token)
                 yield token
+            suffix = llm.booking_link_suffix(req.message, "".join(full_text))
+            if suffix:
+                yield suffix
             timings["llm_total_ms"] = round((time.monotonic() - t4) * 1000)
             log_step("llm", model="main", mode="stream",
                      ms=timings["llm_total_ms"])
@@ -110,6 +115,7 @@ async def chat_endpoint(req: ChatRequest):
         return StreamingResponse(token_stream(), media_type="text/plain")
 
     reply = await llm.chat(req.message, history, chunks, structured)
+    reply += llm.booking_link_suffix(req.message, reply)
     log_step("llm", model="main", mode="sync", reply_chars=len(reply),
              ms=round((time.monotonic() - t4) * 1000))
     log_step("done", total_ms=round((time.monotonic() - t0) * 1000))
