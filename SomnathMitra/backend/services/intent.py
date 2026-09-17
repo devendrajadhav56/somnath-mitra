@@ -57,6 +57,7 @@ get_temple_info
       history_significance   temple history and religious significance
       heritage_and_temple_walks  heritage walk and temple walk information
       how_to_reach_by_air    nearest airports, airlines, and route options
+      prasad_info            prasad categories, online shop link, in-person counter details
 
 search_trains
   Find train services to/from Veraval Junction (VRL) or Somnath station.
@@ -116,7 +117,12 @@ multiple topics (e.g. "timings and rules" → both darshan_timings and visitor_r
   use_rag=false
   Do NOT call search_trains or search_buses for these queries — plan_route_to_somnath covers them.
 
-Shop/prasad queries ("buy prasad online", "order saree from somnath", "temple shop", item prices) →
+Generic prasad queries ("what is prasad", "tell me about prasad", "prasad at somnath", "every bit about prasad") →
+  use get_temple_info(key="prasad_info")
+  use_rag=false
+  Do NOT call search_shop for these — the overview and shop link are already in prasad_info.
+
+Specific shop/buying queries with explicit purchase intent ("buy prasad online", "order saree", "show me sarees", "price of", "how much does", "temple shop items", category-specific questions like "available kurtas") →
   use search_shop with appropriate category/price filters
   use_rag=false
 

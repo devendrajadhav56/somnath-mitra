@@ -219,6 +219,28 @@ DOCS = [
         ],
     },
     {
+        "key": "prasad_info",
+        "category": "visit_info",
+        "title": "Prasad at Somnath Temple",
+        "source_url": "https://somnathprasad.com/",
+        "verified": True,
+        "content": (
+            "Prasad at Somnath temple is available in two forms: in-person at the temple and online "
+            "through the official shop at https://somnathprasad.com/\n\n"
+            "Online shop categories (order at https://somnathprasad.com/):\n"
+            "- Saree — sacred sarees offered at the temple\n"
+            "- Koti — upper garments (kurta-style tops)\n"
+            "- Pitamber — lower garments (dhoti-style)\n"
+            "- Kurta — traditional kurtas\n"
+            "- Prasad — prasad boxes and combos (food items, ladus, etc.)\n"
+            "- Silver Coin — silver coins with the temple insignia\n"
+            "- Dhwaja — the sacred temple flag\n\n"
+            "In-person at the temple:\n"
+            "Ladu prasadi, Gangalal, Prasadivastra, and other pooja samagri are available at the "
+            "Pooja Vidhi counter inside the temple. Contact: +91-94282 14823 or sompp@somnath.org."
+        ),
+    },
+    {
         "key": "heritage_and_temple_walks",
         "category": "visit_info",
         "title": "Heritage Walk & Temple Walk",
