@@ -117,6 +117,15 @@ multiple topics (e.g. "timings and rules" → both darshan_timings and visitor_r
   use_rag=false
   Do NOT call search_trains or search_buses for these queries — plan_route_to_somnath covers them.
 
+Questions specifically about WHICH railway station to use (e.g. "Somnath station or Veraval Junction?",
+"which station is closer?", "should I alight at Somnath or Veraval?") →
+  use_rag=true, tools=[]
+  Do NOT call plan_route_to_somnath — it provides only route planning and injects air-travel context.
+
+Follow-up questions about train timings, schedules, or departure/arrival times when the user already
+asked about trains in the same session →
+  call search_trains with the same origin_city as the previous turn, use_rag=false.
+
 Generic prasad queries ("what is prasad", "tell me about prasad", "prasad at somnath", "every bit about prasad") →
   use get_temple_info(key="prasad_info")
   use_rag=false
