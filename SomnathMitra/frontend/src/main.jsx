@@ -32,12 +32,13 @@ function App() {
     const q = question.trim()
     if (!q || loading) return
     setInput(''); setError(''); setLoading(true)
+    const history = messages.map(m => ({ role: m.role, content: m.text }))
     setMessages(prev => [...prev, { role: 'user', text: q }])
     try {
       const response = await fetch(`${API_URL}/chat`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ message: q, history: [], stream: true, user_lat: 0, user_lon: 0 }),
+        body: JSON.stringify({ message: q, history, stream: true, user_lat: 0, user_lon: 0 }),
       })
 
       if (!response.ok) {
@@ -84,9 +85,7 @@ function App() {
         })
       }
     } catch (err) {
-      setError(
-        `${err instanceof Error ? err.message : 'Unknown error'} Check that the GPU backend is running and reachable.`
-      )
+      setError('Something went wrong. Please try again in a moment.')
     } finally {
       setLoading(false)
     }
