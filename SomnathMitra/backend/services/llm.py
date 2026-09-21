@@ -1,19 +1,21 @@
-"""Async Mistral client (OpenAI-compatible API)."""
+"""Ollama native client for main chat LLM."""
 from __future__ import annotations
 
 from typing import AsyncIterator
 
-from openai import AsyncOpenAI
+import ollama
 
 import config
 
-_client: AsyncOpenAI | None = None
+_client: ollama.AsyncClient | None = None
+
+_LLM_OPTIONS = {"num_ctx": 8192, "temperature": 0.2, "num_predict": config.LLM_MAX_TOKENS}
 
 
-def get_client() -> AsyncOpenAI:
+def get_ollama_client() -> ollama.AsyncClient:
     global _client
     if _client is None:
-        _client = AsyncOpenAI(api_key=config.LLM_API_KEY, base_url=config.LLM_BASE_URL)
+        _client = ollama.AsyncClient(host=config.LLM_BASE_URL.replace("/v1", ""))
     return _client
 
 
@@ -50,10 +52,15 @@ When the user asks about accommodation, guesthouse, room booking, where to stay,
 near Somnath, always include: https://somnath.org/guesthouse/guesthouse-booking-new/
 
 When the user asks about donation, donating, offerings, arpan, or how to contribute to the temple, \
-always include: https://somnath.org/online-donation/\
+always include: https://somnath.org/online-donation/
+
+When the user asks about pooja booking, puja booking, book a pooja, online pooja, seva booking, \
+archana booking, or how to book/register a pooja or ritual at the temple, always include \
+https://somnath.org/online-donation/ and tell them to visit that link for more info and booking.\
 """
 
 BOOKING_LINK = "https://somnath.org/guesthouse/guesthouse-booking-new/"
+POOJA_LINK = "https://somnath.org/online-donation/"
 
 _ACCOMMODATION_KEYWORDS = frozenset({
     "accommodation", "accommodations", "room", "rooms", "book a room", "book room",
@@ -62,12 +69,28 @@ _ACCOMMODATION_KEYWORDS = frozenset({
     "रूम", "ठहरना", "रहना", "होटल", "धर्मशाला",
 })
 
+_POOJA_KEYWORDS = frozenset({
+    "pooja booking", "puja booking", "book pooja", "book puja",
+    "online pooja", "online puja", "pooja online", "puja online",
+    "seva booking", "book seva", "archana booking", "book archana",
+    "pooja register", "puja register", "register pooja", "register puja",
+    "पूजा बुकिंग", "पूजा बुक", "ऑनलाइन पूजा",
+})
+
 
 def booking_link_suffix(user_message: str, reply: str) -> str:
     """Append the booking link if the user asked about accommodation and it's missing from the reply."""
     msg_lower = user_message.lower()
     if any(kw in msg_lower for kw in _ACCOMMODATION_KEYWORDS) and BOOKING_LINK not in reply:
         return f"\n\n**Book official temple guesthouse:** {BOOKING_LINK}"
+    return ""
+
+
+def pooja_link_suffix(user_message: str, reply: str) -> str:
+    """Append the pooja booking link if the user asked about pooja booking and it's missing from the reply."""
+    msg_lower = user_message.lower()
+    if any(kw in msg_lower for kw in _POOJA_KEYWORDS) and POOJA_LINK not in reply:
+        return f"\n\nFor more info and booking, visit: {POOJA_LINK}"
     return ""
 
 
@@ -106,12 +129,13 @@ async def chat(
     structured: str = "",
 ) -> str:
     messages = _build_messages(user_message, history, chunks, structured)
-    resp = await get_client().chat.completions.create(
+    resp = await get_ollama_client().chat(
         model=config.LLM_MODEL,
         messages=messages,
-        stream=False,
+        think=False,
+        options=_LLM_OPTIONS,
     )
-    return resp.choices[0].message.content
+    return resp.message.content
 
 
 async def chat_stream(
@@ -121,13 +145,13 @@ async def chat_stream(
     structured: str = "",
 ) -> AsyncIterator[str]:
     messages = _build_messages(user_message, history, chunks, structured)
-    stream = await get_client().chat.completions.create(
+    async for chunk in await get_ollama_client().chat(
         model=config.LLM_MODEL,
         messages=messages,
         stream=True,
-        temperature=0.2,
-    )
-    async for chunk in stream:
-        delta = chunk.choices[0].delta.content
+        think=False,
+        options=_LLM_OPTIONS,
+    ):
+        delta = chunk.message.content
         if delta:
             yield delta

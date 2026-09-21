@@ -35,6 +35,12 @@ class ChatResponse(BaseModel):
     origin: dict = {}
 
 
+ORIGIN_CLARIFICATION = (
+    "To help you plan your journey to Somnath, could you please tell me "
+    "which city or town you'll be travelling from?"
+)
+
+
 @router.post("", response_model=ChatResponse)
 async def chat_endpoint(req: ChatRequest):
     t0 = time.monotonic()
@@ -42,11 +48,21 @@ async def chat_endpoint(req: ChatRequest):
     log_step("query", message=req.message[:120], stream=req.stream)
 
     t1 = time.monotonic()
-    origin, intent = await asyncio.gather(
-        resolve_origin(req.message, history),
-        detect_intent(req.message, history),
+    # If the previous assistant turn was our origin clarification, the user's
+    # current message IS the origin answer — skip intent detection and force
+    # plan_route_to_somnath directly.
+    last_assistant = next(
+        (m["content"] for m in reversed(history) if m["role"] == "assistant"), None
     )
-    print("INTENT", intent)
+    answering_clarification = last_assistant == ORIGIN_CLARIFICATION
+
+    if answering_clarification:
+        origin = await resolve_origin(req.message, history)
+        intent = {"tools": [{"name": "plan_route_to_somnath", "params": {}}], "use_rag": False}
+    else:
+        intent = await detect_intent(req.message, history)
+        is_travel_intent = any(t.get("name") == "plan_route_to_somnath" for t in intent.get("tools", []))
+        origin = await resolve_origin(req.message, history) if is_travel_intent else None
     origin = origin or {}
     log_step("origin", extracted=origin.get("raw_input"), name=origin.get("name"),
              confidence=origin.get("confidence"), ms=round((time.monotonic() - t1) * 1000))
@@ -54,6 +70,25 @@ async def chat_endpoint(req: ChatRequest):
     tools_names = [t["name"] for t in intent.get("tools", [])]
     log_step("intent", tools=",".join(tools_names) or "none",
              use_rag=intent.get("use_rag"), ms=round((time.monotonic() - t1) * 1000))
+
+    # If it's a travel query but we have no origin, ask the user before proceeding
+    is_travel = any(t.get("name") == "plan_route_to_somnath" for t in intent.get("tools", []))
+    if is_travel and not origin:
+        log_step("origin_gate", action="asking_user")
+        if req.stream:
+            async def clarify_stream():
+                yield ORIGIN_CLARIFICATION
+                meta = {
+                    "elapsed_ms": round((time.monotonic() - t0) * 1000),
+                    "intent": intent,
+                    "sources": [],
+                    "origin": {},
+                    "timings": {},
+                    "products": [],
+                }
+                yield "\x00" + json.dumps(meta)
+            return StreamingResponse(clarify_stream(), media_type="text/plain")
+        return ChatResponse(reply=ORIGIN_CLARIFICATION, intent=intent, sources=[], origin={})
 
     for tool_call in intent.get("tools", []):
         if tool_call.get("name") == "plan_route_to_somnath":
@@ -96,9 +131,13 @@ async def chat_endpoint(req: ChatRequest):
                     first = False
                 full_text.append(token)
                 yield token
-            suffix = llm.booking_link_suffix(req.message, "".join(full_text))
-            if suffix:
-                yield suffix
+            full = "".join(full_text)
+            for suffix in (
+                llm.booking_link_suffix(req.message, full),
+                llm.pooja_link_suffix(req.message, full),
+            ):
+                if suffix:
+                    yield suffix
             timings["llm_total_ms"] = round((time.monotonic() - t4) * 1000)
             log_step("llm", model="main", mode="stream",
                      ms=timings["llm_total_ms"])
@@ -116,6 +155,7 @@ async def chat_endpoint(req: ChatRequest):
 
     reply = await llm.chat(req.message, history, chunks, structured)
     reply += llm.booking_link_suffix(req.message, reply)
+    reply += llm.pooja_link_suffix(req.message, reply)
     log_step("llm", model="main", mode="sync", reply_chars=len(reply),
              ms=round((time.monotonic() - t4) * 1000))
     log_step("done", total_ms=round((time.monotonic() - t0) * 1000))

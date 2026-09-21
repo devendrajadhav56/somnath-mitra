@@ -12,11 +12,13 @@ import json
 import logging
 
 import httpx
+import ollama
 
 import config
-from services.llm import get_client
 
 log = logging.getLogger(__name__)
+
+_ORIGIN_OPTIONS = {"num_ctx": 8192, "temperature": 0, "num_predict": 256}
 
 # ── Extraction ────────────────────────────────────────────────────────────────
 
@@ -40,6 +42,11 @@ Examples:
   "मैं अहमदाबाद में हूं, सोमनाथ कैसे जाऊं?"               → {"location": "अहमदाबाद"}
   "What are the darshan timings?"                        → {"location": null}
   "Can I take a bus?"   (after earlier message mentioning Rajkot) → {"location": null}
+  "trains from Ahmedabad, include Sabarmati or other stations"    → {"location": "Ahmedabad"}
+  "Give me trains from Ahmedabad to Somnath, include Sabarmati or other Railway stations which fall in Ahmedabad" → {"location": "Ahmedabad"}
+
+Important: when the user mentions both a city AND specific stations/landmarks within that city,
+return the CITY name, not the station or landmark name.
 """
 
 
@@ -51,14 +58,14 @@ async def extract_origin(message: str, history: list[dict]) -> str | None:
     messages.append({"role": "user", "content": message})
 
     try:
-        resp = await get_client().chat.completions.create(
+        client = ollama.AsyncClient(host=config.LLM_BASE_URL.replace("/v1", ""))
+        resp = await client.chat(
             model=config.INTENT_MODEL,
             messages=messages,
-            stream=False,
-            temperature=0,
-            max_tokens=64,
+            think=False,
+            options=_ORIGIN_OPTIONS,
         )
-        raw = (resp.choices[0].message.content or "").strip()
+        raw = (resp.message.content or "").strip()
 
         # Strip markdown fences if present
         if raw.startswith("```"):

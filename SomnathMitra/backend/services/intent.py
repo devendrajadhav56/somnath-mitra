@@ -8,15 +8,18 @@ from __future__ import annotations
 import json
 import logging
 
-from services.llm import get_client
+import ollama
+
 import config
 
 log = logging.getLogger(__name__)
 
+_INTENT_OPTIONS = {"num_ctx": 8192, "temperature": 0, "num_predict": 1024}
+
 _FALLBACK = {"tools": [], "use_rag": True}
 
 INTENT_SYSTEM_PROMPT = """\
-You are an intent classifier for Shivoham, a pilgrim assistant chatbot for \
+You are a planner for Shivoham, a pilgrim assistant chatbot for \
 Somnath Jyotirlinga temple, Gujarat, India.
 
 Analyse the user's message (and recent conversation history if provided) and decide:
@@ -26,7 +29,9 @@ Analyse the user's message (and recent conversation history if provided) and dec
 ━━ Available tools ━━
 
 search_restaurants
-  Find restaurants, dhabas, and food places near the temple.
+  Find restaurants, dhabas, and food places in the Somnath/Veraval area.
+  Use for ANY food query — near the temple, near the railway station, near Veraval,
+  near any local landmark, or just "restaurants near Somnath".
   params:
     radius_m   : int   — search radius in metres (default 2000)
     min_rating : float — minimum Google rating filter, null for none (default null)
@@ -59,33 +64,14 @@ get_temple_info
       how_to_reach_by_air    nearest airports, airlines, and route options
       prasad_info            prasad categories, online shop link, in-person counter details
 
-search_trains
-  Find train services to/from Veraval Junction (VRL) or Somnath station.
-  Veraval is the main railhead, 6 km from Somnath temple.
-  Most trains terminate at Veraval; a few continue to Somnath station itself.
-  params:
-    origin_city : str — filter by source or destination city name
-                        (e.g. "Mumbai", "Ahmedabad", "Delhi"), null for all trains
-    day         : str — filter by running day: "monday"…"sunday", null for all
-    limit       : int — max results (default 10)
-
-search_buses
-  Find bus routes to/from Somnath from cities across Gujarat and beyond.
-  params:
-    origin_city      : str — filter by origin city name
-                             (e.g. "Ahmedabad", "Junagadh", "Rajkot"), null for all
-    destination_city : str — filter by destination city name (usually "Somnath"),
-                             null for all
-    limit            : int — max results (default 10)
-
 plan_route_to_somnath
-  Plan a multi-modal route from ANY origin city or town in India to Somnath.
-  Use this when the user mentions a specific origin location and asks how to reach Somnath.
-  This tool finds the nearest train access hub(s) and constructs complete journeys
-  (road to hub → train to Veraval → taxi to Somnath).
+  Plan a complete journey from ANY origin city or town in India to Somnath.
+  Handles trains, buses, and flights all in one call.
+  Use for ALL travel-related queries — "how to reach", "trains from X",
+  "buses from X", "flights", "travel options", "which train", etc.
+  The origin location is injected automatically by the system.
   params:
-    origin : object — the geocoded origin location (injected automatically by the system,
-                      leave as {} — the chat endpoint fills this in)
+    origin : object — leave as {} — filled in automatically
 
 search_shop
   Find products available at the official Somnath temple shop (somnathprasad.com).
@@ -105,49 +91,61 @@ search_shop
 use_rag = true  → when the query involves general/historical information or could
                    benefit from scraped website content alongside structured data
 use_rag = false → when structured tools fully cover the query
-                   (e.g. pure restaurant, POI, transport searches)
 
 tools = []      → when RAG alone is sufficient (history, general temple info)
+
+ALL travel queries (trains, buses, flights, how to reach, journey planning,
+  "from X to Somnath", "trains from X", "buses from X", "how do I get there") →
+  plan_route_to_somnath({})
+  use_rag=false
+
+Questions specifically about WHICH railway station to use, where the entire query is
+about station selection (e.g. "Somnath station or Veraval Junction?", "which station
+is closer?", "should I get off at Veraval or Somnath?") →
+  use_rag=true, tools=[]
+
+IMPORTANT: If a station or location name appears only as a reference point (e.g.
+"restaurants near Veraval Railway Station", "hotels near Somnath station") that is
+NOT a station-selection query — treat it as a restaurant/POI/accommodation query
+and use the appropriate tool (search_restaurants, search_pois, etc.).
 
 You may call get_temple_info more than once with different keys if the query spans
 multiple topics (e.g. "timings and rules" → both darshan_timings and visitor_rules).
 
-"How to reach Somnath from [place]" OR "I am at [place], how do I get to Somnath" →
-  use plan_route_to_somnath({}) + get_temple_info(key="how_to_reach_by_air")
-  use_rag=false
-  Do NOT call search_trains or search_buses for these queries — plan_route_to_somnath covers them.
+Generic prasad queries ("what is prasad", "tell me about prasad", "prasad at somnath") →
+  get_temple_info(key="prasad_info"), use_rag=false
 
-Questions specifically about WHICH railway station to use (e.g. "Somnath station or Veraval Junction?",
-"which station is closer?", "should I alight at Somnath or Veraval?") →
-  use_rag=true, tools=[]
-  Do NOT call plan_route_to_somnath — it provides only route planning and injects air-travel context.
+Specific shop/buying queries with explicit purchase intent ("buy prasad online",
+  "order saree", "show me sarees", "price of", "temple shop items") →
+  search_shop with appropriate filters, use_rag=false
 
-Follow-up questions about train timings, schedules, or departure/arrival times when the user already
-asked about trains in the same session →
-  call search_trains with the same origin_city as the previous turn, use_rag=false.
+Food/restaurant queries anywhere in the area (near station, near temple, near Veraval,
+  pure veg, non-veg, dhaba, etc.) → search_restaurants, use_rag=false
+  e.g. "vegetarian restaurants near Veraval Railway Station" → search_restaurants
+  e.g. "pure veg food near Somnath" → search_restaurants
+  e.g. "Are there pure vegetarian restaurants near Veraval Railway Station and Somnath?" → search_restaurants
+  e.g. "restaurants near the station" → search_restaurants
 
-Generic prasad queries ("what is prasad", "tell me about prasad", "prasad at somnath", "every bit about prasad") →
-  use get_temple_info(key="prasad_info")
-  use_rag=false
-  Do NOT call search_shop for these — the overview and shop link are already in prasad_info.
-
-Specific shop/buying queries with explicit purchase intent ("buy prasad online", "order saree", "show me sarees", "price of", "how much does", "temple shop items", category-specific questions like "available kurtas") →
-  use search_shop with appropriate category/price filters
-  use_rag=false
-
-Generic transport queries without a specific origin (train, bus, flight, how to reach) →
-  call ALL relevant transport tools together:
-    search_trains(origin_city=...) + search_buses(origin_city=...) + get_temple_info(key="how_to_reach_by_air")
-  use_rag=false unless the query also asks about the temple itself.
-
-Use conversation history to resolve follow-up queries correctly
-(e.g. "what about vegetarian options?" after a restaurant query → search_restaurants).
+Use conversation history to resolve follow-up queries correctly.
 
 ━━ Output format ━━
 
 Respond with ONLY a valid JSON object, no explanation, no markdown:
-{"tools": [{"name": "...", "params": {...}}], "use_rag": true} if only RAG is needed, or {"tools": [...], "use_rag": false} if structured tools are sufficient.
+{"tools": [{"name": "...", "params": {...}}], "use_rag": true}
 """
+
+
+_FOOD_KEYWORDS = (
+    "restaurant", "restaurants", "food", "eat", "eating", "dhaba", "dhabas",
+    "vegetarian", "veg ", "pure veg", "non-veg", "nonveg", "cafe", "cafes",
+    "thali", "snacks", "breakfast", "lunch", "dinner",
+    "खाना", "भोजन", "रेस्टोरेंट", "ढाबा", "शाकाहारी",
+)
+
+
+def _is_food_query(message: str) -> bool:
+    lower = message.lower()
+    return any(kw in lower for kw in _FOOD_KEYWORDS)
 
 
 def _validate(data: dict) -> bool:
@@ -167,6 +165,10 @@ async def detect_intent(user_message: str, history: list[dict]) -> dict:
     Returns {"tools": [...], "use_rag": bool}.
     Falls back to RAG-only on any failure.
     """
+    # Fast path: food queries always go to search_restaurants regardless of location phrasing
+    if _is_food_query(user_message):
+        return {"tools": [{"name": "search_restaurants", "params": {}}], "use_rag": False}
+
     # Pass the last 4 messages (2 turns) so follow-ups resolve correctly
     recent_history = history[-4:] if len(history) > 4 else history
 
@@ -175,14 +177,14 @@ async def detect_intent(user_message: str, history: list[dict]) -> dict:
     messages.append({"role": "user", "content": user_message})
 
     try:
-        resp = await get_client().chat.completions.create(
+        client = ollama.AsyncClient(host=config.LLM_BASE_URL.replace("/v1", ""))
+        resp = await client.chat(
             model=config.INTENT_MODEL,
             messages=messages,
-            stream=False,
-            temperature=0,
-            max_tokens=512,
+            think=False,
+            options=_INTENT_OPTIONS,
         )
-        raw = (resp.choices[0].message.content or "").strip()
+        raw = (resp.message.content or "").strip()
 
         # Strip markdown fences if present
         if raw.startswith("```"):
