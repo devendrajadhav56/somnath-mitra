@@ -9,14 +9,14 @@ Two-step pipeline:
 from __future__ import annotations
 
 import json
-import logging
 
 import httpx
 import ollama
 
 import config
+from services.applog import get_logger
 
-log = logging.getLogger(__name__)
+log = get_logger(__name__)
 
 _ORIGIN_OPTIONS = {"num_ctx": 8192, "temperature": 0, "num_predict": 256}
 

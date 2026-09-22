@@ -1,11 +1,18 @@
 """Ollama native client for main chat LLM."""
 from __future__ import annotations
 
+import re
 from typing import AsyncIterator
 
 import ollama
 
 import config
+from services.applog import log_debug
+
+_MAPS_URL_RE = re.compile(
+    r"https?://(?:maps\.google\.[a-z.]+|www\.google\.[a-z.]+/maps|goo\.gl/maps|maps\.app\.goo\.gl)\S*",
+    re.IGNORECASE,
+)
 
 _client: ollama.AsyncClient | None = None
 
@@ -108,16 +115,21 @@ def pooja_link_suffix(user_message: str, reply: str) -> str:
     return ""
 
 
+def _strip_maps_urls(text: str) -> str:
+    return _MAPS_URL_RE.sub("", text).strip()
+
+
 def _build_context(chunks: list[dict], structured: str) -> str:
     parts = []
     if chunks:
         parts.append("[Context from official Somnath Temple sources]")
         for c in chunks:
             heading = c.get("heading") or c.get("page_title") or "Note"
-            parts.append(f"**{heading}**\n{c['content']}")
+            content = _strip_maps_urls(c["content"])
+            parts.append(f"**{heading}**\n{content}")
     if structured:
         parts.append("[Structured data from Somnath database]")
-        parts.append(structured)
+        parts.append(_strip_maps_urls(structured))
     return "\n\n".join(parts)
 
 
@@ -133,6 +145,8 @@ def _build_messages(
         messages.append({"role": "system", "content": ctx})
     messages.extend(history)
     messages.append({"role": "user", "content": user_message})
+    # Variable prompt payload (the static system prompt is omitted — it never changes).
+    log_debug("llm_input", context=ctx, history=history, user=user_message)
     return messages
 
 

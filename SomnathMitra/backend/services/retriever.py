@@ -37,12 +37,18 @@ def reload() -> int:
     return len(docs)
 
 
-def search(query: str, top_k: int | None = None) -> list[dict]:
-    """Return top-k chunk dicts (with a `score` field added) for the query."""
+def search(query: str, top_k: int | None = None, min_score: float | None = None) -> list[dict]:
+    """Return top-k chunk dicts (with a `score` field added) for the query.
+
+    Chunks scoring below `min_score` (cosine similarity) are dropped so that
+    irrelevant context is never injected into the LLM. If every chunk is below
+    the threshold, an empty list is returned.
+    """
     if _matrix is None or len(_chunks) == 0:
         return []
 
     k = top_k or config.TOP_K_CHUNKS
+    threshold = config.RAG_MIN_SCORE if min_score is None else min_score
     q = embed_one(query).reshape(1, -1)  # (1, dim), already L2-normalised
     scores = (_matrix @ q.T).flatten()   # cosine sim = dot product on normalised vecs
 
@@ -52,4 +58,5 @@ def search(query: str, top_k: int | None = None) -> list[dict]:
     return [
         {**_chunks[i], "score": float(scores[i])}
         for i in top_indices
+        if scores[i] >= threshold
     ]

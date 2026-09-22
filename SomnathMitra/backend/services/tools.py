@@ -5,6 +5,9 @@ from __future__ import annotations
 import config
 import db
 from services import router as _router
+from services.applog import get_logger, log_debug, log_step
+
+log = get_logger(__name__)
 
 TEMPLE_LAT = config.TEMPLE_LAT
 TEMPLE_LON = config.TEMPLE_LON
@@ -280,7 +283,6 @@ def _run_search_buses(params: dict) -> str:
 def _run_get_temple_info(params: dict) -> str:
     key = params.get("key")
     doc = db.get_clean_db()["temple_info"].find_one({"key": key}, {"_id": 0})
-    print("TEMPLE INFO", doc)
     if not doc:
         return f"No temple info found for key: {key}"
     return _fmt_temple_info(doc)
@@ -351,24 +353,38 @@ def execute_tools(
     for call in tool_calls:
         name = call.get("name")
         params = call.get("params", {})
+        section = ""
 
         if name == "search_restaurants":
-            sections.append(_run_search_restaurants(params, lat, lon))
+            section = _run_search_restaurants(params, lat, lon)
         elif name == "search_pois":
-            sections.append(_run_search_pois(params, lat, lon))
+            section = _run_search_pois(params, lat, lon)
         elif name == "get_temple_info":
-            sections.append(_run_get_temple_info(params))
+            section = _run_get_temple_info(params)
         elif name == "plan_route_to_somnath":
             origin = params.get("origin")
             if origin:
-                sections.append(_router.plan_route(origin))
+                section = _router.plan_route(origin)
         elif name == "search_hospitals":
-            sections.append(_run_search_hospitals(params, lat, lon))
+            section = _run_search_hospitals(params, lat, lon)
         elif name == "search_pharmacies":
-            sections.append(_run_search_pharmacies(params, lat, lon))
+            section = _run_search_pharmacies(params, lat, lon)
         elif name == "search_shop":
-            text, prods = _run_search_shop(params)
-            sections.append(text)
+            section, prods = _run_search_shop(params)
             products.extend(prods)
+        else:
+            log.warning("unknown tool requested: name=%s params=%s", name, params)
+            continue
+
+        if not section:
+            continue
+
+        sections.append(section)
+        # Runners signal "nothing found" with a message starting "No ..."
+        miss = section.lstrip().startswith("No ")
+        if miss:
+            log.warning("tool returned no results: name=%s params=%s", name, params)
+        log_step("tool", name=name, chars=len(section), miss=miss)
+        log_debug("tool_result", name=name, result=section)
 
     return "\n\n".join(sections), products

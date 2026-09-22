@@ -6,7 +6,7 @@ from fastapi.responses import StreamingResponse
 from pydantic import BaseModel
 
 from services import retriever, llm
-from services.applog import log_step
+from services.applog import log_debug, log_step
 from services.intent import detect_intent
 from services.location import resolve_origin
 from services.tools import execute_tools
@@ -42,6 +42,25 @@ async def chat_endpoint(req: ChatRequest):
 
     t1 = time.monotonic()
     intent = await detect_intent(req.message, history)
+
+    if intent.get("off_topic"):
+        log_step("off_topic", action="refused", ms=round((time.monotonic() - t1) * 1000))
+        refusal = (
+            "I can only help with questions about Somnath temple, travel to Somnath, "
+            "and the local Somnath/Veraval area.\n\n"
+            "मैं केवल सोमनाथ मंदिर, यहाँ की यात्रा और स्थानीय क्षेत्र से जुड़े सवालों में मदद कर सकता हूँ।\n\n"
+            "હું ફક્ત સોમનાથ મંદિર, અહીંની યાત્રા અને સ્થાનિક વિસ્તાર સંબંધિત પ્રશ્નોમાં જ મદદ કરી શકું છું।"
+        )
+        if req.stream:
+            async def _refusal_stream():
+                yield refusal
+                yield "\x00" + json.dumps({
+                    "elapsed_ms": round((time.monotonic() - t0) * 1000),
+                    "intent": intent, "sources": [], "origin": {}, "timings": {}, "products": [],
+                })
+            return StreamingResponse(_refusal_stream(), media_type="text/plain")
+        return ChatResponse(reply=refusal, intent=intent, sources=[], origin={})
+
     is_travel_intent = any(t.get("name") == "plan_route_to_somnath" for t in intent.get("tools", []))
     origin = await resolve_origin(req.message, history) if is_travel_intent else None
     origin = origin or {}
@@ -76,6 +95,15 @@ async def chat_endpoint(req: ChatRequest):
     log_step("rag", chunks=len(chunks),
              top_score=round(chunks[0]["score"], 3) if chunks else None,
              ms=round((time.monotonic() - t3) * 1000))
+    if chunks:
+        log_step("rag_hits", hits=" | ".join(
+            f"{c.get('heading') or c.get('page_title') or '?'}@{round(c['score'], 2)}"
+            for c in chunks
+        ))
+    log_debug("rag_full", chunks=[
+        {"heading": c.get("heading"), "score": round(c["score"], 3), "content": c["content"]}
+        for c in chunks
+    ])
 
     t4 = time.monotonic()
     if req.stream:
@@ -113,6 +141,8 @@ async def chat_endpoint(req: ChatRequest):
             timings["llm_total_ms"] = round((time.monotonic() - t4) * 1000)
             log_step("llm", model="main", mode="stream",
                      ms=timings["llm_total_ms"])
+            log_step("reply", chars=len(full), text=full[:300])
+            log_debug("reply_full", text=full)
             meta = {
                 "elapsed_ms": round((time.monotonic() - t0) * 1000),
                 "intent": intent,
@@ -130,6 +160,8 @@ async def chat_endpoint(req: ChatRequest):
     reply += llm.pooja_link_suffix(req.message, reply)
     log_step("llm", model="main", mode="sync", reply_chars=len(reply),
              ms=round((time.monotonic() - t4) * 1000))
+    log_step("reply", chars=len(reply), text=reply[:300])
+    log_debug("reply_full", text=reply)
     log_step("done", total_ms=round((time.monotonic() - t0) * 1000))
     sources = [
         {

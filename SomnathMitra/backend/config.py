@@ -24,8 +24,16 @@ EMBED_MODEL = os.environ.get("EMBED_MODEL", "bge-m3")
 
 TOP_K_CHUNKS = int(os.environ.get("TOP_K_CHUNKS", "5"))
 
+# Minimum cosine similarity for a RAG chunk to be injected into context.
+# Chunks below this are dropped; if all are below it, no context is injected.
+RAG_MIN_SCORE = float(os.environ.get("RAG_MIN_SCORE", "0.5"))
+
 # Max tokens for the main chat LLM response
 LLM_MAX_TOKENS = int(os.environ.get("LLM_MAX_TOKENS", "2048"))
+
+# Logging verbosity: INFO for normal operation, DEBUG to also capture full
+# payloads (retrieved chunks, tool output, LLM prompt, full replies).
+LOG_LEVEL = os.environ.get("LOG_LEVEL", "INFO").upper()
 
 NOMINATIM_URL = os.environ.get("NOMINATIM_URL", "https://nominatim.openstreetmap.org")
 NOMINATIM_USER_AGENT = os.environ.get("NOMINATIM_USER_AGENT", "SomnathMitra/0.1")

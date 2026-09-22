@@ -6,13 +6,13 @@ before the main chat call is made.
 from __future__ import annotations
 
 import json
-import logging
 
 import ollama
 
 import config
+from services.applog import get_logger
 
-log = logging.getLogger(__name__)
+log = get_logger(__name__)
 
 _INTENT_OPTIONS = {"num_ctx": 8192, "temperature": 0, "num_predict": 1024}
 
@@ -155,6 +155,27 @@ Use conversation history to resolve follow-up queries correctly.
 If the user's message is just a city or place name and the recent history shows a travel
 query or the assistant asked where the user is travelling from, treat it as plan_route_to_somnath.
 
+━━ Off-topic detection ━━
+
+Set "off_topic": true when the query has NO connection to:
+  - Somnath temple or the Jyotirlinga
+  - Travel to / from Somnath or Veraval
+  - Local area (Somnath, Veraval, Prabhas Patan)
+  - Hindu pilgrimage, darshan, aarti, prasad, pooja
+  - Accommodation, food, hospitals, pharmacies near Somnath
+
+Examples that ARE off-topic (set off_topic: true):
+  "What is the capital of France?", "Write me a Python script",
+  "Who won the cricket match?", "Tell me a joke", "Recipe for biryani",
+  "Weather in Mumbai", "Stock market tips"
+
+Examples that are NOT off-topic (set off_topic: false):
+  Anything about Somnath, Veraval, Gujarat temples, Indian trains/buses
+  to Somnath, Hindu rituals, pilgrimage in general, local restaurants,
+  hospitals, or travel within India heading toward Somnath.
+
+When off_topic is true, set tools: [] and use_rag: false.
+
 ━━ Parameter rules ━━
 
 Only include a param in the output when the user's query explicitly requires a non-default value:
@@ -168,7 +189,7 @@ If the query gives no signal for a param, omit it entirely — do NOT guess or f
 ━━ Output format ━━
 
 Respond with ONLY a valid JSON object, no explanation, no markdown:
-{"tools": [{"name": "...", "params": {...}}], "use_rag": true}
+{"tools": [{"name": "...", "params": {...}}], "use_rag": true, "off_topic": false}
 """
 
 
@@ -180,6 +201,9 @@ def _validate(data: dict) -> bool:
     for t in data["tools"]:
         if not isinstance(t.get("name"), str) or not isinstance(t.get("params"), dict):
             return False
+    # off_topic is optional; if present must be bool
+    if "off_topic" in data and not isinstance(data["off_topic"], bool):
+        return False
     return True
 
 
