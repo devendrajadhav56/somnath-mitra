@@ -143,6 +143,10 @@ def _build_messages(
     ctx = _build_context(chunks, structured)
     if ctx:
         messages.append({"role": "system", "content": ctx})
+    # Keep only the most recent turns so a long conversation can't overflow
+    # num_ctx and truncate the system prompt / context off the front.
+    if config.LLM_MAX_HISTORY_MSGS and len(history) > config.LLM_MAX_HISTORY_MSGS:
+        history = history[-config.LLM_MAX_HISTORY_MSGS:]
     messages.extend(history)
     messages.append({"role": "user", "content": user_message})
     # Variable prompt payload (the static system prompt is omitted — it never changes).

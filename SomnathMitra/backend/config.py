@@ -31,6 +31,11 @@ RAG_MIN_SCORE = float(os.environ.get("RAG_MIN_SCORE", "0.5"))
 # Max tokens for the main chat LLM response
 LLM_MAX_TOKENS = int(os.environ.get("LLM_MAX_TOKENS", "2048"))
 
+# Cap conversation history sent to the generator so a long chat can't overflow
+# num_ctx and silently push the system prompt / injected context off the front.
+# Counts individual messages (≈ half this many turns). 0 disables the cap.
+LLM_MAX_HISTORY_MSGS = int(os.environ.get("LLM_MAX_HISTORY_MSGS", "10"))
+
 # Logging verbosity: INFO for normal operation, DEBUG to also capture full
 # payloads (retrieved chunks, tool output, LLM prompt, full replies).
 LOG_LEVEL = os.environ.get("LOG_LEVEL", "INFO").upper()
