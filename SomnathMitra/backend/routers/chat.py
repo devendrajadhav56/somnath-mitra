@@ -52,6 +52,9 @@ async def chat_endpoint(req: ChatRequest):
         return ChatResponse(reply=pipeline.OFF_TOPIC_REPLY, intent=plan.intent, sources=[], origin={})
 
     sources = pipeline.build_sources(plan.chunks)
+    # A clarify outcome carries the instruction the generator turns into a
+    # question; otherwise the generator answers from the executed tool output.
+    gen_context = plan.clarify or plan.structured
 
     # ── Generate ─────────────────────────────────────────────────────────────
     t_gen = time.monotonic()
@@ -61,7 +64,7 @@ async def chat_endpoint(req: ChatRequest):
         async def token_stream():
             first = True
             full_text: list[str] = []
-            async for token in llm.chat_stream(req.message, history, plan.chunks, plan.structured):
+            async for token in llm.chat_stream(req.message, history, plan.chunks, gen_context):
                 if first:
                     timings["ttft_ms"] = round((time.monotonic() - t0) * 1000)
                     first = False
@@ -90,7 +93,7 @@ async def chat_endpoint(req: ChatRequest):
 
         return StreamingResponse(token_stream(), media_type="text/plain")
 
-    reply = await llm.chat(req.message, history, plan.chunks, plan.structured)
+    reply = await llm.chat(req.message, history, plan.chunks, gen_context)
     reply += llm.booking_link_suffix(req.message, reply)
     reply += llm.pooja_link_suffix(req.message, reply)
     log_step("llm", model="main", mode="sync", reply_chars=len(reply),

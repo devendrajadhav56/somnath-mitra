@@ -32,9 +32,10 @@ OFF_TOPIC_REPLY = (
     "હું ફક્ત સોમનાથ મંદિર, અહીંની યાત્રા અને સ્થાનિક વિસ્તાર સંબંધિત પ્રશ્નોમાં જ મદદ કરી શકું છું।"
 )
 
-# Injected as structured context when a travel query has no resolvable origin,
-# so the generator asks the user where they are travelling from.
-_NO_ORIGIN_PROMPT = (
+# Clarification instruction handed to the generator when a travel query can't be
+# actioned yet because no origin was resolvable — the generator phrases the
+# question in the user's own language.
+_CLARIFY_ORIGIN = (
     "[ROUTE PLANNER] No origin city was found in the user's message. "
     "Ask the user which city or town they are travelling FROM to Somnath. "
     "Ask in the same language the user is writing in. Do not give generic travel info."
@@ -43,13 +44,21 @@ _NO_ORIGIN_PROMPT = (
 
 @dataclass
 class Plan:
-    """Result of the Plan + Execute stages, consumed by the Generate stage."""
+    """Result of the Plan + Execute stages, consumed by the Generate stage.
+
+    Exactly one outcome holds at a time:
+      - off_topic=True         → the router returns a fixed refusal.
+      - clarify is not None     → a required input is missing; the generator asks
+                                  the user for it (no tools ran).
+      - otherwise               → normal answer from structured + chunks.
+    """
     intent: dict
     origin: dict = field(default_factory=dict)
     structured: str = ""
     products: list[dict] = field(default_factory=list)
     chunks: list[dict] = field(default_factory=list)
     off_topic: bool = False
+    clarify: str | None = None
     timings: dict = field(default_factory=dict)
 
 
@@ -83,13 +92,16 @@ async def plan_and_execute(
         if tool_call.get("name") == "plan_route_to_somnath":
             tool_call["params"]["origin"] = origin
 
+    # ── Clarify: a travel query we can't action until the user names an origin ─
+    if is_travel and not origin:
+        plan_ms = round((time.monotonic() - t_plan) * 1000)
+        log_step("clarify", reason="no_origin", ms=plan_ms)
+        return Plan(intent=intent, clarify=_CLARIFY_ORIGIN,
+                    timings={"intent_origin_ms": plan_ms})
+
     # ── Execute ──────────────────────────────────────────────────────────────
     t_tools = time.monotonic()
-    if is_travel and not origin:
-        structured, products = _NO_ORIGIN_PROMPT, []
-        log_step("origin_gate", action="asking_user")
-    else:
-        structured, products = execute_tools(intent["tools"], user_lat, user_lon)
+    structured, products = execute_tools(intent["tools"], user_lat, user_lon)
     log_step("tools", tools=",".join(tools_names) or "none",
              result_chars=len(structured), ms=round((time.monotonic() - t_tools) * 1000))
 

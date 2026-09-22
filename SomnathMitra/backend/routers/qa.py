@@ -45,7 +45,8 @@ async def qa_endpoint(
     if plan.off_topic:
         reply = pipeline.OFF_TOPIC_REPLY
     else:
-        reply = await llm.chat(q, [], plan.chunks, plan.structured)
+        gen_context = plan.clarify or plan.structured
+        reply = await llm.chat(q, [], plan.chunks, gen_context)
         reply += llm.booking_link_suffix(q, reply)
         reply += llm.pooja_link_suffix(q, reply)
         log_step("llm", model="main", reply_chars=len(reply))
@@ -58,7 +59,7 @@ async def qa_endpoint(
         reply=reply,
         intent=plan.intent,
         sources=pipeline.build_sources(plan.chunks),
-        structured_data=plan.structured,
+        structured_data=plan.clarify or plan.structured,
         origin=plan.origin,
         elapsed_ms=total_ms,
     )
