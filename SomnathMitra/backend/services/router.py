@@ -32,6 +32,7 @@ MAX_JOURNEYS = 5           # top N train journeys to return
 MAX_BUS_JOURNEYS = 3       # top N bus journeys to return
 MAX_FLIGHT_JOURNEYS = 3    # top N flight journeys to return
 HUB_TRAVEL_THRESHOLD_KM = 5  # below this, skip "travel to hub" step
+NEARBY_HUB_RADIUS_KM = 10   # show all boarding stops within this radius for the same train
 
 
 # ── Geo helper ────────────────────────────────────────────────────────────────
@@ -116,32 +117,77 @@ def _score_train(journey: dict) -> float:
 
 
 def build_journeys(origin: dict, hubs: list[dict]) -> list[dict]:
+    nearby = [h for h in hubs if h["distance_km"] <= NEARBY_HUB_RADIUS_KM]
+    further = [h for h in hubs if h["distance_km"] > NEARBY_HUB_RADIUS_KM]
+
+    # For nearby hubs: collect ALL boarding stops per train so the LLM can
+    # tell the user "you can board at Sabarmati OR Gandhigram".
+    nearby_by_trip: dict[str, dict] = {}
+    for hub in sorted(nearby, key=lambda h: h["distance_km"]):
+        for train in hub.get("trains", []):
+            trip_id = train["trip_id"]
+            option = {
+                "hub_station_code": hub["station_code"],
+                "hub_station_name": hub["station_name"],
+                "hub_distance_km":  hub["distance_km"],
+                "departure":        train.get("departure"),
+            }
+            if trip_id not in nearby_by_trip:
+                nearby_by_trip[trip_id] = {"train": train, "options": [option]}
+            else:
+                nearby_by_trip[trip_id]["options"].append(option)
+
     journeys = []
     seen: set[str] = set()
 
-    for hub in hubs:
+    for trip_id, entry in nearby_by_trip.items():
+        seen.add(trip_id)
+        train = entry["train"]
+        # Sort boarding options by departure time (earliest first), then distance
+        options = sorted(
+            entry["options"],
+            key=lambda o: (o["departure"] or "99:99", o["hub_distance_km"]),
+        )
+        nearest = min(options, key=lambda o: o["hub_distance_km"])
+
+        days = train.get("running_days", {})
+        journeys.append({
+            "hub_station_code":  nearest["hub_station_code"],
+            "hub_station_name":  nearest["hub_station_name"],
+            "hub_distance_km":   nearest["hub_distance_km"],
+            "trip_id":           trip_id,
+            "train_name":        train["train_name"],
+            "departure_from_hub": nearest["departure"],
+            "departure_day":     train.get("departure_day", 0),
+            "veraval_arrival":   train.get("veraval_arrival"),
+            "veraval_day":       train.get("veraval_day", 0),
+            "running_days":      days,
+            "running_days_text": train.get("running_days_text", ""),
+            "trains_per_week":   sum(1 for v in days.values() if v),
+            "boarding_options":  options if len(options) > 1 else [],
+        })
+
+    for hub in further:
         for train in hub.get("trains", []):
             trip_id = train["trip_id"]
             if trip_id in seen:
                 continue
             seen.add(trip_id)
-
             days = train.get("running_days", {})
-            trains_per_week = sum(1 for v in days.values() if v)
-
             journeys.append({
-                "hub_station_code": hub["station_code"],
-                "hub_station_name": hub["station_name"],
-                "hub_distance_km": hub["distance_km"],
-                "trip_id": trip_id,
-                "train_name": train["train_name"],
+                "hub_station_code":  hub["station_code"],
+                "hub_station_name":  hub["station_name"],
+                "hub_distance_km":   hub["distance_km"],
+                "trip_id":           trip_id,
+                "train_name":        train["train_name"],
                 "departure_from_hub": train.get("departure"),
-                "departure_day": train.get("departure_day", 0),
-                "veraval_arrival": train.get("veraval_arrival"),
-                "veraval_day": train.get("veraval_day", 0),
-                "running_days": days,
+                "departure_day":     train.get("departure_day", 0),
+                "veraval_arrival":   train.get("veraval_arrival"),
+                "veraval_day":       train.get("veraval_day", 0),
+                "running_days":      days,
                 "running_days_text": train.get("running_days_text", ""),
-                "trains_per_week": trains_per_week,
+                "trains_per_week":   sum(1 for v in days.values() if v),
+                "boarding_options":  [],
             })
 
     return journeys
@@ -272,11 +318,22 @@ def _fmt_fare(fare_min: float | None, fare_max: float | None) -> str:
 
 def _fmt_train_journey(j: dict, idx: int) -> str:
     lines = [f"Train Option {idx}: {j['trip_id']} — {j['train_name']}"]
-    hub = j["hub_station_name"].title()
-    dist = j["hub_distance_km"]
-    lines.append(f"  Step 1: Travel to {hub} (~{dist} km from your location by road/bus)")
-    dep = j["departure_from_hub"] or "?"
-    lines.append(f"  Step 2: Board train at {hub}, departs {dep}")
+
+    boarding_options = j.get("boarding_options") or []
+    if boarding_options:
+        lines.append("  Boarding stations near you (choose whichever is convenient):")
+        for opt in boarding_options:
+            name = opt["hub_station_name"].title()
+            dist = opt["hub_distance_km"]
+            dep = opt["departure"] or "?"
+            lines.append(f"    - {name} ({dist} km away) — departs {dep}")
+    else:
+        hub = j["hub_station_name"].title()
+        dist = j["hub_distance_km"]
+        dep = j["departure_from_hub"] or "?"
+        lines.append(f"  Step 1: Travel to {hub} (~{dist} km from your location by road/bus)")
+        lines.append(f"  Step 2: Board train at {hub}, departs {dep}")
+
     lines.append(f"  Runs: {j['running_days_text']}")
     arr = j["veraval_arrival"] or "?"
     day_note = " (next day)" if (j.get("veraval_day", 0) or 0) > (j.get("departure_day", 0) or 0) else ""

@@ -123,7 +123,12 @@ def run(drop: bool = False) -> None:
         trip = trips.get(trip_id, {})
         route = routes.get(trip.get("route_id", ""), {})
         svc_id = trip.get("service_id", "")
-        svc = calendar.get(svc_id, {})
+        # Exact lookup first; fall back to matching on day-pattern prefix in case
+        # the date-range suffix in trips.txt differs by a day from calendar.txt.
+        svc = calendar.get(svc_id) or next(
+            (v for k, v in calendar.items() if k.split("_")[0] == svc_id.split("_")[0]),
+            {},
+        )
 
         running_days = {d: svc.get(d, "0") == "1" for d in DAYS}
 

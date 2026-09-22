@@ -12,12 +12,12 @@ _client: OpenAI | None = None
 def _get_client() -> OpenAI:
     global _client
     if _client is None:
-        _client = OpenAI(api_key="ollama", base_url=config.EMBED_BASE_URL)
+        _client = OpenAI(api_key="ollama", base_url=config.EMBED_BASE_URL, timeout=30.0)
     return _client
 
 
 def warmup() -> None:
-    """Fire a test embedding at startup to verify the endpoint is reachable."""
+    """Fire a test embedding at startup — raises if the model is not reachable."""
     embed_one("warmup")
     print(f"[embedder] {config.EMBED_MODEL} ready via {config.EMBED_BASE_URL}")
 
