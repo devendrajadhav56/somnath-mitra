@@ -36,6 +36,17 @@ def said_no_data(text: str) -> bool:
     return "don't have" in t or "do not have" in t or "not have that" in t
 
 
+def post_chat(message: str, history: list[dict]) -> dict:
+    """POST to /chat with stream=False so we get a clean JSON ChatResponse."""
+    body = json.dumps({"message": message, "history": history, "stream": False}).encode()
+    req = urllib.request.Request(
+        f"{BASE_URL}/chat", data=body,
+        headers={"Content-Type": "application/json"}, method="POST",
+    )
+    with urllib.request.urlopen(req, timeout=TIMEOUT) as resp:
+        return json.load(resp)
+
+
 # Each probe: (label, query, check(reply, intent) -> (ok: bool, note: str))
 PROBES = [
     ("1. FAITHFUL / in-context",
@@ -73,6 +84,49 @@ PROBES = [
 ]
 
 
+def multi_turn_probe() -> bool:
+    """Two-turn travel flow: ask with no origin (turn 1 should clarify), then
+    reply with just the city (turn 2 should carry it + history into planning).
+    Exercises /chat with real history — the one thing /qa cannot cover."""
+    print("=" * 92)
+    print("MULTI-TURN  |  travel follow-up (origin supplied in turn 2)")
+
+    t1_msg = "how do I get to somnath by train"
+    try:
+        d1 = post_chat(t1_msg, [])
+    except Exception as exc:
+        print(f"  turn 1 ERROR: {exc}")
+        return False
+    tools1 = [t.get("name") for t in d1.get("intent", {}).get("tools", [])]
+    asked_for_origin = not d1.get("origin")  # empty origin => clarify path fired
+    ok1 = "plan_route_to_somnath" in tools1 and asked_for_origin
+    print(f"  turn 1: {t1_msg!r}")
+    print(f"    route: tools={tools1} origin={d1.get('origin') or '{}'}")
+    print(f"    [{'PASS ' if ok1 else 'CHECK'}] should route to plan_route and ask which city")
+    print(f"    reply: {d1.get('reply','')[:300]}")
+
+    history = [
+        {"role": "user", "content": t1_msg},
+        {"role": "assistant", "content": d1.get("reply", "")},
+    ]
+    t2_msg = "Rajkot"
+    try:
+        d2 = post_chat(t2_msg, history)
+    except Exception as exc:
+        print(f"  turn 2 ERROR: {exc}")
+        return False
+    tools2 = [t.get("name") for t in d2.get("intent", {}).get("tools", [])]
+    origin2 = d2.get("origin", {}) or {}
+    origin_name = (origin2.get("name") or origin2.get("raw_input") or "")
+    resolved = "rajkot" in origin_name.lower() or "rajkot" in d2.get("reply", "").lower()
+    ok2 = "plan_route_to_somnath" in tools2 and resolved
+    print(f"  turn 2: {t2_msg!r}  (with turn-1 history)")
+    print(f"    route: tools={tools2} origin={origin_name!r}")
+    print(f"    [{'PASS ' if ok2 else 'CHECK'}] must carry origin from follow-up + history into planning")
+    print(f"    reply: {d2.get('reply','')[:400]}")
+    return ok1 and ok2
+
+
 def run():
     passed = 0
     for label, query, check in PROBES:
@@ -98,9 +152,13 @@ def run():
         print(f"  [{marker}] {note}")
         print(f"  reply: {reply[:500]}")
 
+    mt_ok = multi_turn_probe()
+    passed += 1 if mt_ok else 0
+    total = len(PROBES) + 1
+
     print("=" * 92)
-    print(f"heuristic pass: {passed}/{len(PROBES)}  (eyeball the replies — heuristics are a signal, not proof)")
-    return passed == len(PROBES)
+    print(f"heuristic pass: {passed}/{total}  (eyeball the replies — heuristics are a signal, not proof)")
+    return passed == total
 
 
 if __name__ == "__main__":
