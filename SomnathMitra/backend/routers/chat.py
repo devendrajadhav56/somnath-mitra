@@ -5,11 +5,8 @@ from fastapi import APIRouter
 from fastapi.responses import StreamingResponse
 from pydantic import BaseModel
 
-from services import retriever, llm
+from services import llm, pipeline
 from services.applog import log_debug, log_step
-from services.intent import detect_intent
-from services.location import resolve_origin
-from services.tools import execute_tools
 
 router = APIRouter(prefix="/chat", tags=["chat"])
 
@@ -40,92 +37,31 @@ async def chat_endpoint(req: ChatRequest):
     history = [m.model_dump() for m in req.history]
     log_step("query", message=req.message[:120], stream=req.stream)
 
-    t1 = time.monotonic()
-    intent = await detect_intent(req.message, history)
+    plan = await pipeline.plan_and_execute(req.message, history, req.user_lat, req.user_lon)
 
-    if intent.get("off_topic"):
-        log_step("off_topic", action="refused", ms=round((time.monotonic() - t1) * 1000))
-        refusal = (
-            "I can only help with questions about Somnath temple, travel to Somnath, "
-            "and the local Somnath/Veraval area.\n\n"
-            "मैं केवल सोमनाथ मंदिर, यहाँ की यात्रा और स्थानीय क्षेत्र से जुड़े सवालों में मदद कर सकता हूँ।\n\n"
-            "હું ફક્ત સોમનાથ મંદિર, અહીંની યાત્રા અને સ્થાનિક વિસ્તાર સંબંધિત પ્રશ્નોમાં જ મદદ કરી શકું છું।"
-        )
+    # ── Off-topic: refuse without a Generate call ────────────────────────────
+    if plan.off_topic:
         if req.stream:
             async def _refusal_stream():
-                yield refusal
+                yield pipeline.OFF_TOPIC_REPLY
                 yield "\x00" + json.dumps({
                     "elapsed_ms": round((time.monotonic() - t0) * 1000),
-                    "intent": intent, "sources": [], "origin": {}, "timings": {}, "products": [],
+                    "intent": plan.intent, "sources": [], "origin": {}, "timings": {}, "products": [],
                 })
             return StreamingResponse(_refusal_stream(), media_type="text/plain")
-        return ChatResponse(reply=refusal, intent=intent, sources=[], origin={})
+        return ChatResponse(reply=pipeline.OFF_TOPIC_REPLY, intent=plan.intent, sources=[], origin={})
 
-    is_travel_intent = any(t.get("name") == "plan_route_to_somnath" for t in intent.get("tools", []))
-    origin = await resolve_origin(req.message, history) if is_travel_intent else None
-    origin = origin or {}
-    log_step("origin", extracted=origin.get("raw_input"), name=origin.get("name"),
-             confidence=origin.get("confidence"), ms=round((time.monotonic() - t1) * 1000))
+    sources = pipeline.build_sources(plan.chunks)
 
-    tools_names = [t["name"] for t in intent.get("tools", [])]
-    log_step("intent", tools=",".join(tools_names) or "none",
-             use_rag=intent.get("use_rag"), ms=round((time.monotonic() - t1) * 1000))
-    log_step("intent_raw", content=intent, ms=round((time.monotonic() - t1) * 1000))
-
-    for tool_call in intent.get("tools", []):
-        if tool_call.get("name") == "plan_route_to_somnath":
-            tool_call["params"]["origin"] = origin
-
-    t2 = time.monotonic()
-    if is_travel_intent and not origin:
-        structured = (
-            "[ROUTE PLANNER] No origin city was found in the user's message. "
-            "Ask the user which city or town they are travelling FROM to Somnath. "
-            "Ask in the same language the user is writing in. Do not give generic travel info."
-        )
-        products = []
-        log_step("origin_gate", action="asking_user")
-    else:
-        structured, products = execute_tools(intent["tools"], req.user_lat, req.user_lon)
-    log_step("tools", tools=",".join(tools_names) or "none",
-             result_chars=len(structured), ms=round((time.monotonic() - t2) * 1000))
-
-    t3 = time.monotonic()
-    chunks = retriever.search(req.message) if intent["use_rag"] else []
-    log_step("rag", chunks=len(chunks),
-             top_score=round(chunks[0]["score"], 3) if chunks else None,
-             ms=round((time.monotonic() - t3) * 1000))
-    if chunks:
-        log_step("rag_hits", hits=" | ".join(
-            f"{c.get('heading') or c.get('page_title') or '?'}@{round(c['score'], 2)}"
-            for c in chunks
-        ))
-    log_debug("rag_full", chunks=[
-        {"heading": c.get("heading"), "score": round(c["score"], 3), "content": c["content"]}
-        for c in chunks
-    ])
-
-    t4 = time.monotonic()
+    # ── Generate ─────────────────────────────────────────────────────────────
+    t_gen = time.monotonic()
     if req.stream:
-        sources = [
-            {
-                "chunk_id": c["chunk_id"],
-                "heading": c.get("heading"),
-                "page_url": c.get("page_url"),
-                "score": c["score"],
-            }
-            for c in chunks
-        ]
-        timings = {
-            "intent_origin_ms": round((t2 - t1) * 1000),
-            "tools_ms":         round((t3 - t2) * 1000),
-            "rag_ms":           round((t4 - t3) * 1000),
-        }
+        timings = plan.timings
 
         async def token_stream():
             first = True
             full_text: list[str] = []
-            async for token in llm.chat_stream(req.message, history, chunks, structured):
+            async for token in llm.chat_stream(req.message, history, plan.chunks, plan.structured):
                 if first:
                     timings["ttft_ms"] = round((time.monotonic() - t0) * 1000)
                     first = False
@@ -138,38 +74,28 @@ async def chat_endpoint(req: ChatRequest):
             ):
                 if suffix:
                     yield suffix
-            timings["llm_total_ms"] = round((time.monotonic() - t4) * 1000)
-            log_step("llm", model="main", mode="stream",
-                     ms=timings["llm_total_ms"])
+            timings["llm_total_ms"] = round((time.monotonic() - t_gen) * 1000)
+            log_step("llm", model="main", mode="stream", ms=timings["llm_total_ms"])
             log_step("reply", chars=len(full), text=full[:300])
             log_debug("reply_full", text=full)
             meta = {
                 "elapsed_ms": round((time.monotonic() - t0) * 1000),
-                "intent": intent,
+                "intent": plan.intent,
                 "sources": sources,
-                "origin": origin,
+                "origin": plan.origin,
                 "timings": timings,
-                "products": products,
+                "products": plan.products,
             }
             yield "\x00" + json.dumps(meta)
 
         return StreamingResponse(token_stream(), media_type="text/plain")
 
-    reply = await llm.chat(req.message, history, chunks, structured)
+    reply = await llm.chat(req.message, history, plan.chunks, plan.structured)
     reply += llm.booking_link_suffix(req.message, reply)
     reply += llm.pooja_link_suffix(req.message, reply)
     log_step("llm", model="main", mode="sync", reply_chars=len(reply),
-             ms=round((time.monotonic() - t4) * 1000))
+             ms=round((time.monotonic() - t_gen) * 1000))
     log_step("reply", chars=len(reply), text=reply[:300])
     log_debug("reply_full", text=reply)
     log_step("done", total_ms=round((time.monotonic() - t0) * 1000))
-    sources = [
-        {
-            "chunk_id": c["chunk_id"],
-            "heading": c.get("heading"),
-            "page_url": c.get("page_url"),
-            "score": c["score"],
-        }
-        for c in chunks
-    ]
-    return ChatResponse(reply=reply, intent=intent, sources=sources, origin=origin)
+    return ChatResponse(reply=reply, intent=plan.intent, sources=sources, origin=plan.origin)
