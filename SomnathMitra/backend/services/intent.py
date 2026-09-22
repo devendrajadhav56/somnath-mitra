@@ -41,6 +41,9 @@ ALL travel queries (trains, buses, flights, how to reach, journey planning,
   "from X to Somnath", "trains from X", "buses from X", "how do I get there") →
   plan_route_to_somnath({})
   use_rag=false
+  Romanized examples also count as travel:
+  e.g. (Romanized Gujarati) "rajkot thi somnath kevi rite pahochvu" → plan_route_to_somnath({})
+  e.g. (Romanized Hindi) "rajkot se somnath kaise jaye" → plan_route_to_somnath({})
 
 Questions specifically about WHICH railway station to use, where the entire query is
 about station selection (e.g. "Somnath station or Veraval Junction?", "which station
@@ -70,14 +73,18 @@ Food/restaurant queries anywhere in the area (near station, near temple, near Ve
   e.g. "restaurants near the station" → search_restaurants
   e.g. "सोमनाथ के पास शाकाहारी रेस्टोरेंट दिखाओ" → search_restaurants
   e.g. "સોમનાથ પાસે શુદ્ધ શાકાહારી રેસ્ટોરેન્ટ બતાવો" → search_restaurants
+  e.g. (Romanized Gujarati) "somnath pase saru jamvanu kya male" → search_restaurants
+  e.g. (Romanized Hindi) "somnath ke paas veg restaurant batao" → search_restaurants
 
 Hospital/medical queries → search_hospitals, use_rag=false
   e.g. "nearest hospital", "emergency near somnath", "doctor near me", "clinic nearby"
   e.g. "नजदीकी अस्पताल कहाँ है", "સૌથી નજીકની હોસ્પિટલ ક્યાં છે"
+  e.g. (Romanized) "somnath pase hospital kya che", "nazdiki hospital kahan hai" → search_hospitals
 
 Pharmacy/medicine queries → search_pharmacies, use_rag=false
   e.g. "pharmacy near somnath", "medical store", "chemist", "where to buy medicine"
   e.g. "नजदीकी दवाई की दुकान", "દવાની દુકાન ક્યાં છે"
+  e.g. (Romanized) "davani dukan kya che", "medical store kahan hai" → search_pharmacies
 
 Use conversation history to resolve follow-up queries correctly.
 If the user's message is just a city or place name and the recent history shows a travel
