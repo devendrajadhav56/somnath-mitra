@@ -99,6 +99,11 @@ def is_offtopic():
     return _mk(lambda r, i: i.get("off_topic") is True, "off-topic refusal")
 
 
+def not_offtopic():
+    return _mk(lambda r, i: i.get("off_topic") is not True and len(r.strip()) > 0,
+               "on-topic (not over-refused)")
+
+
 def answers():
     return _mk(lambda r, i: len(r.strip()) > 0 and not i.get("off_topic"), "answers (not refused)")
 
@@ -126,6 +131,14 @@ SINGLE_TURN = [
      kw(["dress", "footwear", "shoe", "mobile", "phone", "photograph"], "mentions rules")),
     ("temple", "Tell me about prasad at Somnath temple", route("get_temple_info")),
     ("temple", "Tell me about the history and significance of Somnath temple", answers()),
+    ("temple", "Are there guest houses or dormitories at Somnath and what do rooms cost?",
+     AND(route("get_temple_info"), kw(["guest house", "guesthouse", "dormitory", "room", "facilit", "₹", "rs"], "facilities info"))),
+    ("temple", "What festivals are celebrated at Somnath temple?",
+     AND(route("get_temple_info"), kw(["festival", "shivratri", "kartik", "shravan", "purnima", "event"], "festival info"))),
+    ("temple", "What is the contact phone number for the Somnath temple office?",
+     kw(["+91", "phone", "contact", "email", "office"], "gives a contact detail")),
+    ("temple", "Tell me about the heritage walk at Somnath",
+     AND(route("get_temple_info"), kw(["heritage", "walk"], "heritage walk info"))),
 
     # link-injection behaviors
     ("links", "Where can I stay near Somnath temple?", link(GUESTHOUSE_URL, "guesthouse booking")),
@@ -140,6 +153,9 @@ SINGLE_TURN = [
     ("local", "medical store / pharmacy near Somnath", route("search_pharmacies")),
     ("local", "places to visit near Somnath temple", route("search_pois")),
     ("local", "price of sarees at the Somnath temple shop", route("search_shop")),
+    ("local", "show me kotis available at the Somnath temple shop", route("search_shop")),
+    ("local", "prasad items under 500 rupees at the Somnath shop", route("search_shop")),
+    ("local", "top rated restaurants near Somnath", route("search_restaurants")),
 
     # travel spread
     ("travel", "trains from Ahmedabad to Somnath", AND(route("plan_route_to_somnath"),
@@ -151,6 +167,13 @@ SINGLE_TURN = [
                                                     kw(["airport", "keshod", "diu", "no direct", "road"], "flight/airport reality"))),
     ("travel", "which is the nearest airport to Somnath?", kw(["keshod", "ixk", "55"], "uses airport facts")),
     ("travel", "should I get down at Veraval Junction or Somnath station?", rag_only()),
+    # travel coverage boundaries — must degrade honestly, never fabricate a route
+    ("travel", "how do I reach Somnath from Chennai?",
+     AND(route("plan_route_to_somnath"), kw(["flight", "train", "bengaluru", "airport", "road", "veraval"], "real multi-hop route"))),
+    ("travel", "is there a bus from Delhi to Somnath?",
+     AND(route("plan_route_to_somnath"), kw(["train", "don't have", "no direct", "not have"], "honest re: no direct bus, offers train"))),
+    ("travel", "flight from Kolkata to Somnath?",
+     AND(route("plan_route_to_somnath"), kw(["no direct", "no flight", "road", "airport", "500"], "honest: no flight coverage"))),
 
     # faithfulness
     ("faithful", "How many marble steps lead up to the main Somnath sanctum?", no_data()),
@@ -158,6 +181,13 @@ SINGLE_TURN = [
 
     # off-topic
     ("offtopic", "What is the capital of France?", is_offtopic()),
+
+    # routing edge cases (explicit rules in the planner prompt)
+    ("routing", "What are the darshan timings and the dress code at Somnath?",
+     AND(route("get_temple_info"), TIMINGS, kw(["dress", "footwear", "shoe", "cloth", "attire"], "dress code"))),
+    ("routing", "vegetarian restaurants near Veraval railway station", route("search_restaurants")),
+    ("routing", "Tell me about Hindu pilgrimage traditions and Jyotirlingas", not_offtopic()),
+    ("routing", "What is the religious significance of the Somnath Jyotirlinga?", not_offtopic()),
 
     # language modes
     ("lang", "सोमनाथ मंदिर के दर्शन का समय क्या है?", script(has_devanagari, "Hindi/Devanagari")),
@@ -189,9 +219,13 @@ CONVERSATIONS = [
         ("restaurants near Somnath", route("search_restaurants")),
         ("any pure veg ones?", route("search_restaurants")),
     ]),
+    ("multiturn", "travel: mode switch, same origin", [
+        ("trains from Ahmedabad to Somnath", route("plan_route_to_somnath")),
+        ("and by bus?", AND(route("plan_route_to_somnath"), kw(["bus", "ahmedabad"], "bus from Ahmedabad"))),
+    ]),
 ]
 
-CATEGORIES = ["temple", "links", "local", "travel", "faithful", "offtopic", "lang", "multiturn"]
+CATEGORIES = ["temple", "links", "local", "travel", "routing", "faithful", "offtopic", "lang", "multiturn"]
 
 
 # ── Runner ────────────────────────────────────────────────────────────────────
