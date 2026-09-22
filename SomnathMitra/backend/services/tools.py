@@ -2,6 +2,9 @@
 returns a formatted string ready to inject into the LLM context."""
 from __future__ import annotations
 
+from dataclasses import dataclass, field
+from typing import Callable
+
 import config
 import db
 from services import router as _router
@@ -330,6 +333,132 @@ def _run_search_shop(params: dict) -> tuple[str, list[dict]]:
     return "\n".join(lines), products
 
 
+# ── Tool registry ─────────────────────────────────────────────────────────────
+
+
+@dataclass
+class ToolContext:
+    """Search centre passed to every tool runner."""
+    lat: float
+    lon: float
+
+
+@dataclass
+class ToolResult:
+    """Uniform runner output: injected text plus optional frontend products."""
+    text: str
+    products: list[dict] = field(default_factory=list)
+
+
+@dataclass
+class ToolSpec:
+    """One tool: its planner-facing description and its runner, co-located."""
+    name: str
+    planner_doc: str
+    run: Callable[[dict, "ToolContext"], "ToolResult"]
+
+
+_DOC_SEARCH_RESTAURANTS = """search_restaurants
+  Find restaurants, dhabas, and food places in the Somnath/Veraval area.
+  Use for ANY food query — near the temple, near the railway station, near Veraval,
+  near any local landmark, or just "restaurants near Somnath".
+  params:
+    radius_m   : int   — search radius in metres (default 2000)
+    min_rating : float — minimum Google rating filter, null for none (default null)
+    limit      : int   — max results (default 10)"""
+
+_DOC_SEARCH_POIS = """search_pois
+  Find places of interest near the temple.
+  params:
+    radius_m : int — search radius in metres (default 5000)
+    category : str — filter by category, null for all (default null)
+                     known values: pilgrimage_attraction, lodging,
+                                   food, essential_services,
+                                   transport_hub, tour_travel_agency
+    limit    : int — max results (default 15)"""
+
+_DOC_GET_TEMPLE_INFO = """get_temple_info
+  Retrieve a structured document from the official temple database.
+  params:
+    key : str — one of:
+      darshan_timings        opening hours, aarti times, AND light-and-sound show (use this for light show queries)
+      visitor_rules          dress code, gadgets, photography, footwear, smoking
+      pilgrim_facilities     guest houses, dormitories, bus service, room pricing
+      nearest_places         nearby attractions with distances
+      festivals_calendar     festival names and dates
+      faqs                   frequently asked questions
+      social_activities      trust's charitable and social work
+      contact_info           phone numbers, emails, office addresses
+      history_significance   temple history and religious significance
+      heritage_and_temple_walks  heritage walk and temple walk information
+      how_to_reach_by_air    nearest airports, airlines, and route options
+      prasad_info            prasad categories, online shop link, in-person counter details"""
+
+_DOC_PLAN_ROUTE_TO_SOMNATH = """plan_route_to_somnath
+  Plan a complete journey from ANY origin city or town in India to Somnath.
+  Handles trains, buses, and flights all in one call.
+  Use for ALL travel-related queries — "how to reach", "trains from X",
+  "buses from X", "flights", "travel options", "which train", etc.
+  The origin location is injected automatically by the system.
+  params:
+    origin : object — leave as {} — filled in automatically"""
+
+_DOC_SEARCH_HOSPITALS = """search_hospitals
+  Find hospitals, clinics, and medical centres near Somnath/Veraval.
+  Use for ANY medical emergency or healthcare query — "nearest hospital",
+  "emergency hospital", "doctor near somnath", "clinic nearby", etc.
+  params:
+    radius_m : int — search radius in metres (default 5000)
+    limit    : int — max results (default 15)"""
+
+_DOC_SEARCH_PHARMACIES = """search_pharmacies
+  Find pharmacies, medical shops, and chemists near Somnath/Veraval.
+  Use when the user asks for medicine, pharmacy, chemist, medical store, etc.
+  params:
+    radius_m : int — search radius in metres (default 3000)
+    limit    : int — max results (default 15)"""
+
+_DOC_SEARCH_SHOP = """search_shop
+  Find products available at the official Somnath temple shop (somnathprasad.com).
+  Products are prasad items offered by the temple: Sarees, Kotis (upper garments),
+  Pitambers (lower garments), Kurtas, Prasad boxes/combos, Silver Coins, and Dhwaja (temple flag).
+  Use this when users ask about buying prasad online, ordering temple items, sarees from Somnath,
+  temple merchandise, or prices of shop items.
+  params:
+    category  : str — filter by category: "Saree", "Koti", "Pitamber", "Kurta",
+                      "Prasad", "Silver Coin", "Dhwaja", null for all
+    min_price : int — minimum price in INR, null for no limit
+    max_price : int — maximum price in INR, null for no limit
+    limit     : int — max results (default 8)"""
+
+
+def _geo(fn):
+    """Adapt a (params, lat, lon) -> str runner to the (params, ctx) -> ToolResult contract."""
+    return lambda params, ctx: ToolResult(fn(params, ctx.lat, ctx.lon))
+
+
+def _run_plan_route(params: dict, ctx: "ToolContext") -> "ToolResult":
+    origin = params.get("origin")
+    return ToolResult(_router.plan_route(origin) if origin else "")
+
+
+REGISTRY: list[ToolSpec] = [
+    ToolSpec("search_restaurants", _DOC_SEARCH_RESTAURANTS, _geo(_run_search_restaurants)),
+    ToolSpec("search_pois", _DOC_SEARCH_POIS, _geo(_run_search_pois)),
+    ToolSpec("get_temple_info", _DOC_GET_TEMPLE_INFO, lambda p, ctx: ToolResult(_run_get_temple_info(p))),
+    ToolSpec("plan_route_to_somnath", _DOC_PLAN_ROUTE_TO_SOMNATH, _run_plan_route),
+    ToolSpec("search_hospitals", _DOC_SEARCH_HOSPITALS, _geo(_run_search_hospitals)),
+    ToolSpec("search_pharmacies", _DOC_SEARCH_PHARMACIES, _geo(_run_search_pharmacies)),
+    ToolSpec("search_shop", _DOC_SEARCH_SHOP, lambda p, ctx: ToolResult(*_run_search_shop(p))),
+]
+_BY_NAME: dict[str, ToolSpec] = {s.name: s for s in REGISTRY}
+
+
+def planner_tool_docs() -> str:
+    """The planner prompt's 'Available tools' block, generated from the registry."""
+    return "\n\n".join(s.planner_doc for s in REGISTRY)
+
+
 # ── Public API ────────────────────────────────────────────────────────────────
 
 def execute_tools(
@@ -337,54 +466,36 @@ def execute_tools(
     user_lat: float | None = None,
     user_lon: float | None = None,
 ) -> tuple[str, list[dict]]:
-    """
-    Execute a list of tool calls as decided by the intent detector.
-    Returns (structured_text, products) where structured_text is injected into
-    the LLM context and products is a list of shop product dicts for the frontend.
+    """Execute the planner's chosen tool calls via the registry.
+
+    Returns (structured_text, products). Proximity searches centre on the temple
+    unless real user coordinates are supplied.
     """
     if not tool_calls:
         return "", []
 
-    lat = user_lat or TEMPLE_LAT
-    lon = user_lon or TEMPLE_LON
+    ctx = ToolContext(lat=user_lat or TEMPLE_LAT, lon=user_lon or TEMPLE_LON)
     sections: list[str] = []
     products: list[dict] = []
 
     for call in tool_calls:
         name = call.get("name")
         params = call.get("params", {})
-        section = ""
-
-        if name == "search_restaurants":
-            section = _run_search_restaurants(params, lat, lon)
-        elif name == "search_pois":
-            section = _run_search_pois(params, lat, lon)
-        elif name == "get_temple_info":
-            section = _run_get_temple_info(params)
-        elif name == "plan_route_to_somnath":
-            origin = params.get("origin")
-            if origin:
-                section = _router.plan_route(origin)
-        elif name == "search_hospitals":
-            section = _run_search_hospitals(params, lat, lon)
-        elif name == "search_pharmacies":
-            section = _run_search_pharmacies(params, lat, lon)
-        elif name == "search_shop":
-            section, prods = _run_search_shop(params)
-            products.extend(prods)
-        else:
+        spec = _BY_NAME.get(name)
+        if spec is None:
             log.warning("unknown tool requested: name=%s params=%s", name, params)
             continue
 
-        if not section:
+        result = spec.run(params, ctx)
+        if not result.text:
             continue
 
-        sections.append(section)
-        # Runners signal "nothing found" with a message starting "No ..."
-        miss = section.lstrip().startswith("No ")
+        sections.append(result.text)
+        products.extend(result.products)
+        miss = result.text.lstrip().startswith("No ")
         if miss:
             log.warning("tool returned no results: name=%s params=%s", name, params)
-        log_step("tool", name=name, chars=len(section), miss=miss)
-        log_debug("tool_result", name=name, result=section)
+        log_step("tool", name=name, chars=len(result.text), miss=miss)
+        log_debug("tool_result", name=name, result=result.text)
 
     return "\n\n".join(sections), products

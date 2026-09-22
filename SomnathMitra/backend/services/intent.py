@@ -11,6 +11,7 @@ import ollama
 
 import config
 from services.applog import get_logger
+from services.tools import planner_tool_docs
 
 log = get_logger(__name__)
 
@@ -18,9 +19,7 @@ _INTENT_OPTIONS = {"num_ctx": 8192, "temperature": 0, "num_predict": 1024}
 
 _FALLBACK = {"tools": [], "use_rag": True}
 
-INTENT_SYSTEM_PROMPT = """\
-You are a planner for Shivoham, a pilgrim assistant chatbot for \
-Somnath Jyotirlinga temple, Gujarat, India.
+_INTENT_HEADER = """You are a planner for Shivoham, a pilgrim assistant chatbot for Somnath Jyotirlinga temple, Gujarat, India.
 
 Analyse the user's message (and recent conversation history if provided) and decide:
 1. Which data-fetching tools to call, with what parameters
@@ -28,80 +27,9 @@ Analyse the user's message (and recent conversation history if provided) and dec
 
 ━━ Available tools ━━
 
-search_restaurants
-  Find restaurants, dhabas, and food places in the Somnath/Veraval area.
-  Use for ANY food query — near the temple, near the railway station, near Veraval,
-  near any local landmark, or just "restaurants near Somnath".
-  params:
-    radius_m   : int   — search radius in metres (default 2000)
-    min_rating : float — minimum Google rating filter, null for none (default null)
-    limit      : int   — max results (default 10)
+"""
 
-search_pois
-  Find places of interest near the temple.
-  params:
-    radius_m : int — search radius in metres (default 5000)
-    category : str — filter by category, null for all (default null)
-                     known values: pilgrimage_attraction, lodging,
-                                   food, essential_services,
-                                   transport_hub, tour_travel_agency
-    limit    : int — max results (default 15)
-
-get_temple_info
-  Retrieve a structured document from the official temple database.
-  params:
-    key : str — one of:
-      darshan_timings        opening hours, aarti times, AND light-and-sound show (use this for light show queries)
-      visitor_rules          dress code, gadgets, photography, footwear, smoking
-      pilgrim_facilities     guest houses, dormitories, bus service, room pricing
-      nearest_places         nearby attractions with distances
-      festivals_calendar     festival names and dates
-      faqs                   frequently asked questions
-      social_activities      trust's charitable and social work
-      contact_info           phone numbers, emails, office addresses
-      history_significance   temple history and religious significance
-      heritage_and_temple_walks  heritage walk and temple walk information
-      how_to_reach_by_air    nearest airports, airlines, and route options
-      prasad_info            prasad categories, online shop link, in-person counter details
-
-plan_route_to_somnath
-  Plan a complete journey from ANY origin city or town in India to Somnath.
-  Handles trains, buses, and flights all in one call.
-  Use for ALL travel-related queries — "how to reach", "trains from X",
-  "buses from X", "flights", "travel options", "which train", etc.
-  The origin location is injected automatically by the system.
-  params:
-    origin : object — leave as {} — filled in automatically
-
-search_hospitals
-  Find hospitals, clinics, and medical centres near Somnath/Veraval.
-  Use for ANY medical emergency or healthcare query — "nearest hospital",
-  "emergency hospital", "doctor near somnath", "clinic nearby", etc.
-  params:
-    radius_m : int — search radius in metres (default 5000)
-    limit    : int — max results (default 15)
-
-search_pharmacies
-  Find pharmacies, medical shops, and chemists near Somnath/Veraval.
-  Use when the user asks for medicine, pharmacy, chemist, medical store, etc.
-  params:
-    radius_m : int — search radius in metres (default 3000)
-    limit    : int — max results (default 15)
-
-search_shop
-  Find products available at the official Somnath temple shop (somnathprasad.com).
-  Products are prasad items offered by the temple: Sarees, Kotis (upper garments),
-  Pitambers (lower garments), Kurtas, Prasad boxes/combos, Silver Coins, and Dhwaja (temple flag).
-  Use this when users ask about buying prasad online, ordering temple items, sarees from Somnath,
-  temple merchandise, or prices of shop items.
-  params:
-    category  : str — filter by category: "Saree", "Koti", "Pitamber", "Kurta",
-                      "Prasad", "Silver Coin", "Dhwaja", null for all
-    min_price : int — minimum price in INR, null for no limit
-    max_price : int — maximum price in INR, null for no limit
-    limit     : int — max results (default 8)
-
-━━ Routing rules ━━
+_INTENT_RULES = """━━ Routing rules ━━
 
 use_rag = true  → when the query involves general/historical information or could
                    benefit from scraped website content alongside structured data
@@ -191,6 +119,8 @@ If the query gives no signal for a param, omit it entirely — do NOT guess or f
 Respond with ONLY a valid JSON object, no explanation, no markdown:
 {"tools": [{"name": "...", "params": {...}}], "use_rag": true, "off_topic": false}
 """
+
+INTENT_SYSTEM_PROMPT = _INTENT_HEADER + planner_tool_docs() + "\n\n" + _INTENT_RULES
 
 
 def _validate(data: dict) -> bool:
