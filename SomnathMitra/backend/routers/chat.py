@@ -1,4 +1,3 @@
-import asyncio
 import json
 import time
 
@@ -35,12 +34,6 @@ class ChatResponse(BaseModel):
     origin: dict = {}
 
 
-ORIGIN_CLARIFICATION = (
-    "To help you plan your journey to Somnath, could you please tell me "
-    "which city or town you'll be travelling from?"
-)
-
-
 @router.post("", response_model=ChatResponse)
 async def chat_endpoint(req: ChatRequest):
     t0 = time.monotonic()
@@ -48,21 +41,9 @@ async def chat_endpoint(req: ChatRequest):
     log_step("query", message=req.message[:120], stream=req.stream)
 
     t1 = time.monotonic()
-    # If the previous assistant turn was our origin clarification, the user's
-    # current message IS the origin answer — skip intent detection and force
-    # plan_route_to_somnath directly.
-    last_assistant = next(
-        (m["content"] for m in reversed(history) if m["role"] == "assistant"), None
-    )
-    answering_clarification = last_assistant == ORIGIN_CLARIFICATION
-
-    if answering_clarification:
-        origin = await resolve_origin(req.message, history)
-        intent = {"tools": [{"name": "plan_route_to_somnath", "params": {}}], "use_rag": False}
-    else:
-        intent = await detect_intent(req.message, history)
-        is_travel_intent = any(t.get("name") == "plan_route_to_somnath" for t in intent.get("tools", []))
-        origin = await resolve_origin(req.message, history) if is_travel_intent else None
+    intent = await detect_intent(req.message, history)
+    is_travel_intent = any(t.get("name") == "plan_route_to_somnath" for t in intent.get("tools", []))
+    origin = await resolve_origin(req.message, history) if is_travel_intent else None
     origin = origin or {}
     log_step("origin", extracted=origin.get("raw_input"), name=origin.get("name"),
              confidence=origin.get("confidence"), ms=round((time.monotonic() - t1) * 1000))
@@ -70,32 +51,23 @@ async def chat_endpoint(req: ChatRequest):
     tools_names = [t["name"] for t in intent.get("tools", [])]
     log_step("intent", tools=",".join(tools_names) or "none",
              use_rag=intent.get("use_rag"), ms=round((time.monotonic() - t1) * 1000))
-
-    # If it's a travel query but we have no origin, ask the user before proceeding
-    is_travel = any(t.get("name") == "plan_route_to_somnath" for t in intent.get("tools", []))
-    if is_travel and not origin:
-        log_step("origin_gate", action="asking_user")
-        if req.stream:
-            async def clarify_stream():
-                yield ORIGIN_CLARIFICATION
-                meta = {
-                    "elapsed_ms": round((time.monotonic() - t0) * 1000),
-                    "intent": intent,
-                    "sources": [],
-                    "origin": {},
-                    "timings": {},
-                    "products": [],
-                }
-                yield "\x00" + json.dumps(meta)
-            return StreamingResponse(clarify_stream(), media_type="text/plain")
-        return ChatResponse(reply=ORIGIN_CLARIFICATION, intent=intent, sources=[], origin={})
+    log_step("intent_raw", content=intent, ms=round((time.monotonic() - t1) * 1000))
 
     for tool_call in intent.get("tools", []):
         if tool_call.get("name") == "plan_route_to_somnath":
             tool_call["params"]["origin"] = origin
 
     t2 = time.monotonic()
-    structured, products = execute_tools(intent["tools"], req.user_lat, req.user_lon)
+    if is_travel_intent and not origin:
+        structured = (
+            "[ROUTE PLANNER] No origin city was found in the user's message. "
+            "Ask the user which city or town they are travelling FROM to Somnath. "
+            "Ask in the same language the user is writing in. Do not give generic travel info."
+        )
+        products = []
+        log_step("origin_gate", action="asking_user")
+    else:
+        structured, products = execute_tools(intent["tools"], req.user_lat, req.user_lon)
     log_step("tools", tools=",".join(tools_names) or "none",
              result_chars=len(structured), ms=round((time.monotonic() - t2) * 1000))
 

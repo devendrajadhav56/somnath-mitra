@@ -73,6 +73,21 @@ plan_route_to_somnath
   params:
     origin : object — leave as {} — filled in automatically
 
+search_hospitals
+  Find hospitals, clinics, and medical centres near Somnath/Veraval.
+  Use for ANY medical emergency or healthcare query — "nearest hospital",
+  "emergency hospital", "doctor near somnath", "clinic nearby", etc.
+  params:
+    radius_m : int — search radius in metres (default 5000)
+    limit    : int — max results (default 15)
+
+search_pharmacies
+  Find pharmacies, medical shops, and chemists near Somnath/Veraval.
+  Use when the user asks for medicine, pharmacy, chemist, medical store, etc.
+  params:
+    radius_m : int — search radius in metres (default 3000)
+    limit    : int — max results (default 15)
+
 search_shop
   Find products available at the official Somnath temple shop (somnathprasad.com).
   Products are prasad items offered by the temple: Sarees, Kotis (upper garments),
@@ -125,27 +140,36 @@ Food/restaurant queries anywhere in the area (near station, near temple, near Ve
   e.g. "pure veg food near Somnath" → search_restaurants
   e.g. "Are there pure vegetarian restaurants near Veraval Railway Station and Somnath?" → search_restaurants
   e.g. "restaurants near the station" → search_restaurants
+  e.g. "सोमनाथ के पास शाकाहारी रेस्टोरेंट दिखाओ" → search_restaurants
+  e.g. "સોમનાથ પાસે શુદ્ધ શાકાહારી રેસ્ટોરેન્ટ બતાવો" → search_restaurants
+
+Hospital/medical queries → search_hospitals, use_rag=false
+  e.g. "nearest hospital", "emergency near somnath", "doctor near me", "clinic nearby"
+  e.g. "नजदीकी अस्पताल कहाँ है", "સૌથી નજીકની હોસ્પિટલ ક્યાં છે"
+
+Pharmacy/medicine queries → search_pharmacies, use_rag=false
+  e.g. "pharmacy near somnath", "medical store", "chemist", "where to buy medicine"
+  e.g. "नजदीकी दवाई की दुकान", "દવાની દુકાન ક્યાં છે"
 
 Use conversation history to resolve follow-up queries correctly.
+If the user's message is just a city or place name and the recent history shows a travel
+query or the assistant asked where the user is travelling from, treat it as plan_route_to_somnath.
+
+━━ Parameter rules ━━
+
+Only include a param in the output when the user's query explicitly requires a non-default value:
+• radius_m   — only set if the user mentions a specific distance ("within 5km", "500m radius")
+• min_rating — only set if the user asks for highly rated / top-rated places (e.g. use 4.0)
+• limit      — only set if the user asks for more/fewer results than the default
+• category   — only set if the user specifies a clear category
+• min_price / max_price — only set if the user states a price constraint
+If the query gives no signal for a param, omit it entirely — do NOT guess or fill in defaults.
 
 ━━ Output format ━━
 
 Respond with ONLY a valid JSON object, no explanation, no markdown:
 {"tools": [{"name": "...", "params": {...}}], "use_rag": true}
 """
-
-
-_FOOD_KEYWORDS = (
-    "restaurant", "restaurants", "food", "eat", "eating", "dhaba", "dhabas",
-    "vegetarian", "veg ", "pure veg", "non-veg", "nonveg", "cafe", "cafes",
-    "thali", "snacks", "breakfast", "lunch", "dinner",
-    "खाना", "भोजन", "रेस्टोरेंट", "ढाबा", "शाकाहारी",
-)
-
-
-def _is_food_query(message: str) -> bool:
-    lower = message.lower()
-    return any(kw in lower for kw in _FOOD_KEYWORDS)
 
 
 def _validate(data: dict) -> bool:
@@ -165,10 +189,6 @@ async def detect_intent(user_message: str, history: list[dict]) -> dict:
     Returns {"tools": [...], "use_rag": bool}.
     Falls back to RAG-only on any failure.
     """
-    # Fast path: food queries always go to search_restaurants regardless of location phrasing
-    if _is_food_query(user_message):
-        return {"tools": [{"name": "search_restaurants", "params": {}}], "use_rag": False}
-
     # Pass the last 4 messages (2 turns) so follow-ups resolve correctly
     recent_history = history[-4:] if len(history) > 4 else history
 

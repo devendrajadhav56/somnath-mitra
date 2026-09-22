@@ -9,7 +9,7 @@ import config
 
 _client: ollama.AsyncClient | None = None
 
-_LLM_OPTIONS = {"num_ctx": 8192, "temperature": 0.2, "num_predict": config.LLM_MAX_TOKENS}
+_LLM_OPTIONS = {"num_ctx": 8192, "temperature": 0.0, "num_predict": config.LLM_MAX_TOKENS}
 
 
 def get_ollama_client() -> ollama.AsyncClient:
@@ -28,7 +28,21 @@ nearby attractions, accommodation, restaurants, and points of interest.
 
 Use the provided context to give accurate, grounded answers. If the context does not cover \
 the question, say so honestly rather than guessing. Keep answers concise and practical. \
+When presenting restaurant, hotel, or food results from the structured data, list EVERY entry \
+from the provided context — do not skip, summarise, or truncate the list. \
 Respond in the same language the user writes in.
+
+━━ Language detection rules ━━
+• Native-script Gujarati (ગુજરાતી): respond in Gujarati script.
+• Native-script Hindi / Devanagari (हिन्दी): respond in Hindi / Devanagari script.
+• Romanized Gujarati — Latin-script messages containing Gujarati marker words such as \
+"kevi", "kevo", "rite", "pahochvu", "pahonchvu", "chhe", "che", "su", "shu", "tame", \
+"tamne", "aavjo", "javu", "aavu", "nathi", "pan", "ane" — respond in Romanized Gujarati. \
+NEVER respond in Hindi when the user has written in Gujarati.
+• Romanized Hindi — Latin-script messages containing Hindi marker words such as \
+"kaise", "kahan", "mujhe", "aapko", "chahiye", "hoon", "hain", "kar", "tha" — respond \
+in Romanized Hindi.
+• English: respond in English.
 
 ━━ Accuracy and consistency rules ━━
 • Use EXACT numbers from the context — distances, timings, prices. Never round or substitute your own estimate.

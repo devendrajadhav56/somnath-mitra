@@ -129,6 +129,62 @@ def _run_search_restaurants(params: dict, lat: float, lon: float) -> str:
     return "\n".join(lines)
 
 
+def _fmt_medical(r: dict) -> str:
+    parts = [r.get("name", "Unknown")]
+    if r.get("category"):
+        parts.append(r["category"])
+    if r.get("rating") is not None:
+        rev = f" ({r['reviews']} reviews)" if r.get("reviews") else ""
+        parts.append(f"rating {r['rating']}{rev}")
+    if r.get("phone"):
+        parts.append(f"phone: {r['phone']}")
+    if r.get("business_status"):
+        parts.append(r["business_status"])
+    if r.get("distance_from_temple_km") is not None:
+        parts.append(f"{r['distance_from_temple_km']} km from temple")
+    if r.get("google_maps_url"):
+        parts.append(f"maps: {r['google_maps_url']}")
+    return " | ".join(parts)
+
+
+def _run_search_hospitals(params: dict, lat: float, lon: float) -> str:
+    radius_m = params.get("radius_m", 5000)
+    limit = params.get("limit", 15)
+    query: dict = {
+        "location": {
+            "$nearSphere": {
+                "$geometry": {"type": "Point", "coordinates": [lon, lat]},
+                "$maxDistance": radius_m,
+            }
+        }
+    }
+    docs = list(db.get_clean_db()["hospitals"].find(query, {"_id": 0}).limit(limit))
+    if not docs:
+        return f"No hospitals found within {radius_m}m of the temple."
+    lines = [f"[Hospitals within {radius_m}m of Somnath temple — {len(docs)} results]"]
+    lines += [f"- {_fmt_medical(r)}" for r in docs]
+    return "\n".join(lines)
+
+
+def _run_search_pharmacies(params: dict, lat: float, lon: float) -> str:
+    radius_m = params.get("radius_m", 3000)
+    limit = params.get("limit", 15)
+    query: dict = {
+        "location": {
+            "$nearSphere": {
+                "$geometry": {"type": "Point", "coordinates": [lon, lat]},
+                "$maxDistance": radius_m,
+            }
+        }
+    }
+    docs = list(db.get_clean_db()["pharmacies"].find(query, {"_id": 0}).limit(limit))
+    if not docs:
+        return f"No pharmacies found within {radius_m}m of the temple."
+    lines = [f"[Pharmacies within {radius_m}m of Somnath temple — {len(docs)} results]"]
+    lines += [f"- {_fmt_medical(r)}" for r in docs]
+    return "\n".join(lines)
+
+
 def _run_search_pois(params: dict, lat: float, lon: float) -> str:
     radius_m = params.get("radius_m", 5000)
     category = params.get("category")
@@ -302,14 +358,14 @@ def execute_tools(
             sections.append(_run_search_pois(params, lat, lon))
         elif name == "get_temple_info":
             sections.append(_run_get_temple_info(params))
-        elif name == "search_trains":
-            sections.append(_run_search_trains(params))
-        elif name == "search_buses":
-            sections.append(_run_search_buses(params))
         elif name == "plan_route_to_somnath":
             origin = params.get("origin")
             if origin:
                 sections.append(_router.plan_route(origin))
+        elif name == "search_hospitals":
+            sections.append(_run_search_hospitals(params, lat, lon))
+        elif name == "search_pharmacies":
+            sections.append(_run_search_pharmacies(params, lat, lon))
         elif name == "search_shop":
             text, prods = _run_search_shop(params)
             sections.append(text)
