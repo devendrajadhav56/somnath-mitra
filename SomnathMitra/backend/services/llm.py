@@ -7,7 +7,7 @@ from typing import AsyncIterator
 import ollama
 
 import config
-from services.applog import log_debug
+from services.applog import log_debug, log_step
 
 _MAPS_URL_RE = re.compile(
     r"https?://(?:maps\.google\.[a-z.]+|www\.google\.[a-z.]+/maps|goo\.gl/maps|maps\.app\.goo\.gl)\S*",
@@ -62,11 +62,14 @@ list EVERY entry — do not skip, summarise, or truncate the list.
 ━━ Language detection rules ━━
 • Native-script Gujarati (ગુજરાતી): respond in Gujarati script.
 • Native-script Hindi / Devanagari (हिन्दी): respond in Hindi / Devanagari script.
-• Romanized Gujarati — Latin-script messages containing Gujarati marker words such as \
-"kevi", "kevo", "rite", "pahochvu", "pahonchvu", "chhe", "che", "su", "shu", "tame", \
-"tamne", "aavjo", "javu", "aavu", "nathi", "pan", "ane" — respond in NATIVE Gujarati \
-script (ગુજરાતી), NOT in Latin/English letters, even though the user wrote in Latin letters. \
-NEVER respond in Hindi when the user has written in Gujarati.
+• Romanized Gujarati — ANY message written in the Gujarati language using Latin/English \
+letters (transliteration), whether or not it contains the example words below. \
+Example hint words (NOT an exhaustive list): "kevi", "kevo", "rite", "chhe", "che", "su", \
+"shu", "tame", "tamne", "mane", "aaju baaju", "jamvanu", "jamvana", "vikalp", "janavo", \
+"pahochvu", "nathi", "pan", "ane", "javu", "aavu", "aavjo". \
+For EVERY such message you MUST write your ENTIRE reply in NATIVE Gujarati script (ગુજરાતી) — \
+transliterate the whole answer into Gujarati script. Do NOT mirror the user's Latin spelling; \
+do NOT reply in Latin/English letters. NEVER respond in Hindi when the user has written in Gujarati.
 • Romanized Hindi — Latin-script messages containing Hindi marker words such as \
 "kaise", "kahan", "mujhe", "aapko", "chahiye", "hoon", "hain", "kar", "tha" — respond \
 in Romanized Hindi.
@@ -130,6 +133,53 @@ def _strip_maps_urls(text: str) -> str:
     return _MAPS_URL_RE.sub("", text).strip()
 
 
+# ── Reply-language detection ──────────────────────────────────────────────────
+# The 9B is unreliable at spotting romanized Gujarati (vs romanized Hindi) and
+# converting it to script on its own. We detect it deterministically here — using
+# tokens that are distinctively Gujarati (Hindi does not share them) — and inject
+# an explicit script instruction, instead of leaving the decision to the model.
+
+_GUJ_MARKERS = frozenset({
+    "chhe", "che", "shu", "su", "kem", "mane", "tame", "tamne", "tamaru", "tamaaru",
+    "nathi", "aavjo", "thi", "ketlu", "ketla", "ketli", "janavo", "batavo", "aaju",
+    "baaju", "kevi", "kevo", "kyare", "kyaare", "vikalp", "saru", "saaru", "maate",
+    "mate", "pahochvu", "pahonchvu", "jamvu", "jamvanu", "jamvana", "jovu", "karvu",
+})
+# Gujarati infinitive/gerund endings: javu, aavvu, jamvanu, jovaa, karvano ...
+_GUJ_INFINITIVE = re.compile(r"\b[a-z]{2,}v(?:u|aa|anu|ana|ano)\b")
+
+
+def _has_range(text: str, lo: int, hi: int) -> bool:
+    return any(lo <= ord(c) <= hi for c in text)
+
+
+def detect_reply_language(text: str) -> str | None:
+    """Return 'gujarati', 'hindi', or None (let the model decide).
+
+    None covers English and romanized Hindi — the system prompt handles those.
+    """
+    if _has_range(text, 0x0A80, 0x0AFF):      # native Gujarati script present
+        return "gujarati"
+    if _has_range(text, 0x0900, 0x097F):      # native Devanagari present
+        return "hindi"
+    low = text.lower()
+    tokens = set(re.findall(r"[a-z]+", low))
+    if tokens & _GUJ_MARKERS or _GUJ_INFINITIVE.search(low):
+        return "gujarati"                     # romanized Gujarati
+    return None
+
+
+def _language_instruction(text: str) -> str | None:
+    lang = detect_reply_language(text)
+    if lang == "gujarati":
+        return ("LANGUAGE: The user's message is in Gujarati. Write your ENTIRE reply in "
+                "native Gujarati script (ગુજરાતી). Do NOT use Latin/English letters, and do "
+                "NOT reply in Hindi.")
+    if lang == "hindi":
+        return "LANGUAGE: The user's message is in Hindi. Write your reply in Hindi (Devanagari script)."
+    return None
+
+
 def _build_context(chunks: list[dict], structured: str) -> str:
     parts = []
     if chunks:
@@ -179,6 +229,12 @@ def _build_messages(
     if config.LLM_MAX_HISTORY_MSGS and len(history) > config.LLM_MAX_HISTORY_MSGS:
         history = history[-config.LLM_MAX_HISTORY_MSGS:]
     messages.extend(history)
+    # Deterministic language hint, injected right before the user turn (most salient)
+    # so the 9B doesn't have to detect romanized Gujarati/Hindi on its own.
+    lang_instr = _language_instruction(user_message)
+    if lang_instr:
+        messages.append({"role": "system", "content": lang_instr})
+        log_step("reply_lang", detected=lang_instr.split(".")[0].replace("LANGUAGE: ", ""))
     messages.append({"role": "user", "content": user_message})
     # Variable prompt payload (the static system prompt is omitted — it never changes).
     log_debug("llm_input", context=ctx, history=history, user=user_message)
