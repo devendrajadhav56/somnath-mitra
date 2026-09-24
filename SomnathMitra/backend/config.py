@@ -26,7 +26,10 @@ TOP_K_CHUNKS = int(os.environ.get("TOP_K_CHUNKS", "5"))
 
 # Minimum cosine similarity for a RAG chunk to be injected into context.
 # Chunks below this are dropped; if all are below it, no context is injected.
-RAG_MIN_SCORE = float(os.environ.get("RAG_MIN_SCORE", "0.5"))
+# Kept permissive (bge-m3 scores relevant short/generic queries ~0.35-0.6):
+# the generator's grounding rules are the real anti-hallucination guard, so we
+# favour recall here and let faithfulness reject genuinely-irrelevant context.
+RAG_MIN_SCORE = float(os.environ.get("RAG_MIN_SCORE", "0.3"))
 
 # Max tokens for the main chat LLM response
 LLM_MAX_TOKENS = int(os.environ.get("LLM_MAX_TOKENS", "2048"))
