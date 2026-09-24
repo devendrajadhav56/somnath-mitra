@@ -86,6 +86,10 @@ Pharmacy/medicine queries → search_pharmacies, use_rag=false
   e.g. "नजदीकी दवाई की दुकान", "દવાની દુકાન ક્યાં છે"
   e.g. (Romanized) "davani dukan kya che", "medical store kahan hai" → search_pharmacies
 
+Trust personnel / administration queries ("who is the general manager", "who is the
+  secretary", "who is the executive officer", "who are the trustees", "somnath trust
+  admin team", "office bearers") → use_rag=true, tools=[]
+
 Use conversation history to resolve follow-up queries correctly.
 If the user's message is just a city or place name and the recent history shows a travel
 query or the assistant asked where the user is travelling from, treat it as plan_route_to_somnath.
@@ -98,6 +102,9 @@ Set "off_topic": true when the query has NO connection to:
   - Local area (Somnath, Veraval, Prabhas Patan)
   - Hindu pilgrimage, darshan, aarti, prasad, pooja
   - Accommodation, food, hospitals, pharmacies near Somnath
+  - Shree Somnath Trust — its trustees, officials, administrative team, office
+    bearers, and contact details (e.g. "who is the Secretary / General Manager /
+    Executive Officer", "list the trustees", "admin team", "who runs the trust")
 
 Examples that ARE off-topic (set off_topic: true):
   "What is the capital of France?", "Write me a Python script",
@@ -108,6 +115,10 @@ Examples that are NOT off-topic (set off_topic: false):
   Anything about Somnath, Veraval, Gujarat temples, Indian trains/buses
   to Somnath, Hindu rituals, pilgrimage in general, local restaurants,
   hospitals, or travel within India heading toward Somnath.
+  ALSO not off-topic: questions about the Shree Somnath Trust's people and
+  administration — "who is the general manager", "who is the secretary",
+  "who is the executive officer", "who are the trustees", "somnath trust admin
+  team". These are on-topic → set off_topic:false, tools:[], use_rag:true.
 
 When off_topic is true, set tools: [] and use_rag: false.
 
