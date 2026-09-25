@@ -39,8 +39,10 @@ ADMIN_TEAM = [
     ("Executive Officer", "Shri Dilip Chavda"),
 ]
 
+# Shri Narendrabhai Modi (Prime Minister of India) is the Chairman of the Trust;
+# his title was lost in the source off-by-one, so it is set explicitly here.
+CHAIRMAN = "Shri Narendrabhai Modi"
 TRUSTEES = [
-    "Shri Narendrabhai Modi",
     "Shri Lal Krishna Advani",
     "Shri Amitbhai Shah",
     "Shri J. D. Parmar",
@@ -59,7 +61,10 @@ def _admin_content() -> str:
 
 
 def _trustee_content() -> str:
-    lines = ["Shree Somnath Trust — Board of Trustees:"]
+    lines = [
+        "Shree Somnath Trust — Chairman and Board of Trustees:",
+        f"- Chairman: {CHAIRMAN} (Prime Minister of India)",
+    ]
     lines += [f"- {name} (Trustee)" for name in TRUSTEES]
     return "\n".join(lines)
 
@@ -88,7 +93,8 @@ def run():
         {
             "chunk_id": "trustee#roster",
             "page_url": SOURCE_URL, "page_slug": "trustee",
-            "page_title": "Board of Trustees", "heading": "Board of Trustees",
+            "page_title": "Chairman and Board of Trustees",
+            "heading": "Chairman and Board of Trustees",
             "content": _trustee_content(),
         },
     ]

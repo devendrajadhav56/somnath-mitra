@@ -86,9 +86,9 @@ Pharmacy/medicine queries → search_pharmacies, use_rag=false
   e.g. "नजदीकी दवाई की दुकान", "દવાની દુકાન ક્યાં છે"
   e.g. (Romanized) "davani dukan kya che", "medical store kahan hai" → search_pharmacies
 
-Trust personnel / administration queries ("who is the general manager", "who is the
-  secretary", "who is the executive officer", "who are the trustees", "somnath trust
-  admin team", "office bearers") → use_rag=true, tools=[]
+Trust personnel / administration queries ("who is the chairman", "who is the general
+  manager", "who is the secretary", "who is the executive officer", "who are the
+  trustees", "somnath trust admin team", "office bearers") → use_rag=true, tools=[]
 
 Use conversation history to resolve follow-up queries correctly.
 If the user's message is just a city or place name and the recent history shows a travel
