@@ -30,7 +30,7 @@ MAX_BUS_HUBS = 4           # top N bus hubs to consider
 MAX_FLIGHT_HUBS = 2        # top N flight hubs to consider
 MAX_JOURNEYS = 5           # top N train journeys to return
 MAX_BUS_JOURNEYS = 3       # top N bus journeys to return
-MAX_FLIGHT_JOURNEYS = 3    # top N flight journeys to return
+MAX_FLIGHT_JOURNEYS = 10   # top N flight journeys to return
 HUB_TRAVEL_THRESHOLD_KM = 5  # below this, skip "travel to hub" step
 NEARBY_HUB_RADIUS_KM = 10   # show all boarding stops within this radius for the same train
 
