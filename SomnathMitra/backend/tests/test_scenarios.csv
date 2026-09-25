@@ -1,0 +1,56 @@
+﻿Scenario ID,Category,Type,Turn,User Input,Expected Behavior,Notes
+S01,temple,single-turn,1,What are the darshan timings at Somnath temple?,Answers from official temple information + States specific time(s),
+S02,temple,single-turn,1,What time is the aarti at Somnath?,States specific time(s),
+S03,temple,single-turn,1,What is the dress code and are mobile phones allowed inside Somnath temple?,States covers the dress code / prohibited-item rules,
+S04,temple,single-turn,1,Tell me about prasad at Somnath temple,Answers from official temple information,
+S05,temple,single-turn,1,Tell me about the history and significance of Somnath temple,Gives a substantive answer,
+S06,temple,single-turn,1,Are there guest houses or dormitories at Somnath and what do rooms cost?,Answers from official temple information + lists guest-house/dormitory facilities & pricing,
+S07,temple,single-turn,1,What festivals are celebrated at Somnath temple?,Answers from official temple information + lists festivals/events,
+S08,temple,single-turn,1,What is the contact phone number for the Somnath temple office?,Provides a contact phone/email,
+S09,temple,single-turn,1,Tell me about the heritage walk at Somnath,Answers from official temple information + describes the heritage/temple walk,
+S10,links,single-turn,1,Where can I stay near Somnath temple?,includes guesthouse booking link,
+S11,links,single-turn,1,I want to book a room at the Somnath guest house,includes guesthouse booking link,
+S12,links,single-turn,1,I want to book a pooja online at Somnath,includes pooja/donation link,
+S13,links,single-turn,1,How can I donate to the Somnath temple?,includes donation link,
+S14,local,single-turn,1,restaurants near Somnath temple,Returns a list of nearby restaurants,
+S15,local,single-turn,1,pure vegetarian food near Somnath,Returns a list of nearby restaurants,
+S16,local,single-turn,1,nearest hospital to Somnath,Returns nearby hospitals,
+S17,local,single-turn,1,medical store / pharmacy near Somnath,Returns nearby pharmacies / medical stores,
+S18,local,single-turn,1,places to visit near Somnath temple,Returns nearby points of interest,
+S19,local,single-turn,1,price of sarees at the Somnath temple shop,Returns Somnath temple-shop products,
+S20,local,single-turn,1,show me kotis available at the Somnath temple shop,Returns Somnath temple-shop products,
+S21,local,single-turn,1,prasad items under 500 rupees at the Somnath shop,Returns Somnath temple-shop products,
+S22,local,single-turn,1,top rated restaurants near Somnath,Returns a list of nearby restaurants,
+S23,travel,single-turn,1,trains from Ahmedabad to Somnath,Provides a travel route to Somnath + includes train details,
+S24,travel,single-turn,1,trains from Mumbai to Somnath,Provides a travel route to Somnath,
+S25,travel,single-turn,1,how do I reach Somnath from Delhi?,Provides a travel route to Somnath,
+S26,travel,single-turn,1,buses from Rajkot to Somnath,Provides a travel route to Somnath,
+S27,travel,single-turn,1,are there flights to Somnath?,Provides a travel route to Somnath + explains no direct flights + nearest airports,
+S28,travel,single-turn,1,which is the nearest airport to Somnath?,Names the nearest airport(s) with distance,
+S29,travel,single-turn,1,should I get down at Veraval Junction or Somnath station?,Gives station-choice advice,
+S30,travel,single-turn,1,how do I reach Somnath from Chennai?,Provides a travel route to Somnath + gives a real multi-hop route (no fabrication),
+S31,travel,single-turn,1,is there a bus from Delhi to Somnath?,"Provides a travel route to Somnath + honestly states no direct bus, offers train instead",
+S32,travel,single-turn,1,flight from Kolkata to Somnath?,Provides a travel route to Somnath + honestly states no direct flight coverage,
+S33,faithful,single-turn,1,How many marble steps lead up to the main Somnath sanctum?,Says it does NOT have that detail (must not invent one),
+S34,faithful,single-turn,1,What is the exact ticket price for VIP darshan at Somnath?,Says it does NOT have that detail (must not invent one),
+S35,offtopic,single-turn,1,What is the capital of France?,"Politely refuses — off-topic, not about Somnath",
+S36,routing,single-turn,1,What are the darshan timings and the dress code at Somnath?,Answers from official temple information + States specific time(s) + covers the dress code,
+S37,routing,single-turn,1,vegetarian restaurants near Veraval railway station,Returns a list of nearby restaurants,KNOWN ISSUE: currently misroutes to RAG (intent JSON fallback)
+S38,routing,single-turn,1,Tell me about Hindu pilgrimage traditions and Jyotirlingas,Gives a substantive answer (must NOT be refused as off-topic),
+S39,routing,single-turn,1,What is the religious significance of the Somnath Jyotirlinga?,Gives a substantive answer (must NOT be refused as off-topic),
+S40,lang,single-turn,1,सोमनाथ मंदिर के दर्शन का समय क्या है?,Replies in Hindi (Devanagari script),
+S41,lang,single-turn,1,સોમનાથ મંદિરના દર્શનનો સમય શું છે?,Replies in Gujarati script,
+S42,lang,single-turn,1,somnath na darshan no samay su chhe?,Replies in native Gujarati script (input was romanized),
+S43,lang,single-turn,1,somnath mandir ke darshan ka samay kya hai?,Gives a substantive answer,
+M01,multiturn,multi-turn,1,how do I get to Somnath by train?,Provides a travel route to Somnath,travel: origin supplied in turn 2
+M01,multiturn,multi-turn,2,Rajkot,Provides a travel route to Somnath + plans from Rajkot,(continues M01)
+M02,multiturn,multi-turn,1,I want to travel to Somnath,Gives a substantive answer,travel: far origin over two turns
+M02,multiturn,multi-turn,2,from Mumbai,Provides a travel route to Somnath + plans from Mumbai,(continues M02)
+M03,multiturn,multi-turn,1,what are the darshan timings?,States specific time(s),topic switch: timings then dress code
+M03,multiturn,multi-turn,2,and what is the dress code?,Answers the dress-code follow-up,(continues M03)
+M04,multiturn,multi-turn,1,trains from Rajkot to Somnath,Provides a travel route to Somnath + from Rajkot,origin switch mid-conversation
+M04,multiturn,multi-turn,2,what about from Ahmedabad?,Provides a travel route to Somnath + switches to Ahmedabad,(continues M04)
+M05,multiturn,multi-turn,1,restaurants near Somnath,Returns a list of nearby restaurants,restaurant follow-up
+M05,multiturn,multi-turn,2,any pure veg ones?,Returns a list of nearby restaurants,(continues M05)
+M06,multiturn,multi-turn,1,trains from Ahmedabad to Somnath,Provides a travel route to Somnath,"travel: mode switch, same origin"
+M06,multiturn,multi-turn,2,and by bus?,Provides a travel route to Somnath + bus from Ahmedabad,(continues M06)

@@ -1,0 +1,29 @@
+INFO:     Uvicorn running on http://0.0.0.0:7777 (Press CTRL+C to quit)
+INFO:     Started parent process [3996879]
+INFO:     Started server process [3996883]
+INFO:     Waiting for application startup.
+INFO:     Started server process [3996882]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Application startup complete.
+[embedder] bge-m3 ready via http://localhost:11434/v1
+INFO:     127.0.0.1:35196 - "GET /health HTTP/1.1" 200 OK
+INFO:     103.246.85.165:0 - "POST /chat HTTP/1.1" 200 OK
+[embedder] bge-m3 ready via http://localhost:11434/v1
+INFO:     103.246.85.165:0 - "OPTIONS /chat HTTP/1.1" 200 OK
+INFO:     103.246.85.165:0 - "POST /chat HTTP/1.1" 200 OK
+INFO:     103.246.85.165:0 - "POST /chat HTTP/1.1" 200 OK
+INFO:     103.246.85.165:0 - "POST /chat HTTP/1.1" 200 OK
+INFO:     103.246.85.165:0 - "POST /chat HTTP/1.1" 200 OK
+INFO:     2401:4900:c471:bdeb:b156:928:987a:e3aa:0 - "OPTIONS /chat HTTP/1.1" 200 OK
+INFO:     2401:4900:c471:bdeb:b156:928:987a:e3aa:0 - "POST /chat HTTP/1.1" 200 OK
+INFO:     2401:4900:c471:bdeb:b156:928:987a:e3aa:0 - "POST /chat HTTP/1.1" 200 OK
+INFO:     2401:4900:c46a:f4c0:b156:928:987a:e3aa:0 - "OPTIONS /chat HTTP/1.1" 200 OK
+INFO:     2401:4900:c46a:f4c0:b156:928:987a:e3aa:0 - "POST /chat HTTP/1.1" 200 OK
+INFO:     2401:4900:c46a:f4c0:b156:928:987a:e3aa:0 - "POST /chat HTTP/1.1" 200 OK
+INFO:     2401:4900:c46a:f4c0:b156:928:987a:e3aa:0 - "POST /chat HTTP/1.1" 200 OK
+INFO:     2401:4900:c46a:f4c0:b156:928:987a:e3aa:0 - "OPTIONS /chat HTTP/1.1" 200 OK
+INFO:     2401:4900:c46a:f4c0:b156:928:987a:e3aa:0 - "POST /chat HTTP/1.1" 200 OK
+INFO:     2401:4900:c46a:f4c0:b156:928:987a:e3aa:0 - "POST /chat HTTP/1.1" 200 OK
+INFO:     2401:4900:c46a:f4c0:b156:928:987a:e3aa:0 - "POST /chat HTTP/1.1" 200 OK
+INFO:     2401:4900:c46a:f4c0:b156:928:987a:e3aa:0 - "POST /chat HTTP/1.1" 200 OK

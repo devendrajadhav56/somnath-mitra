@@ -32,40 +32,62 @@ from db import get_clean_db  # noqa: E402
 EMBED_MODEL = "bge-m3"
 EMBED_BASE_URL = "http://localhost:11434/v1"
 
-# Reconstructed rosters (title: name), from the correct `content` lines.
-ADMIN_TEAM = [
-    ("Secretary", "Shri Yogendra Desai"),
-    ("General Manager", "Shri Vijaysinh Chavda"),
-    ("Executive Officer", "Shri Dilip Chavda"),
+# ── Board of Trustees ──────────────────────────────────────────────────────────
+# Eight designated trustee slots (Central Govt of India + State Govt of Gujarat
+# nominations); seven are named below. Chairman's title is set explicitly (it was
+# lost in the source off-by-one).
+CHAIRMAN = (
+    "Shri Narendra Modi",
+    "Chairman & Trustee — Prime Minister of India. Serves a 5-year tenure as chairman; "
+    "the second Prime Minister to hold this position, after Morarji Desai.",
+)
+TRUSTEES = [
+    ("Shri Lal Krishna (L.K.) Advani",
+     "Veteran Bharatiya Janata Party (BJP) leader and former Deputy Prime Minister of India; "
+     "a long-serving central nominee on the board."),
+    ("Shri Amitbhai Shah",
+     "Union Home Minister and Minister of Cooperation of India."),
+    ("Shri Pravin K. Laheri",
+     "Retired senior IAS officer and former Chief Secretary of Gujarat."),
+    ("Shri J. D. Parmar",
+     "Scholar and retired professor of Sanskrit from Veraval, Gujarat; an expert on "
+     "religious and cultural traditions."),
+    ("Shri Harshvardhan Neotia",
+     "Industrialist; chairman of the Kolkata-based Ambuja Neotia Group."),
+    ("Shri Vishad Mafatlal",
+     "A leading Indian industrialist from the Mafatlal Group."),
 ]
 
-# Shri Narendrabhai Modi (Prime Minister of India) is the Chairman of the Trust;
-# his title was lost in the source off-by-one, so it is set explicitly here.
-CHAIRMAN = "Shri Narendrabhai Modi"
-TRUSTEES = [
-    "Shri Lal Krishna Advani",
-    "Shri Amitbhai Shah",
-    "Shri J. D. Parmar",
-    "Shri Harshvardhan Neotia",
-    "Shri Pravin K. Laheri",
-    "Shri Vishad Mafatlal",
+# ── Key administrative officials (day-to-day operations) ────────────────────────
+OFFICIALS = [
+    ("Shri Vijaysinh Chavda", "General Manager",
+     "Manages ground operations, security, and administrative decisions at the temple "
+     "complex in Prabhas Patan (Veraval)."),
+    ("Shri Dilipbhai Chavda", "Executive Officer",
+     "Directs administrative affairs, overseeing the trust's office based in Ahmedabad."),
+    ("Shri Yashodharbhai Bhatt", "Donation & Fund Officer",
+     "Handles financial contributions."),
+    ("Shri Dhanjaybhai Dave", "Main Priest (Chief Pujari)",
+     "Manages the daily Vedic rituals and aartis."),
 ]
 
 SOURCE_URL = "https://somnath.org/Administrative-Team"
 
 
 def _admin_content() -> str:
-    lines = ["Shree Somnath Trust — Administrative Team (office bearers):"]
-    lines += [f"- {title}: {name}" for title, name in ADMIN_TEAM]
+    lines = ["Shree Somnath Trust — Key Administrative Officials (day-to-day operations):"]
+    lines += [f"- {role}: {name} — {bio}" for name, role, bio in OFFICIALS]
     return "\n".join(lines)
 
 
 def _trustee_content() -> str:
     lines = [
-        "Shree Somnath Trust — Chairman and Board of Trustees:",
-        f"- Chairman: {CHAIRMAN} (Prime Minister of India)",
+        "Shree Somnath Trust — Chairman and Board of Trustees.",
+        "The board has eight designated trustee slots, with nominations from the Central "
+        "Government of India and the State Government of Gujarat; the named members are:",
+        f"- Chairman: {CHAIRMAN[0]} — {CHAIRMAN[1]}",
     ]
-    lines += [f"- {name} (Trustee)" for name in TRUSTEES]
+    lines += [f"- {name} (Trustee): {bio}" for name, bio in TRUSTEES]
     return "\n".join(lines)
 
 
@@ -87,7 +109,8 @@ def run():
         {
             "chunk_id": "admin_team#roster",
             "page_url": SOURCE_URL, "page_slug": "admin_team",
-            "page_title": "Administrative Team", "heading": "Administrative Team",
+            "page_title": "Key Administrative Officials",
+            "heading": "Key Administrative Officials",
             "content": _admin_content(),
         },
         {

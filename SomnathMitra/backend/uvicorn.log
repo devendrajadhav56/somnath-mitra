@@ -1,108 +1,129 @@
-nohup: ignoring input
-INFO:     Started server process [28670]
+INFO:     Uvicorn running on http://0.0.0.0:7777 (Press CTRL+C to quit)
+INFO:     Started parent process [795472]
+INFO:     Started server process [795489]
+INFO:     Waiting for application startup.
+INFO:     Started server process [795490]
 INFO:     Waiting for application startup.
 INFO:     Application startup complete.
-INFO:     Uvicorn running on http://0.0.0.0:7777 (Press CTRL+C to quit)
+INFO:     Application startup complete.
 [embedder] bge-m3 ready via http://localhost:11434/v1
-INFO:     192.168.100.129:50451 - "OPTIONS /chat HTTP/1.1" 200 OK
-INTENT {'tools': [{'name': 'plan_route_to_somnath', 'params': {'origin': {}}}, {'name': 'get_temple_info', 'params': {'key': 'how_to_reach_by_air'}}], 'use_rag': False}
-TEMPLE INFO {'key': 'how_to_reach_by_air', 'caveats': ['Flight schedules change seasonally — verify on airline websites before booking.', 'Road transfers: Keshod ~1.5h, Diu ~2h, Porbandar ~3h, Rajkot ~4h.'], 'content': 'There are no direct flights to Somnath. The nearest airports are listed below. From any of them, hire a taxi or take a bus/shared cab to reach Somnath temple. Keshod (IXK) is the closest but has limited routes; Rajkot (HSR) has the widest choice of flights from major Indian cities.', 'items': [{'name': 'Keshod Airport (IXK) — Keshod', 'note': 'Closest airport to Somnath temple (~55 km / 1.5 h by road). | Airlines (sample routes): Alliance Air: Ahmedabad, Mumbai'}, {'name': 'Diu Airport (DIU) — Diu', 'note': '~80 km from Somnath (~2 h by road). | Airlines (sample routes): Alliance Air: Keshod, Mumbai; IndiGo: Ahmedabad, Navi Mumbai, Surat; Star Air: Ahmedabad, Goa'}, {'name': 'Porbandar Airport (PBD) — Porbandar', 'note': '~130 km from Somnath (~3 h by road). | Airlines (sample routes): Alliance Air: Ahmedabad'}, {'name': 'Rajkot International Airport (Hirasar) (HSR) — Rajkot', 'note': 'Largest airport in the region (~190 km from Somnath, ~4 h by road). Widest choice of destinations. | Airlines (sample routes): Air India: Delhi, Mumbai; IndiGo: Bengaluru, Delhi, Hyderabad, Mumbai, Pune'}], 'title': 'Reaching Somnath by Air'}
-INFO:     192.168.100.129:50451 - "POST /chat HTTP/1.1" 200 OK
-extract_origin failed (Expecting value: line 1 column 1 (char 0))
-intent detection failed (Expecting value: line 1 column 1 (char 0)) — falling back to RAG
-INTENT {'tools': [], 'use_rag': True}
-INFO:     192.168.100.129:50460 - "POST /chat HTTP/1.1" 200 OK
-extract_origin failed (Expecting value: line 1 column 1 (char 0))
-intent detection failed (Expecting value: line 1 column 1 (char 0)) — falling back to RAG
-INTENT {'tools': [], 'use_rag': True}
-INFO:     192.168.100.129:50465 - "POST /chat HTTP/1.1" 200 OK
-INTENT {'tools': [{'name': 'plan_route_to_somnath', 'params': {}}, {'name': 'get_temple_info', 'params': {'key': 'how_to_reach_by_air'}}], 'use_rag': False}
-TEMPLE INFO {'key': 'how_to_reach_by_air', 'caveats': ['Flight schedules change seasonally — verify on airline websites before booking.', 'Road transfers: Keshod ~1.5h, Diu ~2h, Porbandar ~3h, Rajkot ~4h.'], 'content': 'There are no direct flights to Somnath. The nearest airports are listed below. From any of them, hire a taxi or take a bus/shared cab to reach Somnath temple. Keshod (IXK) is the closest but has limited routes; Rajkot (HSR) has the widest choice of flights from major Indian cities.', 'items': [{'name': 'Keshod Airport (IXK) — Keshod', 'note': 'Closest airport to Somnath temple (~55 km / 1.5 h by road). | Airlines (sample routes): Alliance Air: Ahmedabad, Mumbai'}, {'name': 'Diu Airport (DIU) — Diu', 'note': '~80 km from Somnath (~2 h by road). | Airlines (sample routes): Alliance Air: Keshod, Mumbai; IndiGo: Ahmedabad, Navi Mumbai, Surat; Star Air: Ahmedabad, Goa'}, {'name': 'Porbandar Airport (PBD) — Porbandar', 'note': '~130 km from Somnath (~3 h by road). | Airlines (sample routes): Alliance Air: Ahmedabad'}, {'name': 'Rajkot International Airport (Hirasar) (HSR) — Rajkot', 'note': 'Largest airport in the region (~190 km from Somnath, ~4 h by road). Widest choice of destinations. | Airlines (sample routes): Air India: Delhi, Mumbai; IndiGo: Bengaluru, Delhi, Hyderabad, Mumbai, Pune'}], 'title': 'Reaching Somnath by Air'}
-INFO:     192.168.100.129:50480 - "POST /chat HTTP/1.1" 200 OK
-INTENT {'tools': [{'name': 'plan_route_to_somnath', 'params': {'origin': {}}}, {'name': 'get_temple_info', 'params': {'key': 'how_to_reach_by_air'}}], 'use_rag': False}
-TEMPLE INFO {'key': 'how_to_reach_by_air', 'caveats': ['Flight schedules change seasonally — verify on airline websites before booking.', 'Road transfers: Keshod ~1.5h, Diu ~2h, Porbandar ~3h, Rajkot ~4h.'], 'content': 'There are no direct flights to Somnath. The nearest airports are listed below. From any of them, hire a taxi or take a bus/shared cab to reach Somnath temple. Keshod (IXK) is the closest but has limited routes; Rajkot (HSR) has the widest choice of flights from major Indian cities.', 'items': [{'name': 'Keshod Airport (IXK) — Keshod', 'note': 'Closest airport to Somnath temple (~55 km / 1.5 h by road). | Airlines (sample routes): Alliance Air: Ahmedabad, Mumbai'}, {'name': 'Diu Airport (DIU) — Diu', 'note': '~80 km from Somnath (~2 h by road). | Airlines (sample routes): Alliance Air: Keshod, Mumbai; IndiGo: Ahmedabad, Navi Mumbai, Surat; Star Air: Ahmedabad, Goa'}, {'name': 'Porbandar Airport (PBD) — Porbandar', 'note': '~130 km from Somnath (~3 h by road). | Airlines (sample routes): Alliance Air: Ahmedabad'}, {'name': 'Rajkot International Airport (Hirasar) (HSR) — Rajkot', 'note': 'Largest airport in the region (~190 km from Somnath, ~4 h by road). Widest choice of destinations. | Airlines (sample routes): Air India: Delhi, Mumbai; IndiGo: Bengaluru, Delhi, Hyderabad, Mumbai, Pune'}], 'title': 'Reaching Somnath by Air'}
-INFO:     192.168.100.129:50481 - "POST /chat HTTP/1.1" 200 OK
-INTENT {'tools': [{'name': 'search_buses', 'params': {'origin_city': 'Delhi', 'destination_city': 'Ahmedabad'}}], 'use_rag': False}
-INFO:     192.168.100.129:50482 - "POST /chat HTTP/1.1" 200 OK
-INTENT {'tools': [{'name': 'plan_route_to_somnath', 'params': {}}, {'name': 'get_temple_info', 'params': {'key': 'how_to_reach_by_air'}}], 'use_rag': False}
-TEMPLE INFO {'key': 'how_to_reach_by_air', 'caveats': ['Flight schedules change seasonally — verify on airline websites before booking.', 'Road transfers: Keshod ~1.5h, Diu ~2h, Porbandar ~3h, Rajkot ~4h.'], 'content': 'There are no direct flights to Somnath. The nearest airports are listed below. From any of them, hire a taxi or take a bus/shared cab to reach Somnath temple. Keshod (IXK) is the closest but has limited routes; Rajkot (HSR) has the widest choice of flights from major Indian cities.', 'items': [{'name': 'Keshod Airport (IXK) — Keshod', 'note': 'Closest airport to Somnath temple (~55 km / 1.5 h by road). | Airlines (sample routes): Alliance Air: Ahmedabad, Mumbai'}, {'name': 'Diu Airport (DIU) — Diu', 'note': '~80 km from Somnath (~2 h by road). | Airlines (sample routes): Alliance Air: Keshod, Mumbai; IndiGo: Ahmedabad, Navi Mumbai, Surat; Star Air: Ahmedabad, Goa'}, {'name': 'Porbandar Airport (PBD) — Porbandar', 'note': '~130 km from Somnath (~3 h by road). | Airlines (sample routes): Alliance Air: Ahmedabad'}, {'name': 'Rajkot International Airport (Hirasar) (HSR) — Rajkot', 'note': 'Largest airport in the region (~190 km from Somnath, ~4 h by road). Widest choice of destinations. | Airlines (sample routes): Air India: Delhi, Mumbai; IndiGo: Bengaluru, Delhi, Hyderabad, Mumbai, Pune'}], 'title': 'Reaching Somnath by Air'}
-INFO:     192.168.100.129:50487 - "POST /chat HTTP/1.1" 200 OK
-INFO:     192.168.100.148:59390 - "OPTIONS /chat HTTP/1.1" 200 OK
-extract_origin failed (Expecting value: line 1 column 1 (char 0))
-INTENT {'tools': [{'name': 'search_restaurants', 'params': {'min_rating': 4.0}}], 'use_rag': False}
-INFO:     192.168.100.148:59390 - "POST /chat HTTP/1.1" 200 OK
-INFO:     192.168.100.149:53865 - "OPTIONS /chat HTTP/1.1" 200 OK
-extract_origin failed (Expecting value: line 1 column 1 (char 0))
-intent detection failed (Expecting value: line 1 column 1 (char 0)) — falling back to RAG
-INTENT {'tools': [], 'use_rag': True}
-INFO:     192.168.100.149:53865 - "POST /chat HTTP/1.1" 200 OK
-INFO:     192.168.100.138:52079 - "OPTIONS /chat HTTP/1.1" 200 OK
-INTENT {'tools': [{'name': 'plan_route_to_somnath', 'params': {'origin': {}}}, {'name': 'get_temple_info', 'params': {'key': 'how_to_reach_by_air'}}], 'use_rag': False}
-TEMPLE INFO {'key': 'how_to_reach_by_air', 'caveats': ['Flight schedules change seasonally — verify on airline websites before booking.', 'Road transfers: Keshod ~1.5h, Diu ~2h, Porbandar ~3h, Rajkot ~4h.'], 'content': 'There are no direct flights to Somnath. The nearest airports are listed below. From any of them, hire a taxi or take a bus/shared cab to reach Somnath temple. Keshod (IXK) is the closest but has limited routes; Rajkot (HSR) has the widest choice of flights from major Indian cities.', 'items': [{'name': 'Keshod Airport (IXK) — Keshod', 'note': 'Closest airport to Somnath temple (~55 km / 1.5 h by road). | Airlines (sample routes): Alliance Air: Ahmedabad, Mumbai'}, {'name': 'Diu Airport (DIU) — Diu', 'note': '~80 km from Somnath (~2 h by road). | Airlines (sample routes): Alliance Air: Keshod, Mumbai; IndiGo: Ahmedabad, Navi Mumbai, Surat; Star Air: Ahmedabad, Goa'}, {'name': 'Porbandar Airport (PBD) — Porbandar', 'note': '~130 km from Somnath (~3 h by road). | Airlines (sample routes): Alliance Air: Ahmedabad'}, {'name': 'Rajkot International Airport (Hirasar) (HSR) — Rajkot', 'note': 'Largest airport in the region (~190 km from Somnath, ~4 h by road). Widest choice of destinations. | Airlines (sample routes): Air India: Delhi, Mumbai; IndiGo: Bengaluru, Delhi, Hyderabad, Mumbai, Pune'}], 'title': 'Reaching Somnath by Air'}
-INFO:     192.168.100.138:52079 - "POST /chat HTTP/1.1" 200 OK
-INTENT {'tools': [{'name': 'plan_route_to_somnath', 'params': {}}, {'name': 'get_temple_info', 'params': {'key': 'how_to_reach_by_air'}}], 'use_rag': False}
-TEMPLE INFO {'key': 'how_to_reach_by_air', 'caveats': ['Flight schedules change seasonally — verify on airline websites before booking.', 'Road transfers: Keshod ~1.5h, Diu ~2h, Porbandar ~3h, Rajkot ~4h.'], 'content': 'There are no direct flights to Somnath. The nearest airports are listed below. From any of them, hire a taxi or take a bus/shared cab to reach Somnath temple. Keshod (IXK) is the closest but has limited routes; Rajkot (HSR) has the widest choice of flights from major Indian cities.', 'items': [{'name': 'Keshod Airport (IXK) — Keshod', 'note': 'Closest airport to Somnath temple (~55 km / 1.5 h by road). | Airlines (sample routes): Alliance Air: Ahmedabad, Mumbai'}, {'name': 'Diu Airport (DIU) — Diu', 'note': '~80 km from Somnath (~2 h by road). | Airlines (sample routes): Alliance Air: Keshod, Mumbai; IndiGo: Ahmedabad, Navi Mumbai, Surat; Star Air: Ahmedabad, Goa'}, {'name': 'Porbandar Airport (PBD) — Porbandar', 'note': '~130 km from Somnath (~3 h by road). | Airlines (sample routes): Alliance Air: Ahmedabad'}, {'name': 'Rajkot International Airport (Hirasar) (HSR) — Rajkot', 'note': 'Largest airport in the region (~190 km from Somnath, ~4 h by road). Widest choice of destinations. | Airlines (sample routes): Air India: Delhi, Mumbai; IndiGo: Bengaluru, Delhi, Hyderabad, Mumbai, Pune'}], 'title': 'Reaching Somnath by Air'}
-INFO:     192.168.100.138:52080 - "POST /chat HTTP/1.1" 200 OK
-INFO:     192.168.100.138:53171 - "OPTIONS /chat HTTP/1.1" 200 OK
-INTENT {'tools': [{'name': 'plan_route_to_somnath', 'params': {}}, {'name': 'get_temple_info', 'params': {'key': 'how_to_reach_by_air'}}], 'use_rag': False}
-TEMPLE INFO {'key': 'how_to_reach_by_air', 'caveats': ['Flight schedules change seasonally — verify on airline websites before booking.', 'Road transfers: Keshod ~1.5h, Diu ~2h, Porbandar ~3h, Rajkot ~4h.'], 'content': 'There are no direct flights to Somnath. The nearest airports are listed below. From any of them, hire a taxi or take a bus/shared cab to reach Somnath temple. Keshod (IXK) is the closest but has limited routes; Rajkot (HSR) has the widest choice of flights from major Indian cities.', 'items': [{'name': 'Keshod Airport (IXK) — Keshod', 'note': 'Closest airport to Somnath temple (~55 km / 1.5 h by road). | Airlines (sample routes): Alliance Air: Ahmedabad, Mumbai'}, {'name': 'Diu Airport (DIU) — Diu', 'note': '~80 km from Somnath (~2 h by road). | Airlines (sample routes): Alliance Air: Keshod, Mumbai; IndiGo: Ahmedabad, Navi Mumbai, Surat; Star Air: Ahmedabad, Goa'}, {'name': 'Porbandar Airport (PBD) — Porbandar', 'note': '~130 km from Somnath (~3 h by road). | Airlines (sample routes): Alliance Air: Ahmedabad'}, {'name': 'Rajkot International Airport (Hirasar) (HSR) — Rajkot', 'note': 'Largest airport in the region (~190 km from Somnath, ~4 h by road). Widest choice of destinations. | Airlines (sample routes): Air India: Delhi, Mumbai; IndiGo: Bengaluru, Delhi, Hyderabad, Mumbai, Pune'}], 'title': 'Reaching Somnath by Air'}
-INFO:     192.168.100.138:53171 - "POST /chat HTTP/1.1" 200 OK
-INFO:     192.168.100.129:51231 - "OPTIONS /chat HTTP/1.1" 200 OK
-INTENT {'tools': [{'name': 'get_temple_info', 'params': {'key': 'darshan_timings'}}], 'use_rag': False}
-TEMPLE INFO {'key': 'darshan_timings', 'category': 'visit_info', 'title': 'Darshan Timings, Aarti & Evening Show', 'source_url': 'https://somnath.org/somnath-darshan/, https://somnath.org/faq/', 'verified': True, 'content': "Temple is open for darshan 6:00 AM to 10:00 PM daily. Aarti takes place three times daily: 7:00 AM, 12:00 noon, and 7:00 PM. Entry is free. A sound-and-light show ('Jay Somnath') runs nightly, though the two official pages disagree on the exact time (one says 7:45-8:45 PM, the FAQ page says 8-9 PM) — treat as approximate until confirmed. The temple is lit up every evening.", 'caveats': ['Light-show time conflicts between /somnath-darshan/ (7:45-8:45pm) and /faq/ (8-9pm) — needs verification.'], 'last_updated': '2026-09-09', 'schema_version': 1}
-INFO:     192.168.100.129:51231 - "POST /chat HTTP/1.1" 200 OK
-INTENT {'tools': [{'name': 'get_temple_info', 'params': {'key': 'darshan_timings'}}], 'use_rag': False}
-TEMPLE INFO {'key': 'darshan_timings', 'category': 'visit_info', 'title': 'Darshan Timings, Aarti & Evening Show', 'source_url': 'https://somnath.org/somnath-darshan/, https://somnath.org/faq/', 'verified': True, 'content': "Temple is open for darshan 6:00 AM to 10:00 PM daily. Aarti takes place three times daily: 7:00 AM, 12:00 noon, and 7:00 PM. Entry is free. A sound-and-light show ('Jay Somnath') runs nightly, though the two official pages disagree on the exact time (one says 7:45-8:45 PM, the FAQ page says 8-9 PM) — treat as approximate until confirmed. The temple is lit up every evening.", 'caveats': ['Light-show time conflicts between /somnath-darshan/ (7:45-8:45pm) and /faq/ (8-9pm) — needs verification.'], 'last_updated': '2026-09-09', 'schema_version': 1}
-INFO:     192.168.100.129:51232 - "POST /chat HTTP/1.1" 200 OK
-INTENT {'tools': [{'name': 'plan_route_to_somnath', 'params': {'origin': {}}}, {'name': 'get_temple_info', 'params': {'key': 'how_to_reach_by_air'}}], 'use_rag': False}
-TEMPLE INFO {'key': 'how_to_reach_by_air', 'caveats': ['Flight schedules change seasonally — verify on airline websites before booking.', 'Road transfers: Keshod ~1.5h, Diu ~2h, Porbandar ~3h, Rajkot ~4h.'], 'content': 'There are no direct flights to Somnath. The nearest airports are listed below. From any of them, hire a taxi or take a bus/shared cab to reach Somnath temple. Keshod (IXK) is the closest but has limited routes; Rajkot (HSR) has the widest choice of flights from major Indian cities.', 'items': [{'name': 'Keshod Airport (IXK) — Keshod', 'note': 'Closest airport to Somnath temple (~55 km / 1.5 h by road). | Airlines (sample routes): Alliance Air: Ahmedabad, Mumbai'}, {'name': 'Diu Airport (DIU) — Diu', 'note': '~80 km from Somnath (~2 h by road). | Airlines (sample routes): Alliance Air: Keshod, Mumbai; IndiGo: Ahmedabad, Navi Mumbai, Surat; Star Air: Ahmedabad, Goa'}, {'name': 'Porbandar Airport (PBD) — Porbandar', 'note': '~130 km from Somnath (~3 h by road). | Airlines (sample routes): Alliance Air: Ahmedabad'}, {'name': 'Rajkot International Airport (Hirasar) (HSR) — Rajkot', 'note': 'Largest airport in the region (~190 km from Somnath, ~4 h by road). Widest choice of destinations. | Airlines (sample routes): Air India: Delhi, Mumbai; IndiGo: Bengaluru, Delhi, Hyderabad, Mumbai, Pune'}], 'title': 'Reaching Somnath by Air'}
-INFO:     192.168.100.138:53257 - "POST /chat HTTP/1.1" 200 OK
-INTENT {'tools': [{'name': 'plan_route_to_somnath', 'params': {}}, {'name': 'get_temple_info', 'params': {'key': 'how_to_reach_by_air'}}], 'use_rag': False}
-TEMPLE INFO {'key': 'how_to_reach_by_air', 'caveats': ['Flight schedules change seasonally — verify on airline websites before booking.', 'Road transfers: Keshod ~1.5h, Diu ~2h, Porbandar ~3h, Rajkot ~4h.'], 'content': 'There are no direct flights to Somnath. The nearest airports are listed below. From any of them, hire a taxi or take a bus/shared cab to reach Somnath temple. Keshod (IXK) is the closest but has limited routes; Rajkot (HSR) has the widest choice of flights from major Indian cities.', 'items': [{'name': 'Keshod Airport (IXK) — Keshod', 'note': 'Closest airport to Somnath temple (~55 km / 1.5 h by road). | Airlines (sample routes): Alliance Air: Ahmedabad, Mumbai'}, {'name': 'Diu Airport (DIU) — Diu', 'note': '~80 km from Somnath (~2 h by road). | Airlines (sample routes): Alliance Air: Keshod, Mumbai; IndiGo: Ahmedabad, Navi Mumbai, Surat; Star Air: Ahmedabad, Goa'}, {'name': 'Porbandar Airport (PBD) — Porbandar', 'note': '~130 km from Somnath (~3 h by road). | Airlines (sample routes): Alliance Air: Ahmedabad'}, {'name': 'Rajkot International Airport (Hirasar) (HSR) — Rajkot', 'note': 'Largest airport in the region (~190 km from Somnath, ~4 h by road). Widest choice of destinations. | Airlines (sample routes): Air India: Delhi, Mumbai; IndiGo: Bengaluru, Delhi, Hyderabad, Mumbai, Pune'}], 'title': 'Reaching Somnath by Air'}
-INFO:     192.168.100.138:53279 - "POST /chat HTTP/1.1" 200 OK
-INFO:     192.168.100.129:51591 - "OPTIONS /chat HTTP/1.1" 200 OK
-INTENT {'tools': [{'name': 'plan_route_to_somnath', 'params': {'origin': {}}}, {'name': 'get_temple_info', 'params': {'key': 'how_to_reach_by_air'}}], 'use_rag': False}
-TEMPLE INFO {'key': 'how_to_reach_by_air', 'caveats': ['Flight schedules change seasonally — verify on airline websites before booking.', 'Road transfers: Keshod ~1.5h, Diu ~2h, Porbandar ~3h, Rajkot ~4h.'], 'content': 'There are no direct flights to Somnath. The nearest airports are listed below. From any of them, hire a taxi or take a bus/shared cab to reach Somnath temple. Keshod (IXK) is the closest but has limited routes; Rajkot (HSR) has the widest choice of flights from major Indian cities.', 'items': [{'name': 'Keshod Airport (IXK) — Keshod', 'note': 'Closest airport to Somnath temple (~55 km / 1.5 h by road). | Airlines (sample routes): Alliance Air: Ahmedabad, Mumbai'}, {'name': 'Diu Airport (DIU) — Diu', 'note': '~80 km from Somnath (~2 h by road). | Airlines (sample routes): Alliance Air: Keshod, Mumbai; IndiGo: Ahmedabad, Navi Mumbai, Surat; Star Air: Ahmedabad, Goa'}, {'name': 'Porbandar Airport (PBD) — Porbandar', 'note': '~130 km from Somnath (~3 h by road). | Airlines (sample routes): Alliance Air: Ahmedabad'}, {'name': 'Rajkot International Airport (Hirasar) (HSR) — Rajkot', 'note': 'Largest airport in the region (~190 km from Somnath, ~4 h by road). Widest choice of destinations. | Airlines (sample routes): Air India: Delhi, Mumbai; IndiGo: Bengaluru, Delhi, Hyderabad, Mumbai, Pune'}], 'title': 'Reaching Somnath by Air'}
-INFO:     192.168.100.129:51592 - "POST /chat HTTP/1.1" 200 OK
-INTENT {'tools': [{'name': 'plan_route_to_somnath', 'params': {'origin': {}}}, {'name': 'get_temple_info', 'params': {'key': 'how_to_reach_by_air'}}], 'use_rag': False}
-TEMPLE INFO {'key': 'how_to_reach_by_air', 'caveats': ['Flight schedules change seasonally — verify on airline websites before booking.', 'Road transfers: Keshod ~1.5h, Diu ~2h, Porbandar ~3h, Rajkot ~4h.'], 'content': 'There are no direct flights to Somnath. The nearest airports are listed below. From any of them, hire a taxi or take a bus/shared cab to reach Somnath temple. Keshod (IXK) is the closest but has limited routes; Rajkot (HSR) has the widest choice of flights from major Indian cities.', 'items': [{'name': 'Keshod Airport (IXK) — Keshod', 'note': 'Closest airport to Somnath temple (~55 km / 1.5 h by road). | Airlines (sample routes): Alliance Air: Ahmedabad, Mumbai'}, {'name': 'Diu Airport (DIU) — Diu', 'note': '~80 km from Somnath (~2 h by road). | Airlines (sample routes): Alliance Air: Keshod, Mumbai; IndiGo: Ahmedabad, Navi Mumbai, Surat; Star Air: Ahmedabad, Goa'}, {'name': 'Porbandar Airport (PBD) — Porbandar', 'note': '~130 km from Somnath (~3 h by road). | Airlines (sample routes): Alliance Air: Ahmedabad'}, {'name': 'Rajkot International Airport (Hirasar) (HSR) — Rajkot', 'note': 'Largest airport in the region (~190 km from Somnath, ~4 h by road). Widest choice of destinations. | Airlines (sample routes): Air India: Delhi, Mumbai; IndiGo: Bengaluru, Delhi, Hyderabad, Mumbai, Pune'}], 'title': 'Reaching Somnath by Air'}
-INFO:     192.168.100.129:51599 - "POST /chat HTTP/1.1" 200 OK
-INTENT {'tools': [{'name': 'plan_route_to_somnath', 'params': {}}, {'name': 'get_temple_info', 'params': {'key': 'how_to_reach_by_air'}}], 'use_rag': False}
-TEMPLE INFO {'key': 'how_to_reach_by_air', 'caveats': ['Flight schedules change seasonally — verify on airline websites before booking.', 'Road transfers: Keshod ~1.5h, Diu ~2h, Porbandar ~3h, Rajkot ~4h.'], 'content': 'There are no direct flights to Somnath. The nearest airports are listed below. From any of them, hire a taxi or take a bus/shared cab to reach Somnath temple. Keshod (IXK) is the closest but has limited routes; Rajkot (HSR) has the widest choice of flights from major Indian cities.', 'items': [{'name': 'Keshod Airport (IXK) — Keshod', 'note': 'Closest airport to Somnath temple (~55 km / 1.5 h by road). | Airlines (sample routes): Alliance Air: Ahmedabad, Mumbai'}, {'name': 'Diu Airport (DIU) — Diu', 'note': '~80 km from Somnath (~2 h by road). | Airlines (sample routes): Alliance Air: Keshod, Mumbai; IndiGo: Ahmedabad, Navi Mumbai, Surat; Star Air: Ahmedabad, Goa'}, {'name': 'Porbandar Airport (PBD) — Porbandar', 'note': '~130 km from Somnath (~3 h by road). | Airlines (sample routes): Alliance Air: Ahmedabad'}, {'name': 'Rajkot International Airport (Hirasar) (HSR) — Rajkot', 'note': 'Largest airport in the region (~190 km from Somnath, ~4 h by road). Widest choice of destinations. | Airlines (sample routes): Air India: Delhi, Mumbai; IndiGo: Bengaluru, Delhi, Hyderabad, Mumbai, Pune'}], 'title': 'Reaching Somnath by Air'}
-INFO:     192.168.100.129:51611 - "POST /chat HTTP/1.1" 200 OK
-INTENT {'tools': [{'name': 'plan_route_to_somnath', 'params': {}}, {'name': 'get_temple_info', 'params': {'key': 'how_to_reach_by_air'}}], 'use_rag': False}
-TEMPLE INFO {'key': 'how_to_reach_by_air', 'caveats': ['Flight schedules change seasonally — verify on airline websites before booking.', 'Road transfers: Keshod ~1.5h, Diu ~2h, Porbandar ~3h, Rajkot ~4h.'], 'content': 'There are no direct flights to Somnath. The nearest airports are listed below. From any of them, hire a taxi or take a bus/shared cab to reach Somnath temple. Keshod (IXK) is the closest but has limited routes; Rajkot (HSR) has the widest choice of flights from major Indian cities.', 'items': [{'name': 'Keshod Airport (IXK) — Keshod', 'note': 'Closest airport to Somnath temple (~55 km / 1.5 h by road). | Airlines (sample routes): Alliance Air: Ahmedabad, Mumbai'}, {'name': 'Diu Airport (DIU) — Diu', 'note': '~80 km from Somnath (~2 h by road). | Airlines (sample routes): Alliance Air: Keshod, Mumbai; IndiGo: Ahmedabad, Navi Mumbai, Surat; Star Air: Ahmedabad, Goa'}, {'name': 'Porbandar Airport (PBD) — Porbandar', 'note': '~130 km from Somnath (~3 h by road). | Airlines (sample routes): Alliance Air: Ahmedabad'}, {'name': 'Rajkot International Airport (Hirasar) (HSR) — Rajkot', 'note': 'Largest airport in the region (~190 km from Somnath, ~4 h by road). Widest choice of destinations. | Airlines (sample routes): Air India: Delhi, Mumbai; IndiGo: Bengaluru, Delhi, Hyderabad, Mumbai, Pune'}], 'title': 'Reaching Somnath by Air'}
-INFO:     192.168.100.129:51618 - "POST /chat HTTP/1.1" 200 OK
-INTENT {'tools': [{'name': 'plan_route_to_somnath', 'params': {'origin': {}}}, {'name': 'get_temple_info', 'params': {'key': 'how_to_reach_by_air'}}], 'use_rag': False}
-TEMPLE INFO {'key': 'how_to_reach_by_air', 'caveats': ['Flight schedules change seasonally — verify on airline websites before booking.', 'Road transfers: Keshod ~1.5h, Diu ~2h, Porbandar ~3h, Rajkot ~4h.'], 'content': 'There are no direct flights to Somnath. The nearest airports are listed below. From any of them, hire a taxi or take a bus/shared cab to reach Somnath temple. Keshod (IXK) is the closest but has limited routes; Rajkot (HSR) has the widest choice of flights from major Indian cities.', 'items': [{'name': 'Keshod Airport (IXK) — Keshod', 'note': 'Closest airport to Somnath temple (~55 km / 1.5 h by road). | Airlines (sample routes): Alliance Air: Ahmedabad, Mumbai'}, {'name': 'Diu Airport (DIU) — Diu', 'note': '~80 km from Somnath (~2 h by road). | Airlines (sample routes): Alliance Air: Keshod, Mumbai; IndiGo: Ahmedabad, Navi Mumbai, Surat; Star Air: Ahmedabad, Goa'}, {'name': 'Porbandar Airport (PBD) — Porbandar', 'note': '~130 km from Somnath (~3 h by road). | Airlines (sample routes): Alliance Air: Ahmedabad'}, {'name': 'Rajkot International Airport (Hirasar) (HSR) — Rajkot', 'note': 'Largest airport in the region (~190 km from Somnath, ~4 h by road). Widest choice of destinations. | Airlines (sample routes): Air India: Delhi, Mumbai; IndiGo: Bengaluru, Delhi, Hyderabad, Mumbai, Pune'}], 'title': 'Reaching Somnath by Air'}
-INFO:     192.168.100.129:51621 - "POST /chat HTTP/1.1" 200 OK
-INTENT {'tools': [{'name': 'plan_route_to_somnath', 'params': {}}, {'name': 'get_temple_info', 'params': {'key': 'how_to_reach_by_air'}}], 'use_rag': False}
-TEMPLE INFO {'key': 'how_to_reach_by_air', 'caveats': ['Flight schedules change seasonally — verify on airline websites before booking.', 'Road transfers: Keshod ~1.5h, Diu ~2h, Porbandar ~3h, Rajkot ~4h.'], 'content': 'There are no direct flights to Somnath. The nearest airports are listed below. From any of them, hire a taxi or take a bus/shared cab to reach Somnath temple. Keshod (IXK) is the closest but has limited routes; Rajkot (HSR) has the widest choice of flights from major Indian cities.', 'items': [{'name': 'Keshod Airport (IXK) — Keshod', 'note': 'Closest airport to Somnath temple (~55 km / 1.5 h by road). | Airlines (sample routes): Alliance Air: Ahmedabad, Mumbai'}, {'name': 'Diu Airport (DIU) — Diu', 'note': '~80 km from Somnath (~2 h by road). | Airlines (sample routes): Alliance Air: Keshod, Mumbai; IndiGo: Ahmedabad, Navi Mumbai, Surat; Star Air: Ahmedabad, Goa'}, {'name': 'Porbandar Airport (PBD) — Porbandar', 'note': '~130 km from Somnath (~3 h by road). | Airlines (sample routes): Alliance Air: Ahmedabad'}, {'name': 'Rajkot International Airport (Hirasar) (HSR) — Rajkot', 'note': 'Largest airport in the region (~190 km from Somnath, ~4 h by road). Widest choice of destinations. | Airlines (sample routes): Air India: Delhi, Mumbai; IndiGo: Bengaluru, Delhi, Hyderabad, Mumbai, Pune'}], 'title': 'Reaching Somnath by Air'}
-INFO:     192.168.100.129:51689 - "POST /chat HTTP/1.1" 200 OK
-INTENT {'tools': [{'name': 'plan_route_to_somnath', 'params': {'origin': {}}}, {'name': 'get_temple_info', 'params': {'key': 'how_to_reach_by_air'}}], 'use_rag': False}
-TEMPLE INFO {'key': 'how_to_reach_by_air', 'caveats': ['Flight schedules change seasonally — verify on airline websites before booking.', 'Road transfers: Keshod ~1.5h, Diu ~2h, Porbandar ~3h, Rajkot ~4h.'], 'content': 'There are no direct flights to Somnath. The nearest airports are listed below. From any of them, hire a taxi or take a bus/shared cab to reach Somnath temple. Keshod (IXK) is the closest but has limited routes; Rajkot (HSR) has the widest choice of flights from major Indian cities.', 'items': [{'name': 'Keshod Airport (IXK) — Keshod', 'note': 'Closest airport to Somnath temple (~55 km / 1.5 h by road). | Airlines (sample routes): Alliance Air: Ahmedabad, Mumbai'}, {'name': 'Diu Airport (DIU) — Diu', 'note': '~80 km from Somnath (~2 h by road). | Airlines (sample routes): Alliance Air: Keshod, Mumbai; IndiGo: Ahmedabad, Navi Mumbai, Surat; Star Air: Ahmedabad, Goa'}, {'name': 'Porbandar Airport (PBD) — Porbandar', 'note': '~130 km from Somnath (~3 h by road). | Airlines (sample routes): Alliance Air: Ahmedabad'}, {'name': 'Rajkot International Airport (Hirasar) (HSR) — Rajkot', 'note': 'Largest airport in the region (~190 km from Somnath, ~4 h by road). Widest choice of destinations. | Airlines (sample routes): Air India: Delhi, Mumbai; IndiGo: Bengaluru, Delhi, Hyderabad, Mumbai, Pune'}], 'title': 'Reaching Somnath by Air'}
-INFO:     192.168.100.129:51700 - "POST /chat HTTP/1.1" 200 OK
-INFO:     192.168.100.129:51795 - "OPTIONS /chat HTTP/1.1" 200 OK
-INTENT {'tools': [{'name': 'plan_route_to_somnath', 'params': {}}, {'name': 'get_temple_info', 'params': {'key': 'how_to_reach_by_air'}}], 'use_rag': False}
-TEMPLE INFO {'key': 'how_to_reach_by_air', 'caveats': ['Flight schedules change seasonally — verify on airline websites before booking.', 'Road transfers: Keshod ~1.5h, Diu ~2h, Porbandar ~3h, Rajkot ~4h.'], 'content': 'There are no direct flights to Somnath. The nearest airports are listed below. From any of them, hire a taxi or take a bus/shared cab to reach Somnath temple. Keshod (IXK) is the closest but has limited routes; Rajkot (HSR) has the widest choice of flights from major Indian cities.', 'items': [{'name': 'Keshod Airport (IXK) — Keshod', 'note': 'Closest airport to Somnath temple (~55 km / 1.5 h by road). | Airlines (sample routes): Alliance Air: Ahmedabad, Mumbai'}, {'name': 'Diu Airport (DIU) — Diu', 'note': '~80 km from Somnath (~2 h by road). | Airlines (sample routes): Alliance Air: Keshod, Mumbai; IndiGo: Ahmedabad, Navi Mumbai, Surat; Star Air: Ahmedabad, Goa'}, {'name': 'Porbandar Airport (PBD) — Porbandar', 'note': '~130 km from Somnath (~3 h by road). | Airlines (sample routes): Alliance Air: Ahmedabad'}, {'name': 'Rajkot International Airport (Hirasar) (HSR) — Rajkot', 'note': 'Largest airport in the region (~190 km from Somnath, ~4 h by road). Widest choice of destinations. | Airlines (sample routes): Air India: Delhi, Mumbai; IndiGo: Bengaluru, Delhi, Hyderabad, Mumbai, Pune'}], 'title': 'Reaching Somnath by Air'}
-INFO:     192.168.100.129:51795 - "POST /chat HTTP/1.1" 200 OK
-INTENT {'tools': [{'name': 'plan_route_to_somnath', 'params': {}}, {'name': 'get_temple_info', 'params': {'key': 'how_to_reach_by_air'}}], 'use_rag': False}
-TEMPLE INFO {'key': 'how_to_reach_by_air', 'caveats': ['Flight schedules change seasonally — verify on airline websites before booking.', 'Road transfers: Keshod ~1.5h, Diu ~2h, Porbandar ~3h, Rajkot ~4h.'], 'content': 'There are no direct flights to Somnath. The nearest airports are listed below. From any of them, hire a taxi or take a bus/shared cab to reach Somnath temple. Keshod (IXK) is the closest but has limited routes; Rajkot (HSR) has the widest choice of flights from major Indian cities.', 'items': [{'name': 'Keshod Airport (IXK) — Keshod', 'note': 'Closest airport to Somnath temple (~55 km / 1.5 h by road). | Airlines (sample routes): Alliance Air: Ahmedabad, Mumbai'}, {'name': 'Diu Airport (DIU) — Diu', 'note': '~80 km from Somnath (~2 h by road). | Airlines (sample routes): Alliance Air: Keshod, Mumbai; IndiGo: Ahmedabad, Navi Mumbai, Surat; Star Air: Ahmedabad, Goa'}, {'name': 'Porbandar Airport (PBD) — Porbandar', 'note': '~130 km from Somnath (~3 h by road). | Airlines (sample routes): Alliance Air: Ahmedabad'}, {'name': 'Rajkot International Airport (Hirasar) (HSR) — Rajkot', 'note': 'Largest airport in the region (~190 km from Somnath, ~4 h by road). Widest choice of destinations. | Airlines (sample routes): Air India: Delhi, Mumbai; IndiGo: Bengaluru, Delhi, Hyderabad, Mumbai, Pune'}], 'title': 'Reaching Somnath by Air'}
-INFO:     192.168.100.129:51858 - "POST /chat HTTP/1.1" 200 OK
-INTENT {'tools': [{'name': 'plan_route_to_somnath', 'params': {'origin': {}}}, {'name': 'get_temple_info', 'params': {'key': 'how_to_reach_by_air'}}], 'use_rag': False}
-TEMPLE INFO {'key': 'how_to_reach_by_air', 'caveats': ['Flight schedules change seasonally — verify on airline websites before booking.', 'Road transfers: Keshod ~1.5h, Diu ~2h, Porbandar ~3h, Rajkot ~4h.'], 'content': 'There are no direct flights to Somnath. The nearest airports are listed below. From any of them, hire a taxi or take a bus/shared cab to reach Somnath temple. Keshod (IXK) is the closest but has limited routes; Rajkot (HSR) has the widest choice of flights from major Indian cities.', 'items': [{'name': 'Keshod Airport (IXK) — Keshod', 'note': 'Closest airport to Somnath temple (~55 km / 1.5 h by road). | Airlines (sample routes): Alliance Air: Ahmedabad, Mumbai'}, {'name': 'Diu Airport (DIU) — Diu', 'note': '~80 km from Somnath (~2 h by road). | Airlines (sample routes): Alliance Air: Keshod, Mumbai; IndiGo: Ahmedabad, Navi Mumbai, Surat; Star Air: Ahmedabad, Goa'}, {'name': 'Porbandar Airport (PBD) — Porbandar', 'note': '~130 km from Somnath (~3 h by road). | Airlines (sample routes): Alliance Air: Ahmedabad'}, {'name': 'Rajkot International Airport (Hirasar) (HSR) — Rajkot', 'note': 'Largest airport in the region (~190 km from Somnath, ~4 h by road). Widest choice of destinations. | Airlines (sample routes): Air India: Delhi, Mumbai; IndiGo: Bengaluru, Delhi, Hyderabad, Mumbai, Pune'}], 'title': 'Reaching Somnath by Air'}
-INFO:     192.168.100.129:51860 - "POST /chat HTTP/1.1" 200 OK
-extract_origin failed (Expecting value: line 1 column 1 (char 0))
-intent detection failed (Expecting value: line 1 column 1 (char 0)) — falling back to RAG
-INTENT {'tools': [], 'use_rag': True}
-INFO:     192.168.100.129:51877 - "POST /chat HTTP/1.1" 200 OK
-INFO:     192.168.100.129:51890 - "OPTIONS /chat HTTP/1.1" 200 OK
-INTENT {'tools': [{'name': 'search_restaurants', 'params': {'min_rating': 4.0}}], 'use_rag': False}
-INFO:     192.168.100.129:51890 - "POST /chat HTTP/1.1" 200 OK
-INFO:     192.168.100.129:52365 - "OPTIONS /chat HTTP/1.1" 200 OK
-extract_origin failed (Expecting value: line 1 column 1 (char 0))
-INTENT {'tools': [], 'use_rag': False}
-INFO:     192.168.100.129:52365 - "POST /chat HTTP/1.1" 200 OK
-intent detection failed (Expecting value: line 1 column 1 (char 0)) — falling back to RAG
-INTENT {'tools': [], 'use_rag': True}
-INFO:     192.168.100.129:52366 - "POST /chat HTTP/1.1" 200 OK
+INFO:     127.0.0.1:32792 - "GET /health HTTP/1.1" 200 OK
+[embedder] bge-m3 ready via http://localhost:11434/v1
+INFO:     103.246.85.165:0 - "POST /chat HTTP/1.1" 200 OK
+INFO:     103.246.85.165:0 - "POST /chat HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43010 - "GET /qa?q=who+is+the+chairman HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44586 - "GET /qa?q=who+is+the+chairman+of+somnath+trust HTTP/1.1" 200 OK
+INFO:     103.246.85.165:0 - "POST /chat HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44602 - "GET /qa?q=somnath+trust+chairman HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44606 - "GET /qa?q=who+is+the+general+manager HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53314 - "GET /qa?q=who+are+the+trustees HTTP/1.1" 200 OK
+INFO:     103.246.85.165:0 - "POST /chat HTTP/1.1" 200 OK
+INFO:     103.246.85.165:0 - "POST /chat HTTP/1.1" 200 OK
+INFO:     103.246.85.165:0 - "POST /chat HTTP/1.1" 200 OK
+INFO:     103.246.85.165:0 - "POST /chat HTTP/1.1" 200 OK
+INFO:     103.246.85.165:0 - "OPTIONS /chat HTTP/1.1" 200 OK
+INFO:     103.246.85.165:0 - "POST /chat HTTP/1.1" 200 OK
+INFO:     103.246.85.165:0 - "POST /chat HTTP/1.1" 200 OK
+INFO:     103.246.85.165:0 - "POST /chat HTTP/1.1" 200 OK
+INFO:     103.246.85.165:0 - "POST /chat HTTP/1.1" 200 OK
+INFO:     103.246.85.165:0 - "POST /chat HTTP/1.1" 200 OK
+INFO:     103.246.85.165:0 - "POST /chat HTTP/1.1" 200 OK
+INFO:     103.246.85.165:0 - "POST /chat HTTP/1.1" 200 OK
+INFO:     103.246.85.165:0 - "POST /chat HTTP/1.1" 200 OK
+INFO:     103.246.85.165:0 - "POST /chat HTTP/1.1" 200 OK
+INFO:     103.246.85.165:0 - "POST /chat HTTP/1.1" 200 OK
+INFO:     103.246.85.165:0 - "POST /chat HTTP/1.1" 200 OK
+INFO:     103.246.85.165:0 - "POST /chat HTTP/1.1" 200 OK
+INFO:     103.246.85.165:0 - "POST /chat HTTP/1.1" 200 OK
+INFO:     103.246.85.165:0 - "OPTIONS /chat HTTP/1.1" 200 OK
+INFO:     103.246.85.165:0 - "POST /chat HTTP/1.1" 200 OK
+INFO:     103.246.85.165:0 - "POST /chat HTTP/1.1" 200 OK
+INFO:     103.246.85.165:0 - "POST /chat HTTP/1.1" 200 OK
+INFO:     103.246.85.165:0 - "POST /chat HTTP/1.1" 200 OK
+INFO:     103.246.85.165:0 - "POST /chat HTTP/1.1" 200 OK
+INFO:     103.246.85.165:0 - "POST /chat HTTP/1.1" 200 OK
+INFO:     103.246.85.165:0 - "OPTIONS /chat HTTP/1.1" 200 OK
+INFO:     103.246.85.165:0 - "POST /chat HTTP/1.1" 200 OK
+INFO:     103.246.85.165:0 - "POST /chat HTTP/1.1" 200 OK
+INFO:     103.246.85.165:0 - "OPTIONS /chat HTTP/1.1" 200 OK
+INFO:     103.246.85.165:0 - "POST /chat HTTP/1.1" 200 OK
+INFO:     103.246.85.165:0 - "POST /chat HTTP/1.1" 200 OK
+INFO:     103.246.85.165:0 - "OPTIONS /chat HTTP/1.1" 200 OK
+INFO:     103.246.85.165:0 - "POST /chat HTTP/1.1" 200 OK
+INFO:     103.246.85.165:0 - "POST /chat HTTP/1.1" 200 OK
+INFO:     103.246.85.165:0 - "POST /chat HTTP/1.1" 200 OK
+INFO:     103.246.85.165:0 - "POST /chat HTTP/1.1" 200 OK
+INFO:     103.246.85.165:0 - "POST /chat HTTP/1.1" 200 OK
+INFO:     103.246.85.165:0 - "POST /chat HTTP/1.1" 200 OK
+INFO:     103.246.85.165:0 - "POST /chat HTTP/1.1" 200 OK
+INFO:     103.246.85.165:0 - "POST /chat HTTP/1.1" 200 OK
+INFO:     103.246.85.165:0 - "POST /chat HTTP/1.1" 200 OK
+INFO:     103.246.85.165:0 - "POST /chat HTTP/1.1" 200 OK
+INFO:     103.246.85.165:0 - "POST /chat HTTP/1.1" 200 OK
+INFO:     103.246.85.165:0 - "POST /chat HTTP/1.1" 200 OK
+INFO:     103.246.85.165:0 - "OPTIONS /chat HTTP/1.1" 200 OK
+INFO:     103.246.85.165:0 - "POST /chat HTTP/1.1" 200 OK
+INFO:     103.246.85.165:0 - "POST /chat HTTP/1.1" 200 OK
+INFO:     103.246.85.165:0 - "POST /chat HTTP/1.1" 200 OK
+INFO:     103.246.85.165:0 - "POST /chat HTTP/1.1" 200 OK
+INFO:     103.246.85.165:0 - "POST /chat HTTP/1.1" 200 OK
+INFO:     103.246.85.165:0 - "POST /chat HTTP/1.1" 200 OK
+INFO:     103.246.85.165:0 - "POST /chat HTTP/1.1" 200 OK
+INFO:     103.246.85.165:0 - "POST /chat HTTP/1.1" 200 OK
+INFO:     103.246.85.165:0 - "POST /chat HTTP/1.1" 200 OK
+INFO:     103.246.85.165:0 - "POST /chat HTTP/1.1" 200 OK
+INFO:     103.246.85.165:0 - "POST /chat HTTP/1.1" 200 OK
+INFO:     103.246.85.165:0 - "POST /chat HTTP/1.1" 200 OK
+INFO:     103.246.85.165:0 - "OPTIONS /chat HTTP/1.1" 200 OK
+INFO:     103.246.85.165:0 - "POST /chat HTTP/1.1" 200 OK
+INFO:     103.246.85.165:0 - "POST /chat HTTP/1.1" 200 OK
+INFO:     103.246.85.165:0 - "POST /chat HTTP/1.1" 200 OK
+INFO:     103.246.85.165:0 - "POST /chat HTTP/1.1" 200 OK
+INFO:     103.246.85.165:0 - "POST /chat HTTP/1.1" 200 OK
+INFO:     103.246.85.165:0 - "POST /chat HTTP/1.1" 200 OK
+INFO:     103.246.85.165:0 - "POST /chat HTTP/1.1" 200 OK
+INFO:     103.246.85.165:0 - "OPTIONS /chat HTTP/1.1" 200 OK
+INFO:     103.246.85.165:0 - "POST /chat HTTP/1.1" 200 OK
+INFO:     103.246.85.165:0 - "OPTIONS /chat HTTP/1.1" 200 OK
+INFO:     103.246.85.165:0 - "POST /chat HTTP/1.1" 200 OK
+INFO:     103.246.85.165:0 - "POST /chat HTTP/1.1" 200 OK
+INFO:     103.246.85.165:0 - "POST /chat HTTP/1.1" 200 OK
+INFO:     103.246.85.165:0 - "POST /chat HTTP/1.1" 200 OK
+INFO:     103.246.85.165:0 - "POST /chat HTTP/1.1" 200 OK
+INFO:     103.246.85.165:0 - "POST /chat HTTP/1.1" 200 OK
+INFO:     103.246.85.165:0 - "POST /chat HTTP/1.1" 200 OK
+INFO:     103.246.85.165:0 - "POST /chat HTTP/1.1" 200 OK
+INFO:     103.246.85.165:0 - "OPTIONS /chat HTTP/1.1" 200 OK
+INFO:     103.246.85.165:0 - "POST /chat HTTP/1.1" 200 OK
+INFO:     103.246.85.165:0 - "POST /chat HTTP/1.1" 200 OK
+INFO:     103.246.85.165:0 - "POST /chat HTTP/1.1" 200 OK
+INFO:     103.246.85.165:0 - "POST /chat HTTP/1.1" 200 OK
+INFO:     103.246.85.165:0 - "POST /chat HTTP/1.1" 200 OK
+INFO:     103.246.85.165:0 - "POST /chat HTTP/1.1" 200 OK
+INFO:     103.246.85.165:0 - "POST /chat HTTP/1.1" 200 OK
+INFO:     103.246.85.165:0 - "POST /chat HTTP/1.1" 200 OK
+INFO:     103.246.85.165:0 - "POST /chat HTTP/1.1" 200 OK
+INFO:     103.246.85.165:0 - "POST /chat HTTP/1.1" 200 OK
+INFO:     103.246.85.165:0 - "POST /chat HTTP/1.1" 200 OK
+INFO:     103.246.85.165:0 - "POST /chat HTTP/1.1" 200 OK
+INFO:     103.246.85.165:0 - "POST /chat HTTP/1.1" 200 OK
+INFO:     103.246.85.165:0 - "POST /chat HTTP/1.1" 200 OK
+INFO:     103.246.85.165:0 - "POST /chat HTTP/1.1" 200 OK
+INFO:     103.246.85.165:0 - "POST /chat HTTP/1.1" 200 OK
+INFO:     103.246.85.165:0 - "POST /chat HTTP/1.1" 200 OK
+INFO:     103.246.85.165:0 - "POST /chat HTTP/1.1" 200 OK
+INFO:     103.246.85.165:0 - "POST /chat HTTP/1.1" 200 OK
+INFO:     103.246.85.165:0 - "POST /chat HTTP/1.1" 200 OK
+INFO:     103.246.85.165:0 - "POST /chat HTTP/1.1" 200 OK
+INFO:     103.246.85.165:0 - "POST /chat HTTP/1.1" 200 OK
+INFO:     103.246.85.165:0 - "OPTIONS /chat HTTP/1.1" 200 OK
+INFO:     103.246.85.165:0 - "POST /chat HTTP/1.1" 200 OK
+INFO:     103.246.85.165:0 - "POST /chat HTTP/1.1" 200 OK
+INFO:     103.246.85.165:0 - "POST /chat HTTP/1.1" 200 OK
+INFO:     103.246.85.165:0 - "POST /chat HTTP/1.1" 200 OK
+INFO:     103.246.85.165:0 - "POST /chat HTTP/1.1" 200 OK
+INFO:     103.246.85.165:0 - "POST /chat HTTP/1.1" 200 OK
+INFO:     103.246.85.165:0 - "POST /chat HTTP/1.1" 200 OK
+INFO:     103.246.85.165:0 - "POST /chat HTTP/1.1" 200 OK
+INFO:     103.246.85.165:0 - "POST /chat HTTP/1.1" 200 OK
+INFO:     103.246.85.165:0 - "OPTIONS /chat HTTP/1.1" 200 OK

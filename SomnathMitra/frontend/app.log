@@ -1,0 +1,15 @@
+
+> somnath-mitra-frontend@0.1.0 dev
+> vite --host 0.0.0.0 --port 5173
+
+
+  VITE v8.3.0  ready in 101 ms
+
+  ➜  Local:   http://localhost:5173/
+  ➜  Network: http://192.168.100.182:5173/  wlP9s9
+5:43:46 PM [vite] (client) hmr update /src/main.jsx
+5:43:46 PM [vite] (client) [console.error] You are calling ReactDOMClient.createRoot() on a container that has already been passed to createRoot() before. Instead, call root.render() on the existing root instead if you want to update it.
+5:43:46 PM [vite] (client) hmr invalidate /src/main.jsx Could not Fast Refresh ("true" export is incompatible). Learn more at https://github.com/vitejs/vite-plugin-react/tree/main/packages/plugin-react#consistent-components-exports
+5:43:46 PM [vite] (client) page reload src/main.jsx
+6:30:54 PM [vite] .env changed, restarting server...
+6:30:54 PM [vite] server restarted.
