@@ -19,10 +19,24 @@ SomnathMitra/backend/test_*.py
 SomnathMitra/data/train_flight_bus_route_data/indianrailways_gtfs.zip
 SomnathMitra/data/chunks_dump.txt
 
-# Logs
+# Logs & run artifacts
 SomnathMitra/backend/logs/*.log
+*.log
 uvicorn.log
 frotend.log
+nohup.out
+
+# Data dumps / binaries (not tracked in git)
+*.zip
+
+# Env backups
+*.bak
+.env.bak*
+*.env.bak*
+
+# QA export — regenerated from tests/live_probes.py, not committed
+SomnathMitra/backend/tests/test_scenarios.csv
+
 # IDE
 .idea/
 .vscode/
