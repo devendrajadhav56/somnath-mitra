@@ -108,7 +108,7 @@ function App() {
     <main className="main-panel">
       <header className="topbar"><button className="menu-button" onClick={() => setMobileMenu(true)}><Menu size={20} /></button><div className="crumb">Shivoham <span>/</span> <b>New conversation</b></div><div className="top-actions"><button title="Start new conversation" onClick={reset}><RotateCcw size={17} /></button><span className="avatar">SM</span></div></header>
       <div className="chat-area">
-        {messages.length === 0 ? <Welcome onAsk={ask} /> : <div className="conversation"><div className="conversation-date">TODAY</div>{messages.map((message, i) => <Message key={i} message={message} onDetails={setActiveDetails} />)}<div className="blessing-footer">🙏 May you be blessed by Pratham Jotirling, Shri Somnath Dada</div></div>}
+        {messages.length === 0 ? <Welcome onAsk={ask} /> : <div className="conversation"><div className="conversation-date">TODAY</div>{messages.map((message, i) => <Message key={i} message={message} onDetails={setActiveDetails} />)}<div className="blessing-footer">🙏 May you be blessed by Pratham Jyotirling, Shri Somnath Dada</div></div>}
         {loading && <div className="typing-row"><div className="mitra-mini">ॐ</div><div className="typing"><i /><i /><i /></div><span>Shivoham is thinking…</span></div>}
         {error && <div className="error-banner"><CircleHelp size={17} /><span>{error}</span><button onClick={() => setError('')}><X size={15} /></button></div>}
         <div ref={endRef} />
