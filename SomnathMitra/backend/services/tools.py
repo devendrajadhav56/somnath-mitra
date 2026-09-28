@@ -9,8 +9,19 @@ import config
 import db
 from services import router as _router
 from services.applog import get_logger, log_debug, log_step
+from services.llm import BOOKING_LINK
 
 log = get_logger(__name__)
+
+# Official Shree Somnath Trust guest houses — booked via the temple's online booking
+# link. Matched by distinctive name tokens to tolerate spelling variants in the POI
+# data ("Lilavati Atithigruh", "Maheshwari Samaj Atithi Gruh", "Sagar Darshan Atithigruh").
+_OFFICIAL_GH_TOKENS = ("lilavati", "maheshwari", "sagar darshan")
+
+
+def _is_official_gh(p: dict) -> bool:
+    name = (p.get("name") or "").lower()
+    return any(tok in name for tok in _OFFICIAL_GH_TOKENS)
 
 TEMPLE_LAT = config.TEMPLE_LAT
 TEMPLE_LON = config.TEMPLE_LON
@@ -208,10 +219,47 @@ def _run_search_pois(params: dict, lat: float, lon: float) -> str:
         query["category"] = category
 
     docs = list(db.get_clean_db()["pois"].find(query, {"_id": 0}).limit(limit))
+
+    if category == "lodging":
+        return _fmt_lodging(docs, radius_m)
+
     if not docs:
         return f"No points of interest found within {radius_m}m of the temple."
     lines = [f"[Points of interest within {radius_m}m of Somnath temple — {len(docs)} results]"]
     lines += [f"- {_fmt_poi(p)}" for p in docs]
+    return "\n".join(lines)
+
+
+def _fmt_lodging(docs: list[dict], radius_m: int) -> str:
+    """Accommodation results: official Somnath Trust guest houses first (with the
+    booking link), then the remaining nearby options."""
+    official = [p for p in docs if _is_official_gh(p)]
+    others = [p for p in docs if not _is_official_gh(p)]
+
+    # Ensure every official guest house is present even if it fell outside the
+    # main search's radius/limit.
+    col = db.get_clean_db()["pois"]
+    seen = {(p.get("name") or "").lower() for p in official}
+    for tok in _OFFICIAL_GH_TOKENS:
+        if not any(tok in n for n in seen):
+            hit = col.find_one({"category": "lodging", "name": {"$regex": tok, "$options": "i"}}, {"_id": 0})
+            if hit:
+                official.append(hit)
+                seen.add((hit.get("name") or "").lower())
+
+    lines: list[str] = []
+    if official:
+        lines.append("[Official Shree Somnath Trust guest houses — recommend THESE FIRST; "
+                     "they are booked through the temple's official online booking link]")
+        lines += [f"- {_fmt_poi(p)}" for p in official]
+        lines.append(f"To book any of the above official guest houses, use the Somnath Trust "
+                     f"booking link: {BOOKING_LINK}")
+    if others:
+        lines.append("")
+        lines.append(f"[Other nearby accommodation options near Somnath (within {radius_m}m)]")
+        lines += [f"- {_fmt_poi(p)}" for p in others]
+    if not lines:
+        return f"No accommodation found within {radius_m}m of the temple."
     return "\n".join(lines)
 
 
