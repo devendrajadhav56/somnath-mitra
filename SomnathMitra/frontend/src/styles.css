@@ -31,6 +31,30 @@
   line-height:1.5;
 }
 
+/* Give the closing blessing a calm, devotional finish. */
+.blessing-footer {
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:14px;
+  max-width:710px;
+  margin:6px auto 0;
+  padding:24px 0 10px;
+  color:#b8906a;
+  font:500 12px 'Playfair Display',serif;
+  letter-spacing:.03em;
+  text-align:center;
+  opacity:.9;
+}
+.blessing-line {
+  width:52px;
+  height:1px;
+  flex:0 1 52px;
+  background:linear-gradient(90deg, transparent, #dfc5ad);
+}
+.blessing-line:last-child { background:linear-gradient(90deg, #dfc5ad, transparent); }
+.blessing-om { color:var(--orange); font:17px/1 serif; }
+
 /* Markdown response formatting */
 .message-bubble > :first-child { margin-top:0; }
 .message-bubble > :last-child { margin-bottom:0; }
