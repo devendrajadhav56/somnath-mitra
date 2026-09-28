@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import { createRoot } from 'react-dom/client'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
@@ -20,6 +20,16 @@ function App() {
   const [activeDetails, setActiveDetails] = useState(null)
   const [mobileMenu, setMobileMenu] = useState(false)
   const endRef = useRef(null)
+  const inputRef = useRef(null)
+
+  useLayoutEffect(() => {
+    const textarea = inputRef.current
+    if (!textarea) return
+
+    // Let the textarea shrink when text is removed before measuring it again.
+    textarea.style.height = 'auto'
+    textarea.style.height = `${textarea.scrollHeight}px`
+  }, [input])
 
   // Effects must return either nothing or a cleanup function. Keep the
   // scroll action inside a block so the effect never returns the DOM method's
@@ -108,12 +118,12 @@ function App() {
     <main className="main-panel">
       <header className="topbar"><button className="menu-button" onClick={() => setMobileMenu(true)}><Menu size={20} /></button><div className="crumb">Shivoham <span>/</span> <b>New conversation</b></div><div className="top-actions"><button title="Start new conversation" onClick={reset}><RotateCcw size={17} /></button><span className="avatar">SM</span></div></header>
       <div className="chat-area">
-        {messages.length === 0 ? <Welcome onAsk={ask} /> : <div className="conversation"><div className="conversation-date">TODAY</div>{messages.map((message, i) => <Message key={i} message={message} onDetails={setActiveDetails} />)}<div className="blessing-footer">🙏 May you be blessed by Pratham Jyotirling, Shri Somnath Dada</div></div>}
+        {messages.length === 0 ? <Welcome onAsk={ask} /> : <div className="conversation"><div className="conversation-date">TODAY</div>{messages.map((message, i) => <Message key={i} message={message} onDetails={setActiveDetails} />)}<div className="blessing-footer" aria-label="Blessing"><span className="blessing-line" aria-hidden="true" /><span className="blessing-om" aria-hidden="true">ॐ</span><span>May you be blessed by Pratham Jyotirling, Shri Somnath Dada</span><span className="blessing-om" aria-hidden="true">ॐ</span><span className="blessing-line" aria-hidden="true" /></div></div>}
         {loading && <div className="typing-row"><div className="mitra-mini">ॐ</div><div className="typing"><i /><i /><i /></div><span>Shivoham is thinking…</span></div>}
         {error && <div className="error-banner"><CircleHelp size={17} /><span>{error}</span><button onClick={() => setError('')}><X size={15} /></button></div>}
         <div ref={endRef} />
       </div>
-      <div className="composer-wrap"><form className="composer" onSubmit={e => { e.preventDefault(); ask(input) }}><textarea value={input} onChange={e => setInput(e.target.value)} onKeyDown={e => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); ask(input) } }} placeholder="Ask anything about Shivoham…" rows="1" /><button className="send-button" disabled={!input.trim() || loading} aria-label="Send"><ArrowUp size={18} /></button></form><div className="composer-hint"><span><span className="key">↵</span> to send <span className="key">⇧ ↵</span> for new line</span><span>Shivoham can make mistakes. Verify important details.</span></div></div>
+      <div className="composer-wrap"><form className="composer" onSubmit={e => { e.preventDefault(); ask(input) }}><textarea ref={inputRef} value={input} onChange={e => setInput(e.target.value)} onKeyDown={e => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); ask(input) } }} placeholder="Ask anything about Shivoham…" rows="1" /><button className="send-button" disabled={!input.trim() || loading} aria-label="Send"><ArrowUp size={18} /></button></form><div className="composer-hint"><span><span className="key">↵</span> to send <span className="key">⇧ ↵</span> for new line</span><span>Shivoham can make mistakes. Verify important details.</span></div></div>
     </main>
     {activeDetails && <Details data={activeDetails} onClose={() => setActiveDetails(null)} />}</div>
 }
