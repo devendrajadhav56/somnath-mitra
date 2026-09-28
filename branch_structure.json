@@ -1,0 +1,18 @@
+{
+  "default_branch": "main",
+  "branches": [
+    "dev",
+    "dev_copy(kunalv1)",
+    "main"
+  ],
+  "parent": {
+    "dev": "main",
+    "dev_copy(kunalv1)": "main",
+    "main": null
+  },
+  "order": [
+    "main",
+    "dev",
+    "dev_copy(kunalv1)"
+  ]
+}
