@@ -443,11 +443,15 @@ _DOC_GET_TEMPLE_INFO = """get_temple_info
       prasad_info            prasad categories, online shop link, in-person counter details"""
 
 _DOC_PLAN_ROUTE_TO_SOMNATH = """plan_route_to_somnath
-  Plan a complete journey from ANY origin city or town in India to Somnath.
+  Plan a complete INTERCITY journey from ANY origin city or town in India to Somnath.
   Handles trains, buses, and flights all in one call.
-  Use for ALL travel-related queries — "how to reach", "trains from X",
+  Use for long-distance travel queries — "how to reach", "trains from X",
   "buses from X", "flights", "travel options", "which train", etc.
   The origin location is injected automatically by the system.
+  Do NOT use this for getting between local attractions inside the
+  Somnath / Prabhas Patan / Veraval area (e.g. Bhalka Tirth, Triveni Sangam,
+  Ram Mandir, Ahilyabai Temple, Geeta Mandir) — those are short walks / auto
+  rides, not intercity journeys.
   params:
     origin : object — leave as {} — filled in automatically"""
 

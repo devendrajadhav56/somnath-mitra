@@ -37,13 +37,23 @@ use_rag = false → when structured tools fully cover the query
 
 tools = []      → when RAG alone is sufficient (history, general temple info)
 
-ALL travel queries (trains, buses, flights, how to reach, journey planning,
-  "from X to Somnath", "trains from X", "buses from X", "how do I get there") →
+INTERCITY travel queries, where the origin is a city / town / region / station
+  ELSEWHERE in India (trains, buses, flights, how to reach, journey planning,
+  "from <city> to Somnath", "trains from X", "buses from X", "how do I get there") →
   plan_route_to_somnath({})
   use_rag=false
   Romanized examples also count as travel:
   e.g. (Romanized Gujarati) "rajkot thi somnath kevi rite pahochvu" → plan_route_to_somnath({})
   e.g. (Romanized Hindi) "rajkot se somnath kaise jaye" → plan_route_to_somnath({})
+
+LOCAL travel between attractions INSIDE the Somnath / Prabhas Patan / Veraval area
+  is NOT an intercity journey — do NOT call plan_route_to_somnath. These nearby
+  places (Bhalka Tirth, Triveni Sangam / Triveni Ghat, Shri Ram Mandir, Ahilyabai
+  Temple, Geeta Mandir, Dehotsarg, Gita Mandir, the beach, etc.) are a short walk or
+  auto ride apart, and their distance + how-to-reach details live in the RAG content.
+  "how to go from Bhalka Tirth to Somnath", "distance from Triveni Sangam to the
+  temple", "how far is Ram Mandir from Somnath", "getting from the temple to Geeta
+  Mandir" → use_rag=true, tools=[]
 
 Questions specifically about WHICH railway station to use, where the entire query is
 about station selection (e.g. "Somnath station or Veraval Junction?", "which station
